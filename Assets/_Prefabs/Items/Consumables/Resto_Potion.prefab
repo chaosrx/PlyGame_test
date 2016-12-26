@@ -1,0 +1,304 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000011525532792}
+  m_IsPrefabParent: 1
+--- !u!1 &1000011525532792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013631232188}
+  - 114: {fileID: 114000010427737484}
+  - 114: {fileID: 114000013847616836}
+  - 114: {fileID: 114000010037217984}
+  m_Layer: 21
+  m_Name: Resto_Potion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000013631232188
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011525532792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114000010037217984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011525532792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 677389920, guid: ee437a4da0b2668478cfbed61746a8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plyBloxGlobalPrefab: {fileID: 1000010960706060, guid: 371a2ce7f465de74a828d650415a5856,
+    type: 2}
+  states:
+  - name: State 0
+    data:
+      eventTypes:
+      - plyGame.OntemUseEvent
+      eventNames:
+      - On Use Item from Bag
+      eventIdents:
+      - On Use Item from Bag
+      eventFirstBlock: 00000000
+      blockTypes:
+      - plyBloxKit.SetLocalVar_plyBlock
+      - plyBloxKit.Float_Value
+      - plyBloxKit.AsplyBlox_plyBlock
+      - plyGame.Get_Player_plyBlock
+      - plyBloxKit.AsplyBlox_plyBlock
+      - plyGame.Get_Player_plyBlock
+      - plyBloxKit.Float_Value
+      - plyBloxKit.SetLocalVar_plyBlock
+      - plyBloxKit.AsplyBlox_plyBlock
+      - plyGame.Get_Player_plyBlock
+      - plyBloxKit.Float_Value
+      - plyBloxKit.SetLocalVar_plyBlock
+      blockLinks:
+      - nextIdx: 7
+        prevIdx: -1
+        ownerIdx: -1
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 0
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 0
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 2
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 7
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 4
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 7
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: 11
+        prevIdx: 0
+        ownerIdx: -1
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 11
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 8
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 11
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: 7
+        ownerIdx: -1
+        childIdx: -1
+        eventIdx: 0
+      blockDataIdx: 00000000040000000500000007000000080000000a0000000b0000000c00000010000000120000001300000014000000
+      blockDataCnt: 040000000100000002000000010000000200000001000000010000000400000002000000010000000100000004000000
+      blockData:
+      - type: 9
+        name: varName
+        data: 484f54506f6f6c
+      - type: 3
+        name: target
+        data: 02000000
+      - type: 3
+        name: toValue
+        data: 01000000
+      - type: 5
+        name: persist
+        data: 00
+      - type: 8
+        name: value
+        data: 0000c842
+      - type: 3
+        name: val
+        data: 03000000
+      - type: 11
+        name: value
+        data: ffffffff
+      - type: 10
+        name: value
+        data: ffffffff
+      - type: 3
+        name: val
+        data: 05000000
+      - type: 11
+        name: value
+        data: ffffffff
+      - type: 10
+        name: value
+        data: ffffffff
+      - type: 8
+        name: value
+        data: 0000803f
+      - type: 9
+        name: varName
+        data: 484f54416d6f756e74
+      - type: 3
+        name: target
+        data: 04000000
+      - type: 3
+        name: toValue
+        data: 06000000
+      - type: 5
+        name: persist
+        data: 00
+      - type: 3
+        name: val
+        data: 09000000
+      - type: 11
+        name: value
+        data: ffffffff
+      - type: 10
+        name: value
+        data: ffffffff
+      - type: 8
+        name: value
+        data: cdcc4c3d
+      - type: 9
+        name: varName
+        data: 484f545469636b
+      - type: 3
+        name: target
+        data: 08000000
+      - type: 3
+        name: toValue
+        data: 0a000000
+      - type: 5
+        name: persist
+        data: 00
+      gameObjects: []
+      unityObjects: []
+      arrayData: []
+      arrayDataNfo: []
+      customData: []
+      customDataNfo: []
+      eventActive: 01
+      blockActive: 010101010101010101010101
+  vars: []
+  uniqueIdOnObject: -1
+  NeedObjectActive: 0
+  onBloxEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: plyBloxKit.plyBlox+OnBloxEvent, plyBlox, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onBloxEventS:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: plyBloxKit.plyBlox+OnBloxEventS, plyBlox, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114000010427737484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011525532792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -914787519, guid: 357936f588f68fb4e8f1d038fdfe02c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistenceOn: 1
+  def:
+    ident: 
+    screenName: Restoration Potion
+    shortName: 
+    meta: 
+    description: Health 100 HP over 5 seconds
+    images:
+    - {fileID: 2800000, guid: 562efa81f34b48c438c0634f06f595a3, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    sprites:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  prefabId:
+    savedIdent: 2cb57a6cfe3a4a7c9c65d1a84b1fb0fd
+  itemType: 0
+  itemSubType: -1
+  floorArt: {fileID: 0}
+  heldArt: {fileID: 0}
+  maxStack: 1
+  weight: 0
+  hSlots: 1
+  vSlots: 1
+  autoPickupDist: 0
+  baseValue: 1
+  isCurrency: 0
+  minCurrency: 1
+  maxCurrency: 1
+  canEquip: 0
+  consumeOnUse: 1
+  equipSlot: -1
+  freezeRotWhenDrop: 0
+--- !u!114 &114000013847616836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011525532792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1690816720, guid: 6ddf2bb4864414d4d82bfa4d197efc5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id:
+    savedIdent: 34147e43ad374fa2b528af993a7f5a39
+  objectStartsActive: 1
+  persistBloxLocalVars: 0
+  persistPosition: 0
+  persistRotation: 0
+  persistScale: 0
+  persistActiveState: 0
+  persistDestroyedState: 1
+  useOffset: 0
+  positionOffset: {x: 0, y: 0.1, z: 0}

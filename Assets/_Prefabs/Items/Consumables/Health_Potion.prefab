@@ -1,0 +1,205 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000011817452836}
+  m_IsPrefabParent: 1
+--- !u!1 &1000011817452836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010760105094}
+  - 114: {fileID: 114000014061142094}
+  - 114: {fileID: 114000014292132958}
+  - 114: {fileID: 114000012565906146}
+  m_Layer: 21
+  m_Name: Health_Potion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000010760105094
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011817452836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114000012565906146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011817452836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 677389920, guid: ee437a4da0b2668478cfbed61746a8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plyBloxGlobalPrefab: {fileID: 1000010960706060, guid: 371a2ce7f465de74a828d650415a5856,
+    type: 2}
+  states:
+  - name: State 0
+    data:
+      eventTypes:
+      - plyGame.OntemUseEvent
+      eventNames:
+      - On Use Item from Bag
+      eventIdents:
+      - On Use Item from Bag
+      eventFirstBlock: 01000000
+      blockTypes:
+      - plyBloxKit.Float_Value
+      - plyGame.ActorAttribute_Change_plyBlock
+      - plyGame.Get_Player_plyBlock
+      blockLinks:
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 1
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: -1
+        childIdx: -1
+        eventIdx: 0
+      - nextIdx: -1
+        prevIdx: -1
+        ownerIdx: 1
+        childIdx: -1
+        eventIdx: 0
+      blockDataIdx: 000000000100000008000000
+      blockDataCnt: 010000000700000001000000
+      blockData:
+      - type: 8
+        name: value
+        data: 00004842
+      - type: 4
+        name: valueType
+        data: 01000000
+      - type: 9
+        name: attribName
+        data: 4865616c7468
+      - type: 4
+        name: identType
+        data: 01000000
+      - type: 3
+        name: target
+        data: 02000000
+      - type: 3
+        name: val
+        data: 00000000
+      - type: 3
+        name: influence
+        data: ffffffff
+      - type: 5
+        name: cacheTarget
+        data: 00
+      - type: 10
+        name: value
+        data: ffffffff
+      gameObjects: []
+      unityObjects: []
+      arrayData: []
+      arrayDataNfo: []
+      customData: []
+      customDataNfo: []
+      eventActive: 01
+      blockActive: 010101
+  vars: []
+  uniqueIdOnObject: -1
+  NeedObjectActive: 0
+  onBloxEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: plyBloxKit.plyBlox+OnBloxEvent, plyBlox, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onBloxEventS:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: plyBloxKit.plyBlox+OnBloxEventS, plyBlox, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114000014061142094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011817452836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -914787519, guid: 357936f588f68fb4e8f1d038fdfe02c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistenceOn: 1
+  def:
+    ident: 
+    screenName: Healing Potion
+    shortName: 
+    meta: 
+    description: Instantly Restore 50 HP
+    images:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    sprites:
+    - {fileID: 21300000, guid: 0a9441b81405fec43b7b4de44c259d2c, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+  prefabId:
+    savedIdent: 5030aab80dac4c558fc908e440db2176
+  itemType: 0
+  itemSubType: -1
+  floorArt: {fileID: 0}
+  heldArt: {fileID: 0}
+  maxStack: 1
+  weight: 0
+  hSlots: 1
+  vSlots: 1
+  autoPickupDist: 0
+  baseValue: 1
+  isCurrency: 0
+  minCurrency: 1
+  maxCurrency: 1
+  canEquip: 0
+  consumeOnUse: 1
+  equipSlot: -1
+  freezeRotWhenDrop: 0
+--- !u!114 &114000014292132958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011817452836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1690816720, guid: 6ddf2bb4864414d4d82bfa4d197efc5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id:
+    savedIdent: 23e21e74a64d4b14b71fd81788640df1
+  objectStartsActive: 1
+  persistBloxLocalVars: 0
+  persistPosition: 0
+  persistRotation: 0
+  persistScale: 0
+  persistActiveState: 0
+  persistDestroyedState: 1
+  useOffset: 0
+  positionOffset: {x: 0, y: 0.1, z: 0}

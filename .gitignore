@@ -59,6 +59,7 @@ sysinfo.txt
 *.pidb.meta
 /Assets/plyData/
 /Assets/plyoung/
+/Assets/[Pp]lugins/
 /Assets/[Gg]izmos
  
 # VS/Rider/MD/Consulo
