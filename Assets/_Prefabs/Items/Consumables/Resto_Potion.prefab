@@ -254,7 +254,7 @@ MonoBehaviour:
     meta: 
     description: Health 100 HP over 5 seconds
     images:
-    - {fileID: 2800000, guid: 562efa81f34b48c438c0634f06f595a3, type: 3}
+    - {fileID: 2800000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     sprites:

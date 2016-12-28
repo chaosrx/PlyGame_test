@@ -65,8 +65,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012771605992}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.6783638, y: 0.21090156, z: -0.20886339, w: 0.6721006}
+  m_LocalPosition: {x: 50, y: 0, z: 45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id:
-    savedIdent: 906af0ddde284fdbb1ebba0cdc5ae93b
+    savedIdent: 585df0c163b446c9b4ef13935adda756
   objectStartsActive: 1
   persistBloxLocalVars: 0
   persistPosition: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     meta: 
     description: 
     images:
-    - {fileID: 2800000, guid: 81cf6723d2779a6498910c8ce566e7e3, type: 3}
+    - {fileID: 2800000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
     - {fileID: 2800000, guid: 81cf6723d2779a6498910c8ce566e7e3, type: 3}
     - {fileID: 2800000, guid: 81cf6723d2779a6498910c8ce566e7e3, type: 3}
     sprites:

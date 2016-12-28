@@ -155,7 +155,7 @@ MonoBehaviour:
     meta: 
     description: Instantly Restore 50 HP
     images:
-    - {fileID: 0}
+    - {fileID: 2800000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     sprites:
@@ -166,7 +166,7 @@ MonoBehaviour:
     savedIdent: 5030aab80dac4c558fc908e440db2176
   itemType: 0
   itemSubType: -1
-  floorArt: {fileID: 0}
+  floorArt: {fileID: 100000, guid: e42f2a080d3055a44876877552206485, type: 2}
   heldArt: {fileID: 0}
   maxStack: 1
   weight: 0
