@@ -44,7 +44,7 @@ GameObject:
   - 114: {fileID: 114000014291650554}
   - 136: {fileID: 136000011661583204}
   m_Layer: 19
-  m_Name: SKELETON
+  m_Name: SKELETON_Demo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
