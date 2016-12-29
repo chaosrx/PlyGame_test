@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/plyData/System/00-bootstrap.unity
   - enabled: 1
-    path: Assets/_Scenes/testscene.unity
-  - enabled: 1
     path: Assets/_Scenes/MainMenu.unity
   - enabled: 1
-    path: Assets/_Scenes/Level1.unity
+    path: Assets/_Scenes/Town.unity
   - enabled: 1
     path: Assets/_Scenes/rpg_ui.unity
+  - enabled: 1
+    path: Assets/_Scenes/Interior.unity
