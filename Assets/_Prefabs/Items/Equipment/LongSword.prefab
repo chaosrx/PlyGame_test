@@ -145,10 +145,10 @@ MonoBehaviour:
   persistenceOn: 1
   def:
     ident: 
-    screenName: 
-    shortName: 
+    screenName: Long Sword
+    shortName: Sword
     meta: 
-    description: 
+    description: A steel long sword, somewhat sharp and pointy
     images:
     - {fileID: 2800000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
     - {fileID: 2800000, guid: 81cf6723d2779a6498910c8ce566e7e3, type: 3}
