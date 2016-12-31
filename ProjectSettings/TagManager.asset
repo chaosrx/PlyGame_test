@@ -6,6 +6,9 @@ TagManager:
   tags:
   - EquipSlot MainHand
   - Occluder
+  - EquipSlot Feet
+  - EquipSlot Head
+  - EquipSlot Body
   layers:
   - Default
   - TransparentFX
