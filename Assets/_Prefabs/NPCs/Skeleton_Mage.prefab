@@ -647,7 +647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013711941240
 GameObject:
   m_ObjectHideFlags: 1
@@ -7627,8 +7627,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   obstacleCheckOffsetY: 1
-  engagedMinDistance: 1
-  engagedMaxDistance: 1
+  engagedMinDistance: 2
+  engagedMaxDistance: 2
   disengageDistanceHome: 50
   disengageDistanceTarget: 50
 --- !u!114 &114000011367253736
@@ -8018,7 +8018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id:
-    savedIdent: affc7bbeed8648aaa4cbd318f110c572
+    savedIdent: 1ad17e258c604ea3b6e2b985efe0e04b
   objectStartsActive: 1
   persistBloxLocalVars: 1
   persistPosition: 1
