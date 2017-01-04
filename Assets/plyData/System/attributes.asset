@@ -1,0 +1,274 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1444503799, guid: 357936f588f68fb4e8f1d038fdfe02c7, type: 3}
+  m_Name: attributes
+  m_EditorClassIdentifier: 
+  attributes:
+  - id:
+      savedIdent: a27d272727f04400a08efe09c5e476b0
+    def:
+      ident: 
+      screenName: Experience
+      shortName: XP
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: caea0213ec174e9aa34cf15a04811f20
+    def:
+      ident: 
+      screenName: Health
+      shortName: HP
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: 17cb7ce0dcd54634ae05a4b32b4c52ea
+    def:
+      ident: 
+      screenName: Mana
+      shortName: MP
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: fb483e27acd8419da65df1fced8ddb96
+    def:
+      ident: 
+      screenName: Armor
+      shortName: Armor
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: 31452f1a40884a24a189a7bdf4b71ce9
+    def:
+      ident: 
+      screenName: Fire Resist
+      shortName: FireR
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: 305dd18a4f114e70b55c31190ea14892
+    def:
+      ident: 
+      screenName: Cold Resist
+      shortName: ColdR
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: a9114ff9f750422bb6af01d2c135ef83
+    def:
+      ident: 
+      screenName: Thunder Resist
+      shortName: ThunderR
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: 31f167a424f54e41b9aed07a8b5a5e05
+    def:
+      ident: 
+      screenName: Shadow Resist
+      shortName: ShadowR
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: c193f4901d8b44bd9538ef3dd16fc248
+    def:
+      ident: 
+      screenName: Holy Resist
+      shortName: HolyR
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: 930653de967448668b756e24da6a87f9
+    def:
+      ident: 
+      screenName: Nature Resist
+      shortName: NatureR
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: f270d4e7b56747e9b955f5b27a16531c
+    def:
+      ident: 
+      screenName: Fire Vulnerability
+      shortName: FireV
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: e7ba7ad794d2440e90f088a0726f714a
+    def:
+      ident: 
+      screenName: Cold Vulnerability
+      shortName: ColdV
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: dd7d02ccd74b44e49454c48d9054fb49
+    def:
+      ident: 
+      screenName: Thunder Vulnerability
+      shortName: ThunderV
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: f466f336a1fb4e3fa570c322ed383b1d
+    def:
+      ident: 
+      screenName: Shadow Vulnerability
+      shortName: ShadowV
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: 6384035b39a4469e9dcf74d611c26c92
+    def:
+      ident: 
+      screenName: Holy Vulnerability
+      shortName: HolyV
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  - id:
+      savedIdent: 0772ec5260a9446badfd44c278a732ac
+    def:
+      ident: 
+      screenName: Nature Vulnerability
+      shortName: NatureV
+      meta: 
+      description: 
+      images:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      sprites:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+  hpAttribId:
+    savedIdent: caea0213ec174e9aa34cf15a04811f20
+  xpAttribId:
+    savedIdent: a27d272727f04400a08efe09c5e476b0

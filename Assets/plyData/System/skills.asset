@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -173867631, guid: 357936f588f68fb4e8f1d038fdfe02c7, type: 3}
+  m_Name: skills
+  m_EditorClassIdentifier: 
+  skillFabs:
+  - {fileID: 1000014023694912, guid: f56153ac9a2359a41bb8395e4d8f253c, type: 2}
+  - {fileID: 1000011189895572, guid: 0f005edff65ad9e4e8633fdbafa7ebd3, type: 2}
+  - {fileID: 1000013649790446, guid: 61128e9cd1c5f4647b5aede01be2db4b, type: 2}
+  globalCooldownValue: 1

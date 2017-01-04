@@ -1,0 +1,298 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000010370921438}
+  m_IsPrefabParent: 1
+--- !u!1 &1000010370921438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4000011284305292}
+  - component: {fileID: 114000012251467354}
+  - component: {fileID: 114000010230874994}
+  m_Layer: 0
+  m_Name: 336d1023829c4861b5fb35130be2972d
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000011284305292
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010370921438}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010230874994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010370921438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2062146570, guid: 357936f588f68fb4e8f1d038fdfe02c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id:
+    savedIdent: 336d1023829c4861b5fb35130be2972d
+  def:
+    ident: 
+    screenName: Zombie
+    shortName: 
+    meta: 
+    description: 
+    images:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    sprites:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  maxLevel: 50
+  maxXP: 100000
+  xpCurve:
+    yMin: 0
+    yMax: 100000
+    values: 00000000f8070000f10f0000ea170000e31f0000dc270000d42f0000cd370000c63f0000bf470000b84f0000b0570000a95f0000a26700009b6f0000947700008d7f0000858700007e8f000077970000709f000069a7000061af00005ab7000053bf00004cc7000045cf00003ed7000036df00002fe7000028ef000021f700001aff0000120701000b0f010004170100fd1e0100f6260100ef2e0100e7360100e03e0100d9460100d24e0100cb560100c35e0100bc660100b56e0100ae760100a77e0100a0860100
+    easingType: 1
+    acceleration: 1
+  attributesInitData:
+  - id:
+      savedIdent: a27d272727f04400a08efe09c5e476b0
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: caea0213ec174e9aa34cf15a04811f20
+    baseValue: 45
+    maxValue: 500
+    canGrow: 1
+    growthCurve:
+      yMin: 45
+      yMax: 500
+      values: 2d000000360000003f00000048000000520000005b000000640000006e000000770000008000000089000000930000009c000000a5000000af000000b8000000c1000000ca000000d4000000dd000000e6000000f0000000f9000000020100000b010000150100001e01000027010000310100003a010000430100004c010000560100005f01000068010000720100007b010000840100008d01000097010000a0010000a9010000b3010000bc010000c5010000ce010000d8010000e1010000ea010000f4010000
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: 17cb7ce0dcd54634ae05a4b32b4c52ea
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: fb483e27acd8419da65df1fced8ddb96
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: 31452f1a40884a24a189a7bdf4b71ce9
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: 305dd18a4f114e70b55c31190ea14892
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: a9114ff9f750422bb6af01d2c135ef83
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: 31f167a424f54e41b9aed07a8b5a5e05
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: c193f4901d8b44bd9538ef3dd16fc248
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: 930653de967448668b756e24da6a87f9
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: f270d4e7b56747e9b955f5b27a16531c
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: e7ba7ad794d2440e90f088a0726f714a
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: dd7d02ccd74b44e49454c48d9054fb49
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: f466f336a1fb4e3fa570c322ed383b1d
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: 6384035b39a4469e9dcf74d611c26c92
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  - id:
+      savedIdent: 0772ec5260a9446badfd44c278a732ac
+    baseValue: 5
+    maxValue: 999
+    canGrow: 0
+    growthCurve:
+      yMin: 0
+      yMax: 0
+      values: 
+      easingType: 1
+      acceleration: 1
+    alsoUpdateConsumable: 1
+  blox: {fileID: 114000012251467354}
+--- !u!114 &114000012251467354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010370921438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 677389920, guid: ee437a4da0b2668478cfbed61746a8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plyBloxGlobalPrefab: {fileID: 0}
+  states: []
+  vars: []
+  uniqueIdOnObject: -1
+  NeedObjectActive: 0
+  onBloxEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: plyBloxKit.plyBlox+OnBloxEvent, plyBlox, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onBloxEventS:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: plyBloxKit.plyBlox+OnBloxEventS, plyBlox, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null

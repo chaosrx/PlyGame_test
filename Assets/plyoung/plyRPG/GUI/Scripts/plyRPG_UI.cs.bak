@@ -1,0 +1,901 @@
+﻿// -= plyRPG =-
+// www.plyoung.com
+// Copyright (c) Leslie Young
+// ====================================================================================================================
+
+using UnityEngine;
+//using UnityEngine.EventSystems;
+//using UnityEngine.Events;
+//using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using plyCommon;
+using plyBloxKit;
+using plyGame;
+using plyRPG;
+using DiaQ;
+
+namespace plyRPG
+{
+	[AddComponentMenu("")]
+	public class plyRPG_UI : MonoBehaviour
+	{
+		// ------------------------------------------------------------------------------------------------------------
+		#region defs
+
+		class IntEvent : UnityEngine.Events.UnityEvent<int> { }
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region properties
+
+		public GameObject miniMenuPanel;		// mini menu on bottom-right (used to open panels)
+		public GameObject gameMenuPanel;		// the in-game menu
+		public GameObject statusArea;			// shows info, like Health, of player and targeted
+		public GameObject actionBarPanel;		// action bars (to execute skills)
+		public GameObject bagPanel;				// bag/ inventory panel to the right (shows what is in bag)
+		public GameObject charaSheetPanel;		// character sheet panel to the left (shows equipped items)
+		public GameObject dialoguePanel;		// dialogue panel to left (shows conversations)
+		public GameObject questLogPanel;		// quest log panel (shows active quests)
+		public GameObject skillsPanel;			// skills
+
+		public GameObject slotButtonFab;		// prefab used when adding slot buttons to panels
+		public GameObject attNfoFab;			// prefab used when showing the player's attributes
+		public GameObject questButtonFab;		// prefab used when adding quests to quest log
+		public GameObject skillButtonFab;		// prefab used when adding skill buttons to skill panel
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region runtime vars
+
+		public static plyRPG_UI _instance = null;
+		public static plyRPG_UI Instance 
+		{ 
+			get 
+			{
+				if (_instance == null) Debug.LogError("The RPG UI is not yet loaded.");
+				return _instance;
+			}
+		}
+
+		private int selectedBagSlot = -1;	// set to the bag slot for which info is being displayed
+		private int selectedEquipSlot = -1; // set to the equipment slot for which info is being displayed
+
+		private GameObject playerStatus;	// contains the player's health bar and other info
+		private GameObject targetStatus;	// contains the player target's health bars and other info
+		private UnityEngine.UI.Slider playerHPBar;			// cache a reference to the player health bar object since it is accessed regularly
+		private UnityEngine.UI.Slider targetHPBar;			// cache a reference to the target health bar object since it is accessed regularly
+		private Targetable currTarget = null;	// keep reference to the last known target of the player
+		private Actor currActor = null;			// keep reference to the Actor component of the last known target of the player, so not need to lookup each time
+		private bool actionBarUpdated = false;	// keep track if bar inited yet (need to wait for player to be ready before it can be done)
+		private int selectedSkillIdx = -1;		// keeps track of selected skill on skill panel
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region init
+
+		protected void Awake()
+		{
+			_instance = this;
+			playerStatus = statusArea.transform.FindChild("Player").gameObject;
+			targetStatus = statusArea.transform.FindChild("Target").gameObject;
+			playerHPBar = playerStatus.transform.FindChild("HP/Bar").GetComponent<UnityEngine.UI.Slider>();
+			targetHPBar = targetStatus.transform.FindChild("HP/Bar").GetComponent<UnityEngine.UI.Slider>();
+		}
+
+		protected void OnEnable()
+		{
+			ResetUI();
+		}
+
+		private void ResetUI()
+		{
+			miniMenuPanel.SetActive(true);
+			actionBarPanel.SetActive(true);
+			statusArea.SetActive(true);
+
+			gameMenuPanel.SetActive(false);
+			bagPanel.SetActive(false);
+			charaSheetPanel.SetActive(false);
+			dialoguePanel.SetActive(false);
+			questLogPanel.SetActive(false);
+
+			UpdateStatusArea();
+			UpdateActionBar();
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region system
+
+		protected void Update()
+		{
+			// mouse over GUI element?
+			if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+			{	
+				// tell plyGame's Input Manager that the mouse was handled
+				plyInput.MouseInputHandled = true;
+			}
+		}
+
+		protected void LateUpdate()
+		{
+			UpdateStatusArea();
+
+			if (!actionBarUpdated) UpdateActionBar();
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region pub
+
+		public static void Load()
+		{
+			if (_instance == null)
+			{
+				// UI scene is not yet loaded, do it now
+				Application.LoadLevelAdditive("rpg_ui");
+			}
+			else
+			{	
+				// reset to default state
+				_instance.ResetUI();
+			}
+		}
+
+		public void Show(bool show)
+		{
+			gameObject.SetActive(show);
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region game menu
+
+		// called by mini-menu to show game menu
+		public void ShowGameMenu(bool show)
+		{
+			if (show)
+			{
+				// hide all open panels and the mini-menu and action bar
+				ResetUI();
+				miniMenuPanel.SetActive(false);
+				actionBarPanel.SetActive(false);
+				GameGlobal.Paused = true;
+				UpdateSaveButtonText();
+				gameMenuPanel.SetActive(true);
+			}
+			else
+			{
+				GameGlobal.Paused = false;
+				gameMenuPanel.SetActive(false);
+
+				// action bar and mini-menu should be visible again
+				miniMenuPanel.SetActive(true);
+				actionBarPanel.SetActive(true);
+			}
+		}
+
+		// called from game menu to quit game
+		public void QuitGame()
+		{
+			Application.Quit();
+		}
+
+		// save the game to specified save slot number. There are 3 buttons
+		// in the game-menu panel that calls this function with 0, 1, and 2
+		// each to save to slots 0, 1, or 2
+		public void SaveGame(int slot)
+		{
+			GameGlobal.SetActiveSaveSlot(slot);
+			GameGlobal.SaveGameSession();
+			UpdateSaveButtonText();
+		}
+
+		private void UpdateSaveButtonText()
+		{
+			UnityEngine.UI.Text[] buttonText = new UnityEngine.UI.Text[]
+			{	// there are 3 buttons
+				gameMenuPanel.transform.FindChild("Save_0_Button/Text").GetComponent<UnityEngine.UI.Text>(),
+				gameMenuPanel.transform.FindChild("Save_1_Button/Text").GetComponent<UnityEngine.UI.Text>(),
+				gameMenuPanel.transform.FindChild("Save_2_Button/Text").GetComponent<UnityEngine.UI.Text>()
+			};
+
+			// the return value from GameGlobal.GetSlotDateTime will be empty if nothing is saved in that slot
+			// You could do this in a `for` loop. I am doing it this way so that it is easier to
+			// read and follow the code since this is a sample script
+
+			string s = GameGlobal.GetSlotDateTime(0);
+			buttonText[0].text = "Save to Slot 1\n" + (string.IsNullOrEmpty(s) ? "-empty-" : s);
+
+			s = GameGlobal.GetSlotDateTime(1);
+			buttonText[1].text = "Save to Slot 2\n" + (string.IsNullOrEmpty(s) ? "-empty-" : s);
+
+			s = GameGlobal.GetSlotDateTime(2);
+			buttonText[2].text = "Save to Slot 3\n" + (string.IsNullOrEmpty(s) ? "-empty-" : s);
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region status area
+
+		// this is called in ResetUI and by LateUpdate
+		public void UpdateStatusArea()
+		{
+			UpdatePlayerStatus();
+			UpdateTargetStatus();
+		}
+
+		public void UpdatePlayerStatus()
+		{
+			// do not continue if the player instance is not yet set
+			if (false == Player.IsReady)
+			{
+				if (playerStatus.activeSelf) playerStatus.SetActive(false);
+				return;
+			}
+			else
+			{	// make sure it is visible
+				if (false == playerStatus.activeSelf) playerStatus.SetActive(true);
+			}
+
+			// update the health bar (only if the player has this attribute)
+			if (Player.Instance.actor.actorClass.HP != null)
+			{
+				// value must be 0 .. 1 so divide HP current by max to get correct value
+				playerHPBar.value = Player.Instance.actor.actorClass.HP.ConsumableValue / Player.Instance.actor.actorClass.HP.Value;
+			}
+			else
+			{
+				playerHPBar.value = 0f;
+			}			
+		}
+
+		public void UpdateTargetStatus()
+		{
+			// do not continue if the player instance is not yet set
+			if (false == Player.IsReady)
+			{
+				currTarget = null;	// make sure to reset this when no active target
+				currActor = null;	// make sure to reset this when no active target
+				if (targetStatus.activeSelf) targetStatus.SetActive(false);
+				return;
+			}
+
+			// nothing to do when nothing selected, simply hide status info
+			if (null == Player.Instance.selectedTarget)
+			{
+				currTarget = null;	// make sure to reset this when no active target
+				currActor = null;	// make sure to reset this when no active target
+				if (targetStatus.activeSelf) targetStatus.SetActive(false);
+				return;
+			}
+
+			// check if target changed
+			if (currTarget != Player.Instance.selectedTarget)
+			{
+				// make sure it is a character that is targeted
+				if (Player.Instance.selectedTarget.TargetableType() == Targetable.Type.Character)
+				{
+					// cache reference to Actor component of character as it contains needed data
+					currActor = Player.Instance.selectedTarget.GetComponent<Actor>();
+
+					// update colour of the HP bar
+					// green: friendly target
+					// yellow: neutral target
+					// red: hostile target
+					UnityEngine.UI.Image fill = targetHPBar.transform.FindChild("Fill Area/Fill").GetComponent<UnityEngine.UI.Image>();
+					StatusTowardsOther status = currActor.HighestStatusToTarget(Player.Instance.actor);
+					if (status == StatusTowardsOther.Friendly) fill.color = Color.green;
+					else if (status == StatusTowardsOther.Neutral) fill.color = Color.yellow;
+					else if (status == StatusTowardsOther.Hostile) fill.color = Color.red;
+
+					// update the name field of the status with name of target
+					UnityEngine.UI.Text name = targetStatus.transform.FindChild("Name").GetComponent<UnityEngine.UI.Text>();
+					name.text = currActor.Name();
+
+					// make sure the status UI is visible
+					targetStatus.SetActive(true);
+				}
+				else
+				{	// can only show status of character, hide status now
+					currTarget = null;
+					currActor = null;
+					targetStatus.SetActive(false);
+					return;
+				}
+			}
+
+			// update HP bar of target
+			if (currActor.actorClass.HP != null)
+			{
+				// value must be 0 .. 1 so divide HP current by max to get correct value
+				targetHPBar.value = currActor.actorClass.HP.ConsumableValue / currActor.actorClass.HP.Value;
+			}
+			else
+			{
+				// no HP info on target :(
+				targetHPBar.value = 0f;
+			}
+
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region action bar
+
+		public void UpdateActionBar()
+		{
+			// do not continue if player is not yet ready
+			if (false == Player.IsReady) return;
+			actionBarUpdated = true;
+
+			// support up to 10 action slots
+			for (int slotIdx = 0; slotIdx < 10; slotIdx++)
+			{
+				// make sure player has this many action slots, else simply ignore those not present
+				if (Player.Instance.actionSlotCount > slotIdx)
+				{
+					string buttonName = "Button " + slotIdx.ToString(); // "Button 0", "Button 1", etc
+					Transform buttonTr = actionBarPanel.transform.FindChild(buttonName);
+					UnityEngine.UI.RawImage img = buttonTr.GetChild(0).GetComponent<UnityEngine.UI.RawImage>();
+
+					ActionSlots.SlotType slotType = Player.Instance.actionSlots.EquippedType(slotIdx);
+					if (slotType == ActionSlots.SlotType.Skill)
+					{
+						// I use GetEquippedNfo to get reference to the definition
+						Skill sk = Player.Instance.actionSlots.GetEquippedNfo(slotIdx) as Skill;
+						if (sk != null)
+						{
+							img.texture = sk.def.images[0]; // expect image to be in first slot of definition image property
+							img.gameObject.SetActive(img.texture != null); // hide image if null
+						}
+					}
+
+					else if (slotType == ActionSlots.SlotType.Item)
+					{
+						// I use GetEquippedNfo to get reference to the definition so that I can access
+						// the image of the item even if the item is not present the player's bag
+						Item it = Player.Instance.actionSlots.GetEquippedNfo(slotIdx) as Item;
+						if (it != null)
+						{
+							img.texture = it.def.images[0]; // expect image to be in first slot of definition image property
+							img.gameObject.SetActive(img.texture != null); // hide image if null
+						}
+					}
+
+				}
+				else break;
+			}
+
+		}
+
+		// will be called by the Action Bar buttons with 0, 1, 2, etc, depending on pressed button
+		public void OnActionButton(int id)
+		{
+			if (false == Player.IsReady) return;
+			Player.Instance.actionSlots.TriggerSlot(id);
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region bag
+
+		// called by the bag button to show bag panel and the (x) button on bag panel, to close it
+		public void ShowBag(bool show)
+		{
+			bagPanel.SetActive(show);
+
+			if (show)
+			{
+				RefreshBag();
+			}
+		}
+
+		// used to refresh the slots (buttons) on the bag panel
+		public void RefreshBag()
+		{
+			// don't bother if bag not visible. can happen that this function
+			// is called when the bag panel is not actually visible
+			if (false == bagPanel.activeSelf) return;
+
+			// call with -1 (an invalid slot) to force the bag info panel to default state
+			OnBagSlotButton(-1);
+
+			ItemBag bag = Player.Instance.gameObject.GetComponent<ItemBag>();
+			Transform container = bagPanel.transform.FindChild("ScrollView/Content");
+
+			// make sure there are enough slot button elements
+			if (container.childCount < bag.GetSlotCount())
+			{
+				int cnt = bag.GetSlotCount() - container.childCount;
+				int nmi = container.childCount;
+				for (int i = 0; i < cnt; i++)
+				{
+					GameObject go = (GameObject)Object.Instantiate(slotButtonFab);
+					go.transform.SetParent(container, false);
+					go.name = "slot " + (nmi + i).ToString();
+
+					int a = i; // yes, have to actually do this since closures close over variables, not over values
+					go.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(delegate { OnBagSlotButton(a); });
+				}
+			}
+
+			// update images on slot buttons
+			for (int i = 0; i < container.childCount; i++)
+			{
+				Transform slotObj = container.GetChild(i);
+				UnityEngine.UI.RawImage img = slotObj.GetChild(0).GetComponent<UnityEngine.UI.RawImage>();	// i know the 1st child is the image
+				UnityEngine.UI.Text stack = slotObj.GetChild(1).GetComponent<UnityEngine.UI.Text>();			// and 2nd is the stack text
+				ItemBag.ItemInBag iib = bag.GetItemInSlot(i);
+
+				if (iib == null)
+				{
+					img.gameObject.SetActive(false);
+					stack.gameObject.SetActive(false);
+					img.texture = null;
+					stack.text = "";
+				}
+				else
+				{
+					img.gameObject.SetActive(true);
+					img.texture = iib.item.def.images[0];
+					if (iib.item.maxStack > 1)
+					{	// only show stack number if item can be stacked
+						stack.gameObject.SetActive(true);
+						stack.text = iib.stack.ToString();
+					}
+					else
+					{
+						stack.gameObject.SetActive(false);
+					}
+				}
+			}
+		}
+
+		// called when a bag slot is clicked. it updates the info panel at bottom of bag
+		public void OnBagSlotButton(int slot)
+		{
+			selectedBagSlot = slot;
+			UnityEngine.UI.Text name = bagPanel.transform.FindChild("Info Panel/Name").GetComponent<UnityEngine.UI.Text>();
+			UnityEngine.UI.Text descr = bagPanel.transform.FindChild("Info Panel/Description").GetComponent<UnityEngine.UI.Text>();
+			Transform useButton = bagPanel.transform.FindChild("Info Panel/UseButton");
+			Transform dropButton = bagPanel.transform.FindChild("Info Panel/DropButton");
+
+			ItemBag.ItemInBag iib = Player.Instance.gameObject.GetComponent<ItemBag>().GetItemInSlot(slot);
+			if (iib != null)
+			{
+				name.text = iib.item.def.screenName;
+				descr.text = iib.item.def.description;
+				
+				useButton.gameObject.SetActive(true);
+				dropButton.gameObject.SetActive(true);
+
+				useButton.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = (iib.item.canEquip ? "Equip" : "Use");
+			}
+			else
+			{
+				name.text = "";
+				descr.text = "";
+				useButton.gameObject.SetActive(false);
+				dropButton.gameObject.SetActive(false);
+			}
+
+		}
+
+		// called by "use" button in bag
+		public void UseFromBag()
+		{
+			if (selectedBagSlot < 0) return; // normally set to -1 when no slot is selected
+			ItemBag bag = Player.Instance.gameObject.GetComponent<ItemBag>();
+			ItemBag.ItemInBag iib = bag.GetItemInSlot(selectedBagSlot);
+
+			if (iib != null)
+			{
+				if (iib.item.canEquip)
+				{
+					// equip the item
+					EquipmentSlots equipSlots = Player.Instance.gameObject.GetComponent<EquipmentSlots>();
+					equipSlots.EquipItem(iib.item, false, ItemBag.ItemDropOption.toScene);
+
+					// remove it from bag
+					bag.RemoveItemFromBag(selectedBagSlot, ItemBag.ItemDropOption.andDestroy, true);
+				}
+				else
+				{
+					// use item from bag
+					bag.UseItem(selectedBagSlot);
+				}
+			}
+
+			// unselect the slot and refresh bag panel
+			selectedBagSlot = -1;
+			RefreshBag();
+
+			// update the character sheet just in case it is visible
+			UpdateEquipSlots();
+			UpdatePlayerStats();
+		}
+
+		// called by "drop" button in bag
+		public void DropFromBag()
+		{
+			if (selectedBagSlot < 0) return; // normally set to -1 when no slot is selected
+			Player.Instance.gameObject.GetComponent<ItemBag>().RemoveItemFromBag(selectedBagSlot, ItemBag.ItemDropOption.toScene, true);
+
+			// unselect the slot and refresh bag panel
+			selectedBagSlot = -1;
+			RefreshBag();
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region character sheet
+
+		public void ShowCharaSheet(bool show)
+		{
+			CloseEquipInfo(); // make sure info panel is close
+			charaSheetPanel.SetActive(show);
+
+			if (show)
+			{
+				UpdateEquipSlots();
+				UpdatePlayerStats();
+			}
+		}
+
+		private void UpdateEquipSlots()
+		{
+			// this might be called when the panel is not visible
+			if (false == charaSheetPanel.activeSelf) return;
+
+			Transform container = charaSheetPanel.transform.FindChild("EquipSlots");
+			EquipmentSlots slots = Player.Instance.gameObject.GetComponent<EquipmentSlots>();
+
+			// first clear all the buttons (slots)
+			for (int i = 0; i < container.childCount; i++)
+			{
+				UnityEngine.UI.Button button = container.GetChild(i).GetComponent<UnityEngine.UI.Button>();
+				if (button != null)
+				{
+					// remove click listener
+					button.onClick.RemoveAllListeners();
+					
+					// hide image
+					button.transform.GetChild(0).gameObject.SetActive(false);
+				}
+			}
+
+			// run through the list of equipped items
+			for (int i = 0; i < slots.items.Count; i++)
+			{
+				if (slots.items[i].slot < 0) continue; // slot is invalid, no use processing it
+				if (slots.items[i].slot >= ItemsAsset.Instance.equipSlots.Count) continue; // this should not happen, but just in case
+
+				// the slot name can be found by looking it up against the value of EquippedItem.slot
+				string slotName = ItemsAsset.Instance.equipSlots[slots.items[i].slot];
+
+				// now make it into the name as used in tags (EquipSlot xWOTEVERx)
+				slotName = "EquipSlot " + slotName;
+
+				// now find the button that relates to this equip slot
+				Transform buttonTr = container.GetFirstChildWithTag(slotName);
+				if (buttonTr == null) continue; // not found, probably not added or buttons not correctly tagged
+
+				// add event listener
+				int a = slots.items[i].slot;
+				buttonTr.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(delegate { OnEquipSlotButton(a); });
+
+				// update the image
+				UnityEngine.UI.RawImage img = buttonTr.GetChild(0).GetComponent<UnityEngine.UI.RawImage>();
+				img.texture = slots.items[i].item.def.images[0];
+				img.gameObject.SetActive(true);
+			}
+		}
+
+		private void UpdatePlayerStats()
+		{
+			// this might be called when the panel is not visible
+			if (false == charaSheetPanel.activeSelf) return;
+
+			Transform container = charaSheetPanel.transform.FindChild("Stats/ScrollView/Content");
+			for (int i = 0; i < Player.Instance.actor.actorClass.attributes.Count; i++)
+			{
+				ActorAttribute att = Player.Instance.actor.actorClass.attributes[i];
+
+				// example of how you may skip an attribute. in this case i do not
+				// want to show the attribute that is linked to XP
+
+				if (att == Player.Instance.actor.actorClass.XP) continue;
+
+				// find the attribute entry in the content, else add it. 1st time panel
+				// is opened will not have the entries present yet. i store the entries
+				// with the name set to the id of the attribute
+
+				Transform t = container.FindChild(att.id.ToString());
+				if (t == null)
+				{	// not found, add it now
+					GameObject go = (GameObject)Object.Instantiate(attNfoFab);
+					go.name = att.id.ToString(); // make its name the same as the attribute's id so i can easily find it
+					t = go.transform;
+					t.SetParent(container, false); // place it in the scrollview content						
+				}
+
+				UnityEngine.UI.Text nameText = t.GetChild(0).GetComponent<UnityEngine.UI.Text>(); // I know the 1st child object is the name object 
+				UnityEngine.UI.Text valText = t.GetChild(1).GetComponent<UnityEngine.UI.Text>();	// and the second is used for showing the value of the attribute
+
+				nameText.text = att.def.screenName;
+				valText.text = att.Value.ToString();
+			}
+		}
+
+		public void OnEquipSlotButton(int slot)
+		{
+			if (slot < 0 || slot >= ItemsAsset.Instance.equipSlots.Count)
+			{
+				// simply hide the info panel
+				CloseEquipInfo();
+				return;
+			}
+
+			// find the slot and item
+			selectedEquipSlot = slot;
+			Item item = Player.Instance.gameObject.GetComponent<EquipmentSlots>().ItemInSlot(slot);
+			if (item == null)
+			{
+				CloseEquipInfo();
+				return;
+			}
+
+			// show info panel
+			Transform infoPanel = charaSheetPanel.transform.FindChild("Info Panel");
+			infoPanel.gameObject.SetActive(true);
+
+			UnityEngine.UI.Text name = infoPanel.FindChild("Name").GetComponent<UnityEngine.UI.Text>();
+			UnityEngine.UI.Text descr = infoPanel.FindChild("Description").GetComponent<UnityEngine.UI.Text>();
+
+			name.text = item.def.screenName;
+			descr.text = item.def.description;
+		}
+
+		public void RemoveItemFromEquipSlot(bool drop)
+		{
+			// unequip item. will drop item to scene if bag is full.
+			EquipmentSlots eq = Player.Instance.gameObject.GetComponent<EquipmentSlots>();
+			eq.UnEquipItem(selectedEquipSlot, ItemBag.ItemDropOption.toScene);
+
+			// update the panel
+			CloseEquipInfo();
+			UpdateEquipSlots();
+			UpdatePlayerStats();
+		}
+
+		public void CloseEquipInfo()
+		{
+			charaSheetPanel.transform.FindChild("Info Panel").gameObject.SetActive(false);
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region dialogue
+
+		// called by the Show/ Hide Dialogue Block
+		public void ShowDialogue(bool show)
+		{
+			dialoguePanel.SetActive(show);
+
+			if (show)
+			{
+				UpdateDialoguePanel();
+			}
+		}
+
+		// the (X) button on the dialogue panel calls this as I can't use ShowDialogue(false) in this case.
+		// It would cause a deadlock with the close Block called in the interact stopped event of the NPC
+		public void CloseDialogue()
+		{
+			// stop interaction, which will trigger the "interact stopped" event on the NPC
+			// and thus cause the dialogue panel to be hidden by the block in that event
+			if (Player.Instance.selectedTarget != null)
+			{
+				// call the function rather than setting selectedTarget = null since
+				// there might be other variables to reset by the plyGame system
+				// and events to trigger
+				Player.Instance.ClearTarget();
+			}
+		}
+
+		public void UpdateDialoguePanel()
+		{
+			// get the waiting node. I will cast it to Dialogue Node type since that is
+			// only "waiting type" node that this code supports. So if it was not correct
+			// type then the dialogue panel will close.
+			DiaQNode_Dlg node = DiaQEngine.Instance.graphManager.NodeWaitingForData() as DiaQNode_Dlg;
+
+			if (node != null)
+			{
+				// update panel with correct text
+				UnityEngine.UI.Text dialogueText = dialoguePanel.transform.FindChild("Text").GetComponent<UnityEngine.UI.Text>();
+				dialogueText.text = node.ParsedDialogueText(true);
+
+				// update buttons (there are 3 buttons)
+				for (int responseIdx = 0; responseIdx < 3; responseIdx++)
+				{
+					string buttonObjectName = "Button " + (responseIdx + 1).ToString(); // "Button 1", "Button 2", "Button 3" ...
+					Transform button = dialoguePanel.transform.FindChild(buttonObjectName);
+
+					// check if the node has this many responses and show/ hide button depending on result
+					if (node.responses.Length > responseIdx)
+					{
+						// show button and update its text
+						button.gameObject.SetActive(true);
+						button.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = node.ParsedResponseText(responseIdx);
+					}
+					else
+					{
+						// else hide the button as there is no response text to show on it
+						button.gameObject.SetActive(false);
+					}
+				}
+			}
+
+			else
+			{
+				// no node waiting, most likely case is that end of the conversation
+				// was reached. close the dialogue now. The NPC will be "untargeted"
+				// and thus trigger the 'interact stopped' event in which you should
+				// have a block that calls the dialogue panel to hide.
+				CloseDialogue();
+			}
+		}
+
+		// this is called by the buttons on the dialogue panel
+		// opt is:
+		// button 1: 0
+		// button 2: 1
+		// button 3: 2
+		// since DiaQ Dialogue Node expects response values starting at 0
+		public void OnDialogueOption(int opt)
+		{
+			// send the response to the waiting node
+			DiaQEngine.Instance.graphManager.SendDataToNode(opt);
+
+			// force the graph to process the response now else it would wait till
+			// next frame update but I want to update the dialogue panel now!
+			DiaQEngine.Instance.graphManager.UpdateGraph();
+
+			// now check if there is another waiting node or if the graph has ended
+			UpdateDialoguePanel();
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region quest log
+
+		// show/ hide the quest log panel
+		public void ShowQuestLog(bool show)
+		{
+			questLogPanel.SetActive(show);
+
+			if (show)
+			{
+				UpdateQuestLogPanel();
+			}
+		}
+
+		public void UpdateQuestLogPanel()
+		{
+			// clear the quest text
+			questLogPanel.transform.FindChild("QuestText").GetComponent<UnityEngine.UI.Text>().text = "";
+
+			// remove all existing quest buttons
+			Transform container = questLogPanel.transform.FindChild("List/ScrollView/Content");
+			for (int i = container.childCount - 1; i >= 0; i--)
+			{
+				Destroy(container.GetChild(i).gameObject);
+			}
+
+			// add quests
+			foreach (DiaQuest quest in DiaQEngine.Instance.questManager.quests)
+			{
+				if (quest.accepted && !quest.rewarded)
+				{
+					int a = quest.id;
+					GameObject go = (GameObject)Object.Instantiate(questButtonFab);
+					go.transform.SetParent(container, false);
+					go.name = "quest " + a.ToString();
+
+					// link the callback
+					go.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(delegate { OnQuestButton(a); });
+
+					// set the name of quest on the button text
+					go.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = quest.name;
+				}
+			}
+		}
+
+		public void OnQuestButton(int id)
+		{
+			UnityEngine.UI.Text questText = questLogPanel.transform.FindChild("QuestText").GetComponent<UnityEngine.UI.Text>();
+			DiaQuest quest = DiaQEngine.Instance.questManager.GetQuestById(id);
+			if (quest != null)
+			{
+				questText.text = quest.ParsedQuestText();
+			}
+			else
+			{
+				questText.text = "";
+			}
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+		#region skills
+
+		public void ShowSkillsPanel(bool show)
+		{
+			skillsPanel.SetActive(show);
+			selectedSkillIdx = -1;
+
+			if (show)
+			{
+				skillsPanel.transform.FindChild("Info").gameObject.SetActive(false);
+				skillsPanel.transform.FindChild("SlotLinks").gameObject.SetActive(false);
+				UpdateSkillsPanel();
+			}
+		}
+
+		public void UpdateSkillsPanel()
+		{
+			skillsPanel.transform.FindChild("SlotLinks").gameObject.SetActive(false);
+			Transform container = skillsPanel.transform.FindChild("Skills/Content");
+			
+			// remove all the existing buttons
+			if (container.childCount > 0)
+			{
+				for (int i = container.childCount - 1; i >= 0; i--)
+				{
+					Destroy(container.GetChild(i).gameObject);
+				}
+			}
+
+			// add the skills the player knows
+			for (int i = 0; i < Player.Instance.actor.knownSkills.Count; i++)
+			{
+				GameObject go = (GameObject)Object.Instantiate(skillButtonFab);
+				go.transform.SetParent(container, false);
+				go.name = "skill " + Player.Instance.actor.knownSkills[i].ToString();
+				if (Player.Instance.actor.knownSkills[i].def.images[0] != null)
+				{
+					go.transform.GetChild(0).GetComponent<UnityEngine.UI.RawImage>().texture = Player.Instance.actor.knownSkills[i].def.images[0];
+				}
+
+				int a = i; // yes, have to actually do this since closures close over variables, not over values
+				go.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(delegate { OnSkillButton(a); });
+			}
+		}
+
+		public void ShowSkillsEquipButtons()
+		{
+			skillsPanel.transform.FindChild("SlotLinks").gameObject.SetActive(true);
+		}
+
+		public void OnSkillButton(int i)
+		{
+			selectedSkillIdx = i;
+			skillsPanel.transform.FindChild("Info").gameObject.SetActive(true);
+			skillsPanel.transform.FindChild("Info/Head").GetComponent<UnityEngine.UI.Text>().text = Player.Instance.actor.knownSkills[i].ToString();
+			skillsPanel.transform.FindChild("Info/Descr").GetComponent<UnityEngine.UI.Text>().text = Player.Instance.actor.knownSkills[i].def.description;
+		}
+
+		public void SetSkillToSlot(int slot)
+		{
+			skillsPanel.transform.FindChild("SlotLinks").gameObject.SetActive(false);
+			Player.Instance.actionSlots.EquipSkill(slot, Player.Instance.actor.knownSkills[selectedSkillIdx].id);
+			UpdateActionBar();
+		}
+
+		#endregion
+		// ------------------------------------------------------------------------------------------------------------
+	}
+}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1291266995, guid: 357936f588f68fb4e8f1d038fdfe02c7, type: 3}
+  m_Name: items
+  m_EditorClassIdentifier: 
+  itemFabs:
+  - {fileID: 1000011817452836, guid: a995913b4da92264f8da430b8cb70b11, type: 2}
+  - {fileID: 1000011525532792, guid: 271467bd487aece4da3488712a736b0e, type: 2}
+  - {fileID: 1000012771605992, guid: c971ba81ed9ab564f8e4e0eb11facca6, type: 2}
+  storageMethod: 2
+  autoPickItemDisableDistance: 20
+  autoPickItemDisableTimeout: 10
+  itemTypes:
+  - name: Consumable
+    subTypes: []
+  - name: Weapon
+    subTypes:
+    - One Handed
+  equipSlots:
+  - MainHand
+  runtimeCreatedItemsPersist: 1
+  lootDropDelay: 0

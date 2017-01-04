@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>plyBloxEditor</name>
+    </assembly>
+    <members>
+        <member name="F:plyBloxKitEditor.plyBloxGUI.blockIcons">
+            <summary>
+            Add to this the icons that will be used in Blocks
+            Default icons are: 
+            for variable types: local, global, temp
+            for types defined in unity: animator, animation, audio, listener, transform, object, light
+            </summary>
+        </member>
+        <member name="T:plyBloxKitEditor.plyBlockFieldHandler">
+            <summary> A field handler is needed when you created custom types to use as fields in blocks.
+             The handler will know how to make a copy of the field type and how to render it in the
+             editor. </summary>
+        </member>
+        <member name="M:plyBloxKitEditor.plyBlockFieldHandler.GetCopy(System.Object)">
+            <summary> Override this. Should return a copy of the passed field (obj). </summary>
+        </member>
+        <member name="M:plyBloxKitEditor.plyBlockFieldHandler.OnFocus(System.Object,plyBloxKit.plyBlock)">
+            <summary> Override this. Called when the blocks was focused (selected) (clicked on). Good place
+             to init some temp variables that might be used in DrawField() </summary>
+            <param name="obj">			The field. </param>
+            <param name="fieldOfBlock">	The plyBlock that this field is used in. </param>
+        </member>
+        <member name="M:plyBloxKitEditor.plyBlockFieldHandler.DrawField(System.Object@,plyBloxKit.plyBlock)">
+            <summary> Override this. Called by the editor when it wants the custom property/ field to be
+             rendered. Should return TRUE if the value changed and should be saved. </summary>
+            <param name="obj">			The field. </param>
+            <param name="fieldOfBlock">	The plyBlock that this field is used in. </param>
+        </member>
+        <member name="T:plyBloxKitEditor.plyPropertyHandlerAttribute">
+            <summary> Attribute for custom field handler (plyBlockFieldHandler). </summary>
+        </member>
+    </members>
+</doc>

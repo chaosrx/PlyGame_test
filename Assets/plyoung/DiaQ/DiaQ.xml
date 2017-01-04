@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DiaQ</name>
+    </assembly>
+    <members>
+        <member name="T:DiaQ.DiaQuestReward">
+            <summary> A DiaQ Quest Reward for quest completion. 
+            You should  use the functions in DiaQuest and not 
+            interact with the reward directly, except when 
+            you want to interact with the metaData. </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestReward.keyObject">
+            <summary> alternative way of providing a reward key. If set then this will cause
+            the DataProvider_Callback to be triggered. Also provides a cleaner way for the 
+            designer to select quest reward. The context of the Provider should be set to
+            "DiaQReward". (plyDataProviderInfo.ProviderContext) </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestReward.keyString">
+            <summary> identifies the reward </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestReward.value">
+            <summary> can be used to set how many copies of the reward to give </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestReward.metaData">
+            <summary> Extra data that can be associated with the reward. Do not access at runtime, use provided functions. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestReward.Awake">
+            <summary> called by Quest's Awake at runtime </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestReward.GetMetaData(System.String)">
+            <summary> Return reference to meta data object. Null if not found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestReward.GetMetaDataValue(System.String)">
+            <summary> Return meta data value. Null if named meta data not found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestReward.SetMetaDataValue(System.String,System.Object)">
+            <summary> Set meta data value. Will create the named meta data if not found and then set value. </summary>
+        </member>
+        <member name="T:DiaQ.DiaQuestCondition">
+            <summary> A DiaQ Quest Condition to complete. You should use the functions in DiaQuest and not interact
+            with the condition directly, except when you want to interact with the metaData. If you change value 
+            here directly the quest might not pick up on the state change of the condition and not be able to 
+            update whether the quest is completed </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestCondition.key">
+            <summary> identifies the condition </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestCondition.targetValue">
+            <summary> most quests have to do with collecting or doing something a number of times.
+            This field can be used to indicate the amount needed. </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestCondition.text">
+            <summary> Text associated with the condition </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestCondition.metaData">
+            <summary> Extra data that can be associated with the condition. Do not access at runtime, use provided functions. </summary>
+        </member>
+        <member name="P:DiaQ.DiaQuestCondition.completed">
+            <summary> Indicates that this condition is met. will not reset progress if set to false. </summary>
+        </member>
+        <member name="P:DiaQ.DiaQuestCondition.performedTimes">
+            <summary> how many times the condition has been performed. Once this value reaches targetValue 
+            the condition will be considered completed </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestCondition.Awake">
+            <summary> called by Quest's Awake at runtime </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestCondition.GetMetaData(System.String)">
+            <summary> Return reference to meta data object. Null if not found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestCondition.GetMetaDataValue(System.String)">
+            <summary> Return meta data value. Null if named meta data not found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestCondition.SetMetaDataValue(System.String,System.Object)">
+            <summary> Set meta data value. Will create the named meta data if not found and then set value. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestCondition.ParsedConditionText">
+            <summary>
+            Return parsed text. The inline values will be inserted if any present in text.
+            </summary>
+        </member>
+        <member name="T:DiaQ.DiaQuest">
+            <summary> A DiaQ Quest </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuest.id">
+            <summary> Unique id of the quest </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuest.name">
+            <summary> Name of quest </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuest.customIdent">
+            <summary> Optional way to identify quest by </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuest.text">
+            <summary> Text associated with quest, for example a description of what the player must do. </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuest.conditions">
+            <summary> List of conditions that must be completed before the quest is considered completed.
+            Do not update the conditions directly, except if you know what you are doing. In most cases you
+            want to use the provided functions to update the conditions. </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuest.rewards">
+            <summary> List of rewards for completing the quest. </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuest.metaData">
+            <summary> Extra data that can be associated with the quest. Do not access at runtime, use provided functions. </summary>
+        </member>
+        <member name="P:DiaQ.DiaQuest.accepted">
+            <summary> Has this quest been accepted yet? setting this false will set completed = false and
+            rewarded = false </summary>
+        </member>
+        <member name="P:DiaQ.DiaQuest.completed">
+            <summary> Has this quest been completed? setting this true will set accepted = true and will 
+            set all condition progress as completed. setting this false will set rewarded = false and 
+            will reset conditions's progress. </summary>
+        </member>
+        <member name="P:DiaQ.DiaQuest.rewarded">
+            <summary> Has the player receive the quest rewards yet or not? setting this true will set 
+            accepted = true and completed = true. Setting rewarded = true will not cause any game
+            logic that gives the reward, to run. You handle that separately. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.Awake">
+            <summary> called by DiaQuestManager's Awake at runtime </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.ConditionPerformed(System.String,System.Boolean)">
+            <summary> This will update the condition and note that it has been performed. The condition will be
+            considered completed once it has been performed the target number of times DiaQuestCondition.targetValue.
+            Will update DiaQuest.completed when quest is completed. Return false if condition key not found,
+            quest not yet accepted by player or if player already completed the quest. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.ConditionPerformed(System.String,System.Int32,System.Boolean)">
+            <summary> This will update the condition performedTimes. The condition will be considered completed 
+            once it has been performed the target number of times DiaQuestCondition.targetValue.
+            The value can be negative to decrease the performedTimes. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.SetCompleted(System.Boolean)">
+            <summary> Passing true will also update the condition progress as completed while false
+            will reset all conditions' progress to 0 </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.RunRewardGivers">
+            <summary> This will run through the rewards and execute any that makes use of
+            DiaQuestReward.keyObject. If the execute fails then it is assumed that you want
+            to make use of DiaQuestReward.keyString and will have to run through all rewards 
+            and check which of them are set (false == string.IsNullOrEmpty()) and then 
+            react according to your game's design. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.ParsedQuestText">
+            <summary>
+            Return parsed text. The inline values will be inserted if any present in text.
+            </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.ResetQuestToAccepted">
+            <summary>
+            This will set the quest as accepted but no progress in conditions and no rewards given
+            </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.ResetQuest">
+            <summary>
+            This will set the quest as not accepted, no rewards given, no progress in conditions
+            </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.GetMetaData(System.String)">
+            <summary> Return reference to meta data object. Null if not found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.GetMetaDataValue(System.String)">
+            <summary> Return meta data value. Null if named meta data not found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuest.SetMetaDataValue(System.String,System.Object)">
+            <summary> Set meta data value. Will create the named meta data if not found and then set value. </summary>
+        </member>
+        <member name="T:DiaQ.DiaQuestManager">
+            <summary> Provide access to Quest Data </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestManager.quests">
+            <summary> All defined quests </summary>
+        </member>
+        <member name="F:DiaQ.DiaQuestManager.__next_quest_id">
+            <summary> Used by editor. Do not manipulate. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestManager.GetQuestById(System.Int32)">
+            <summary> Get quest by its unique id. Return null if not found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestManager.GetQuestByName(System.String)">
+            <summary> Get quest by its name. Return null if not found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestManager.GetQuestByIdent(System.String)">
+            <summary> Get quest by its custom Ident. Return null if not found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestManager.ConditionPerformed(System.String)">
+            <summary> Update all quests that the player has accepted and not completed, which uses the same condition key.
+            This will update the condition and note that it has been performed. The condition will be
+            considered completed once it has been performed the target number of times DiaQuestCondition.targetValue.
+            Will update DiaQuest.completed when quest is completed. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQuestManager.ConditionPerformed(System.String,System.Int32)">
+            <summary> Update all quests that the player has accepted and not completed, which uses the same condition key.
+            This will update the condition's value. It is possible to send a negative value to decrease the performedTimes
+            of the quest condition. </summary>
+        </member>
+        <member name="T:DiaQ.DiaQEngine">
+            <summary> DiaQ runtime provide the interface with the graph manager </summary>
+        </member>
+        <member name="F:DiaQ.DiaQEngine.inlineValues">
+            <summary> Values that can be in-lined in text used in Graphs and Quests </summary>
+        </member>
+        <member name="P:DiaQ.DiaQEngine.onQuestAccepted">
+            <summary> Called whenever a quest is accepted. </summary>
+        </member>
+        <member name="P:DiaQ.DiaQEngine.onQuestCompleted">
+            <summary> Called whenever a quest is completed. </summary>
+        </member>
+        <member name="P:DiaQ.DiaQEngine.onQuestRewarded">
+            <summary> Called whenever a quest is rewarded. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQEngine.GetSaveData">
+            <summary> Returns a string that can be saved and later be fed to RestoreFromSaveData() to restore
+            the state of DiaQ's graphs and quests to what it was when GetSaveData() was called. The status
+            of quests and the Meta Data of DiaQ, Graphs, Quests, Conditions and Rewards will be saved.
+            Note that GameObject and UnityObect types in meta data can't be saved and restored.
+            Do not call this in Awake()
+            </summary>
+        </member>
+        <member name="M:DiaQ.DiaQEngine.RestoreFromSaveData(System.String)">
+            <summary> Restore the state of DiaQ from the data. This data must be a string
+            that was previously provided by GetSaveData(). Do not call this in Awake() 
+            Note, restoring a quest to the state of of "rewarded" will not actually 
+            cause anything that gives the reward, to run. That you need to handle somewhere
+            else. Besides, you probably save the player's state too and then running the reward
+            logic again would give him double the rewards each time he restores the game. </summary>
+        </member>
+        <member name="T:DiaQ.DiaQNode_QReward">
+            <summary>
+            Give quest rewards by running the reward givers.
+            Not of use when reward keyStrings are used.
+            </summary>
+        </member>
+        <member name="F:DiaQ.DiaQNode_QReward.questId">
+            <summary> The quest that rewards comes from </summary>
+        </member>
+        <member name="T:DiaQ.DiaQNode_QAccept">
+            <summary>
+            Accept a quest
+            </summary>
+        </member>
+        <member name="F:DiaQ.DiaQNode_QAccept.questId">
+            <summary> The quest to accept </summary>
+        </member>
+        <member name="T:DiaQ.DiaQNode_QStatus">
+            <summary>
+            Branch depending on status of quest
+            </summary>
+        </member>
+        <member name="F:DiaQ.DiaQNode_QStatus.questId">
+            <summary> The quest to check </summary>
+        </member>
+        <member name="T:DiaQ.DiaQNode_Dlg">
+            <summary>
+            A dialogue/ conversation node. Shows text and wait for an option to be chosen.
+            Use plyGraphManager.SendDataToNode(a_number_strating_at_0) to send a response
+            to this node when it is waiting. So, the first response is (0), the seconds 
+            response is (1), the 3rd (2), etc.
+            </summary>
+        </member>
+        <member name="F:DiaQ.DiaQNode_Dlg.dialogueText">
+            <summary> The raw dialogue text to show </summary>
+        </member>
+        <member name="F:DiaQ.DiaQNode_Dlg.linkedQuestId">
+            <summary> The quest that is linked to this dialogue. Useful when info of
+            a quest will be shown to the player and then wait for him to accept 
+            or reject the quest. </summary>
+        </member>
+        <member name="F:DiaQ.DiaQNode_Dlg.responses">
+            <summary> The possible responses/ choices. These are tied
+            to the outLinks. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQNode_Dlg.LinkedQuest">
+            <summary> Returns the quest linked to this dialogue node. 
+            Null if no quest is linked or the quest could not be found. </summary>
+        </member>
+        <member name="M:DiaQ.DiaQNode_Dlg.ParsedDialogueText(System.Boolean)">
+            <summary>
+            Return parsed text. The inline values will be inserted if any present in text.
+            </summary>
+        </member>
+        <member name="M:DiaQ.DiaQNode_Dlg.ParsedResponseText(System.Int32)">
+            <summary>
+            Return parsed response text. The inline values will be inserted if any present in text.
+            </summary>
+        </member>
+    </members>
+</doc>

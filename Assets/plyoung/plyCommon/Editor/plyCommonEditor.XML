@@ -1,0 +1,682 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>plyCommonEditor</name>
+    </assembly>
+    <members>
+        <member name="T:plyCommonEditor.plyDataProviderInfo">
+            <summary> This is the editor side of the Data Provider. This class gets
+            created when it is needed by the data provider editor. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.ProviderName">
+            <summary> Unique name to identify the provider by </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.ProviderContext">
+            <summary> Context is important to identify where this provider can be used.
+            The default is "data", meaning it can provider data and is able to set 
+            its data. That is, it implements DataProvider_GetValue and DataProvider_SetValue.
+            Where a system, using DataProviders, are more specialised it will indicate what
+            context it expects if it do not function purely on get/set of data. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.PrettyName(plyCommon.plyDataObject,System.String)">
+            <summary> Return a nice name that identifies the data. Shown in the button
+            used to open the data provider editor window for setup. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.PrettyName(plyCommon.plyDataObject)">
+            <summary> emptyText = "-select-"  </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.DefaultTargetType">
+            <summary> Init the target type with this when the provider is selected </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.DefaultTargetTypeData">
+            <summary> Init the target type data this when the provider is selected </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.DefaultComponent">
+            <summary> Init the component name with this when the provider is selected.
+            It is the component that implements plyDataProviderInterface </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.InitNfo">
+            <summary> Init the the nfo[] field with this when the provider is selected </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.CanChangeType">
+            <summary> Return true if user may choose different settings for type and type data in editor </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.NfoFieldFocus(plyCommon.plyDataObject,UnityEditor.EditorWindow)">
+            <summary> Called when the data provider is selected </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataProviderInfo.NfoField(plyCommon.plyDataObject,UnityEditor.EditorWindow)">
+            <summary> Called when the nfo[] edit fields should be rendered </summary>
+        </member>
+        <member name="T:plyCommonEditor.plyDataObjectEditor">
+            <summary> Custom Editor for plyDataObject </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataObjectEditor.DrawField(plyCommon.plyDataObject@,plyCommon.BasicCallback,plyCommon.BasicCallback)">
+            <summary> return true if data changed and should be set dirty. No label and default context if "data" </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataObjectEditor.DrawField(plyCommon.plyDataObject@,System.String,plyCommon.BasicCallback,plyCommon.BasicCallback)">
+            <summary> return true if data changed and should be set dirty </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyDataObjectEditor.DrawField(System.String,plyCommon.plyDataObject@,System.String,plyCommon.BasicCallback,plyCommon.BasicCallback,UnityEngine.GUIStyle)">
+            <summary> return true if data changed and should be set dirty </summary>
+        </member>
+        <member name="T:plyCommonEditor.plyNodeEdAttribute">
+            <summary> Attribute for plyNode definitions. </summary>
+        </member>
+        <member name="F:plyCommonEditor.plyNodeEdAttribute.OwningGraphSystem">
+            <summary> Identifies to which kind of graph system the node belongs. </summary>
+        </member>
+        <member name="F:plyCommonEditor.plyNodeEdAttribute.Name">
+            <summary> Name of node. </summary>
+        </member>
+        <member name="F:plyCommonEditor.plyNodeEdAttribute.NodeType">
+            <summary> The node that this editor handles. </summary>
+        </member>
+        <member name="T:plyCommonEditor.plyNodeEditorBase">
+            <summary>
+            The base class for all node editors
+            </summary>
+        </member>
+        <member name="F:plyCommonEditor.plyNodeEditorBase.toolbarButton">
+            <summary> The button drawn on the Graph editor toolbar. This is the button the user uses to add
+            a new copy of the node in the graph. You should init this in the constructor of the node editor. 
+            No need to init if the node button should not appear on the toolbar. 
+            Use 20x20 icons. Add a tooltip.
+            Font Awesome icons can be used in two ways. The second option is only available if the toolbar
+            style uses a font awesome font. The default is plyEdGUI.ToolbarIconButtonStyle which supports
+            Font Awesome.
+            
+            toolbarButton = new GUIContent(FA.Ico20(FA.comment, plyEdGUI.IconColor), "Dialogue");
+            toolbarButton = new GUIContent(FA.comment.ToString(), "Dialogue");
+            
+            You might want to call FA.Load(); before using font awesome, just to make sure it is loaded.
+            </summary>
+        </member>
+        <member name="F:plyCommonEditor.plyNodeEditorBase.graphEd">
+            <summary> Reference to the plyGraphEditor that created this node editor and is making calls to it. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.NodeWindowLabel(plyCommon.plyNode)">
+            <summary> Return the label shown in the node window in the graph editor.</summary>
+            <param name="node"> Instance of the node being edited. </param>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.AllowInLink(plyCommon.plyNode)">
+            <summary> Return False if linking to this node is not allowed for some reason.
+            For example, the Start Node uses this. </summary>
+            <param name="node"> Instance of the node being edited. </param>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.RenderNodeWindow(plyCommon.plyNode)">
+            <summary> Called when editor should render in the node window (in graph editor). 
+            Return true if node data changed and should be serialised. </summary>
+            <param name="node"> Instance of the node being edited. </param>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.InLinkLabelColor(plyCommon.plyNode)">
+            <summary> Allows you to change the colour/ tint of the in-link
+            label (icon and/or text) </summary>
+            <param name="node"> Instance of the node being edited. </param>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.OutLinkLabel(plyCommon.plyNode,System.Int32)">
+            <summary> This should return the content to render for the specified out-link. 
+            The label and image is aligned to the right-hand side of the window.
+            Returning null will cause rendering of this out-link to be skipped.
+            plyGraphGUI.GC_DefaultNodeLinkIcon contains the default out-link
+            image to be used but you may choose to use a different one.
+            The image should be 12x12 pixel size. </summary>
+            <param name="node"> Instance of the node being edited. </param>
+            <param name="idx"> Index into array of plyNode.outLinks </param>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.OutLabelLayoutOptions(plyCommon.plyNode,System.Int32)">
+            <summary> Layout options to use with the out-link label. 
+            Default is MaxWidth = width of node window at create time </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.OutLabelStyle(plyCommon.plyNode,System.Int32)">
+            <summary> Style to use with the out-link label. Default is 
+            plyGraphGUI.NodeOutLinkLabelStyle which will cause a word 
+            wrap if the text is too long to fit into the node window width </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.OutLinkImageColor(plyCommon.plyNode,System.Int32)">
+            <summary> Can be used to change what the the color/ tint is of the icon/ image
+            that represents the out-link at the specified index. Note that this do
+            not make changes to the colour of the text of the out-link. </summary>
+            <param name="node"> Instance of the node being edited. </param>
+            <param name="idx"> Index into array of plyNode.outLinks </param>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.OutLinkColor(plyCommon.plyNode,System.Int32)">
+            <summary> Can be used to change what the the color/ tint is of the line
+            that links the out and in links. </summary>
+            <param name="node"> Instance of the node being edited. </param>
+            <param name="idx"> Index into array of plyNode.outLinks </param>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.OnSelected(plyCommon.plyNode)">
+            <summary> Called when a node (handled by this editor) becomes selected. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.RenderNodeInspector(plyCommon.plyNode,plyCommon.BasicCallback,plyCommon.BasicCallback)">
+            <summary> Called when editor should render in the inspector (node properties). Passes instance
+            of the node being edited. Return true if node data changed and should be serialised. 
+            The saveCallback can be called when data should be set dirty/ serialised and repaintCallback
+            can be called when you want to force the repaint of the editor window. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.AddOutLink(plyCommon.plyNode)">
+            <summary> Will increase the size of the Node outLinks array by one </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyNodeEditorBase.RemoveOutLink(plyCommon.plyNode,System.Int32)">
+            <summary> Remove the Node outLinks at specified index of the array </summary>
+        </member>
+        <member name="T:plyCommonEditor.EdToolbar">
+            <summary> The plyGame Toolbar. See EdGlobal.AddToolbarButtons() to learn how buttons are added to the toolbar. </summary>
+        </member>
+        <member name="T:plyCommonEditor.EdToolbar.ToolbarButton">
+            <summary> A plyGame Toolbar Button. </summary>
+        </member>
+        <member name="M:plyCommonEditor.EdToolbar.AddToolbarButtons(System.Collections.Generic.List{plyCommonEditor.EdToolbar.ToolbarButton})">
+            <summary> Add buttons to the Toolbar. </summary>
+        </member>
+        <member name="T:plyCommonEditor.FontAwesome.FA">
+            <summary>
+            Provides access to the Font Awesome icons. http://fontawesome.io/icons/
+            </summary>
+        </member>
+        <member name="F:plyCommonEditor.FontAwesome.FA.Font">
+            <summary> The Font Awesome font </summary>
+        </member>
+        <member name="T:plyCommonEditor.plyGraphEditor">
+            <summary>
+            Renders a graph editor
+            </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.OnDestroy">
+            <summary> Call this when editor window is destroyed </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.OnFocus(UnityEditor.EditorWindow,plyCommon.plyGraphManager)">
+            <summary> Call this when editor window receives focus </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.OnLostFocus(UnityEditor.EditorWindow)">
+            <summary> Call this when editor window looses focus </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.Update(UnityEditor.EditorWindow)">
+            <summary> Call this when editor window updates </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.RenderGraphMenu(UnityEditor.EditorWindow,System.Int32,UnityEngine.GUIContent[],plyCommon.BasicCallback[])">
+            <summary> Call this where the graphs menu panel should render in the layout. 
+            Give it at least 220 pixel width to render in. extraIcons will be placed next to
+            the normal list icons in the list toolbar. If one of them are clicked the associated
+            extraCallback will be call. Simply pass null if you do not want to use these. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.RenderGraphGUI(UnityEditor.EditorWindow)">
+            <summary> Call this where the main graph panel should render in the layout </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.SaveGraph">
+            <summary> Call this to force saving of the graph. Not normally needed except in special cases, for example
+            when the node inspector could not immediately return with the appropriate value to indicate that the node
+            data has changed. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.AddNode(System.Type,System.Int32,System.Int32)">
+            <summary> Adds node to active graph. Specify x and y position to place node in graph editor. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.OnFocusGraphAssetSettings(UnityEditor.EditorWindow)">
+            <summary> Call this from the focus event of your settings editor window that will display the graph settings. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyGraphEditor.RenderGraphAssetSettings(plyCommon.plyGraphManager,UnityEditor.EditorWindow,System.String,System.String)">
+            <summary>
+            Call this when/ where you want to renders the settings for a plyGraph asset in the editor layout
+            </summary>
+        </member>
+        <member name="T:plyCommonEditor.plyEdGUI">
+            <summary> Editor GUI class with lots of useful functions and the custom styling used with all tools I develop. </summary>
+        </member>
+        <member name="P:plyCommonEditor.plyEdGUI.ResPath">
+            <summary> Path to the resources folder. Default, if not moved, is 'Assets/plyoung/edRes/' </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.UseSkin">
+            <summary> This should be the first call in OnGUI() to make sure the custom styles are loaded and
+             ready for use. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.LoadEditorTexture(System.String)">
+            <summary> Helper for loading a texture. Will print warning message to the console if failed to
+             load the texture. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.LoadTextureResource(System.String,System.Reflection.Assembly)">
+            <summary> Load embedded texture resources. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.LayerMaskField(System.String,UnityEngine.LayerMask,System.Int32)">
+            <summary> Shows a Layer Mask field similar to the one in the Inspector </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.PathField(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary> Show a browse button which opens the EditorUtility.SaveFolderPanel) when clicked.
+             The path is shown as text on the button. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.FileField(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary> Show a browse button which opens the EditorUtility.SaveFilePanel() when clicked. The
+             path is shown as text on the button. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.RelativeFileField(System.String,System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary> Show a browse button which opens the EditorUtility.OpenFilePanel(. The shown and
+             returned path is a relative path. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.Popup(System.String,System.Int32,System.String[])">
+            <summary> Same as EditorGUILayout.Popup but with added 'clear' button to set selected to -1 </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.PopupTextField(System.String,System.String,System.String[])">
+            <summary> A text field with a little button that allow user to select values from a popup
+             rather than entering them manually into the text field. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.CurveField(plyCommon.plyCurve,System.Int32,System.Int32,UnityEngine.Color)">
+            <summary> Shows a plyCurve. Return true if curve editor should be opened (when user clicked on the field). </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.AngleField(System.String,System.Int32,System.Int32,System.Int32,UnityEngine.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Draws a circle or arc. Has a slider to change angle of the arc. </summary>
+            <param name="label">	 Label of field. </param>
+            <param name="angle">	 The current angle. </param>
+            <param name="min">		 The minimum the angle can be. </param>
+            <param name="max">		 The maximum the angle can be. </param>
+            <param name="color">	 The color to draw arc in. </param>
+            <param name="width">	 The width of box arc is in. </param>
+            <param name="height">    The height of box the arc is in. </param>
+            <param name="radius">    The radius of the arc. </param>
+            <param name="maxRadius"> The maximum radius it can reach. </param>
+            <returns> The current angle. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.MetaDataField(plyCommon.plyMetaData,UnityEngine.GUILayoutOption[])">
+            <summary> Field for changing plyMetaData value depending on its type. Return true if value changed. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.ToggleButton(System.Boolean,System.String,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
+            <summary> This toggle does not return the new state but rather if the state has changed (true) or not (false) </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.ToggleButton(System.Boolean,UnityEngine.GUIContent,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
+            <summary> This toggle does not return the new state but rather if the state has changed (true) or not (false) </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.ToggleButton(UnityEngine.Rect,System.Boolean,UnityEngine.GUIContent,UnityEngine.GUIStyle)">
+            <summary> This toggle does not return the new state but rather if the state has changed (true) or not (false) </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.LabelButton(System.String,System.String,System.Int32,System.Int32)">
+            <summary> Show a button that has a label on the same line. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.SectionHeading(System.String)">
+            <summary> Draw a label in a large font with horizontal underline. Layout should be in vertical else this will render wrong. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.SectionHeading(System.String,System.Boolean)">
+            <summary> Draw a label in a large font with horizontal underline. Layout should be in vertical else this will render wrong. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.HLine(System.Int32)">
+            <summary> Used to draw the horizontal underline you would normally get with plyEdGui.Heading(). Layout should be in vertical else this will render wrong. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.HLine(System.Int32,System.Int32)">
+            <summary> Used to draw the horizontal underline you would normally get with plyEdGui.Heading(). Layout should be in vertical else this will render wrong. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.Menu(System.Int32,System.String[],UnityEngine.GUILayoutOption[])">
+            <summary> Draw a menu (similar to the one in Unity Preferences). If the menuItem's name starts
+             with "-" then that will be a separator. If the "-" is followed by more characters then that
+             separator will be a heading. A null/empty string for menuItem will also cause a
+             separator/space in the menu. </summary>
+            <returns> The currently selected/ highlighted menu item. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.Menu(System.Int32,UnityEngine.GUIContent[],UnityEngine.GUILayoutOption[])">
+            <summary> Draw a menu (similar to the one in Unity Preferences). If the menuItem's name starts
+             with "-" then that will be a separator. If the "-" is followed by more characters then that
+             separator will have a heading. A null/empty/none content for menuItem will also cause a
+             separator/space in the menu. </summary>
+            <returns> The currently selected/ highlighted menu item. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.ItemsList``1(``0@,System.Collections.Generic.List{``0},System.Boolean,System.Boolean,System.Boolean,System.Boolean,plyCommon.ResultCallback,UnityEngine.Vector2@,System.String,System.String,UnityEngine.GUILayoutOption[])">
+            <summary> Draws a List of items. Show buttons to Add, Copy and Delete these items. Returns TRUE
+             when selected item changed. Draws a scrollbar if needed. </summary>
+            <typeparam name="T"> Generic type parameter. </typeparam>
+            <param name="selected">   [in,out] The selected item. </param>
+            <param name="items">	  The items to show. </param>
+            <param name="canCopy">    true if copy button should be shown. </param>
+            <param name="canRename">  true if rename button should be shown. </param>
+            <param name="callback">   A callback to call when changes occur in the list or when you should
+            						  act on a request. You normally want to use
+            						  EditorUtility.SetDirty() when your callback is called to set the
+            						  object, that contains the list, to dirty (so change are
+            						  serialised). The callback args parameter will contain the
+            						  following int value as first value in the args array ( args[0]):
+            						  - 1 = wants you to create a new item and return it (you
+            						  must also add it to the list
+            						  - 2 = wants you to make a copy and add it to the list. The item
+            						  to copy will be in args[1]
+            						  - 3 = called just before deleting the item. args[1] is a
+            						  reference to the item that is about to be deleted, args[2] = its position
+            						  - 4 = called after delete is done. You should return which item
+            						  should be set as "selected", if anything (else you can simply
+            						  return null)
+            						  - 5 = selected item's position changed in the list  
+            						  args[1]=previous pos, args[2]=new pos
+            						  - 6 = rename button was pressed. You probably want to use the
+            						  plyTextInputWiz to show an input field where the user can enter a
+            						  new name for the item. You should manage the actual renaming of
+            						  the item. 
+            						  - 7 = an item about to be rendered. you can return a GUIStyle override to use.
+            						  args[1] = the item, args[2] = the style that will be used
+            						  </param>
+            <param name="scroll">	  [in,out] Position of the scrollbar. </param>
+            <param name="helpUrl">    The URL that will be opened when the Help button is clicked. Pass
+            						  null to not show the help button. </param>
+            <param name="emptyLabel"> A message to show in the list when there are no items in it. </param>
+            <param name="options">    Layout options. </param>
+            <returns> Returns true when the selection (selected) changed. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.ItemsList``1(``0@,System.Collections.Generic.List{``0},System.Boolean,System.Boolean,System.Boolean,System.Boolean,plyCommon.ResultCallback,UnityEngine.Vector2@,System.String,System.String,System.Boolean,UnityEngine.GUIContent[],plyCommon.BasicCallback[],UnityEngine.GUILayoutOption[])">
+            <summary> Draws a List of items. Show buttons to Add, Copy and Delete these items. Returns TRUE
+             when selected item changed. Draws a scrollbar if needed. </summary>
+            <typeparam name="T"> Generic type parameter. </typeparam>
+            <param name="selected">   [in,out] The selected item. </param>
+            <param name="items">	  The items to show. </param>
+            <param name="canCopy">    true if copy button should be shown. </param>
+            <param name="canRename">  true if rename button should be shown. </param>
+            <param name="callback">   A callback to call when changes occur in the list or when you should
+            						  act on a request. You normally want to use
+            						  EditorUtility.SetDirty() when your callback is called to set the
+            						  object, that contains the list, to dirty (so change are
+            						  serialised). The callback args parameter will contain the
+            						  following int value as first value in the args array ( args[0]):
+            						  - 1 = wants you to create a new item and return it (you
+            						  must also add it to the list
+            						  - 2 = wants you to make a copy and add it to the list. The item
+            						  to copy will be in args[1]
+            						  - 3 = called just before deleting the item. args[1] is a
+            						  reference to the item that is about to be deleted, args[2] = its position
+            						  - 4 = called after delete is done. You should return which item
+            						  should be set as "selected", if anything (else you can simply
+            						  return null)
+            						  - 5 = selected item's position changed in the list. 
+            						  args[1]=previous pos, args[2]=new pos
+            						  - 6 = rename button was pressed. You probably want to use the
+            						  plyTextInputWiz to show an input field where the user can enter a
+            						  new name for the item. You should manage the actual renaming of
+            						  the item. 
+            						  - 7 = an item about to be rendered. you can return a GUIStyle override to use.
+            						  args[1] = the item, args[2] = the style that will be used
+            						  </param>
+            <param name="scroll">	  [in,out] Position of the scrollbar. </param>
+            <param name="helpUrl">    The URL that will be opened when the Help button is clicked. Pass
+            						  null to not show the help button. </param>
+            <param name="emptyLabel"> A message to show in the list when there are no items in it. </param>
+            <param name="menuStyle">  Style to use for menu. </param>
+            <param name="extraIcons">  Addition icons to show on the toolbar. Set to null if you do not want to use it. </param>
+            <param name="extraCallbacks">  Callback to call when associated extra icon was pressed. Set to null if you do not want to use it. </param>
+            <param name="options">    Layout options. </param>
+            <returns> Returns true when the selected changed. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.SimpleItemList``1(``0@,System.Collections.Generic.List{``0},System.String)">
+            <summary>
+            Show a toolbar with heading, add and delete buttons, and then the list of items.
+            It uses the Item's "ToString" to get the value to show in the List
+            Return
+            	0: Nothing changed
+            	1: Another Item selected in List
+            	2: The Add button was pressed. You need to handle the actual addition of an item to the list
+            	10: (or greater) An item must be deleted. The returned value is the index of the item plus 10 so use (idx = result - 10) to get index of item to delete
+            </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.SimpleItemList``1(``0@,System.Collections.Generic.List{``0},System.String,plyCommon.GeneralCallback,UnityEngine.GUILayoutOption[])">
+            <summary>
+            Show a toolbar with heading, add and delete buttons, and then the list of items.
+            It calls drawCallback to draw an item in a Horizontal layout. 
+            	args[0] = index of item to draw
+            Return
+            	0: Nothing changed
+            	1: Another Item selected in List
+            	2: The Add button was pressed. You need to handle the actual addition of an item to the list
+            	10: (or greater) An item must be deleted. The returned value is the index of the item plus 10 so use (idx = result - 10) to get index of item to delete
+            </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.SimpleList``1(``0@,System.Collections.Generic.List{``0},System.String,UnityEngine.GUILayoutOption[])">
+            <summary> Shows a list of items. </summary>
+            <typeparam name="T">		Generic type parameter. </typeparam>
+            <param name="selected">		[in,out] The selected item. </param>
+            <param name="items">		The items to show. </param>
+            <param name="emptyLabel">	A message to show in the list when there are no items in it. </param>
+            <param name="options">		Layout options. </param>
+            <returns> Returns true when the selection (selected) changed. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.SimpleItemList``1(System.Int32@,System.Collections.Generic.List{``0},System.String,plyCommon.GeneralCallback,UnityEngine.GUILayoutOption[])">
+            <summary>
+            Show a toolbar with heading, add and delete buttons, and then the list of items.
+            It calls drawCallback to draw an item in a Horizontal layout. 
+            	args[0] = index of item to draw
+            Return
+            	0: Nothing changed
+            	1: Another Item selected in List
+            	2: The Add button was pressed. You need to handle the actual addition of an item to the list
+            	10: (or greater) An item must be deleted. The returned value is the index of the item plus 10 so use (idx = result - 10) to get index of item to delete
+            </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.SimpleItemArray(System.Int32@,System.Array,System.String,plyCommon.GeneralCallback,System.Object[])">
+            <summary>
+            Show a toolbar with heading, add and delete buttons, and then the list of items.
+            It updates selectedIdx with the index of the selected item. selectedIdx=-1 
+            means nothing is selected.
+            It calls drawCallback to draw an item in a Horizontal layout with the following
+            	args[0] = index of item to draw
+            	args[1+] = custom args
+            It Return
+            	0: Nothing changed
+            	1: Another Item selected in List
+            	2: The Add button was pressed. You need to handle the actual addition of an item to the list
+            	10: (or greater) An item must be deleted. The returned value is the index of the item plus 10 so use (idx = result - 10) to get index of item to delete
+            </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.DrawHorizontalLine(System.Int32,System.Int32,UnityEngine.Color,UnityEngine.GUIStyle)">
+            <summary> Draw a horizontal line. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.DrawHorizontalLine(System.Int32,System.Int32,UnityEngine.Color,UnityEngine.GUIStyle,System.Int32,System.Int32)">
+            <summary> Draw a horizontal line. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.DrawVerticalLine(System.Int32,System.Int32,UnityEngine.Color,UnityEngine.GUIStyle,System.Int32,System.Int32)">
+            <summary> Draw a vertical line. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.DrawCurveLine(UnityEngine.Rect,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color,System.Single,System.Boolean)">
+            <summary> Draw a Bezier curve line. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.DrawGrid(UnityEngine.Rect,System.Int32,System.Int32,System.Int32,UnityEngine.Vector2,UnityEngine.Color,UnityEngine.Color,UnityEngine.Color)">
+            <summary> Draws a Grid. </summary>
+            <param name="r">			  The Rect area to draw grid in. </param>
+            <param name="xSpacing">		  The x spacing between grid lines. </param>
+            <param name="ySpacing">		  The y spacing between grid lines. </param>
+            <param name="linesPerMajor">  Passing linesPerMajor=0 will cause major lines to not be drawn, else a 'major' line is drawing every so many units. </param>
+            <param name="linesOffset">    The lines offset. useful when you want to show scrolling in the grid. </param>
+            <param name="backColor">	  The background color. </param>
+            <param name="majorLineColor"> The major line color. </param>
+            <param name="minorLineColor"> The minor line color. </param>
+        </member>
+        <member name="M:plyCommonEditor.plyEdGUI.DrawBlocksGrid(UnityEngine.Rect,System.Int32,UnityEngine.Color,UnityEngine.Color)">
+            <summary> Draw a grid that consist of altering colored blocks. </summary>
+            <param name="r">		  The Rect area to draw grid in. </param>
+            <param name="blockSize">  Size of a block. </param>
+            <param name="majorColor"> The major blocks color. </param>
+            <param name="minorColor"> The minor blocks color. </param>
+        </member>
+        <member name="T:plyCommonEditor.plyEdUtil">
+            <summary> Contain some helper functions for when working with Unity editor related scripts. </summary>
+        </member>
+        <member name="P:plyCommonEditor.plyEdUtil.DATA_PATH">
+            <summary> Contains all the assets that plyGame creates. Default is 'Assets/plyData/' </summary>
+        </member>
+        <member name="P:plyCommonEditor.plyEdUtil.DATA_PATH_SYSTEM">
+            <summary> Most of the assets and prefabs created by plyGame are in here. Default is 'Assets/plyData/System/' </summary>
+        </member>
+        <member name="P:plyCommonEditor.plyEdUtil.DATA_PATH_RESOURCES">
+            <summary> The special Resources folder. Default is 'Assets/plyData/Resources/'. Learn more
+             about why 'Resources' is a special folder in Unity if you do not know:
+             http://docs.unity3d.com/Documentation/ScriptReference/Resources.html. </summary>
+        </member>
+        <member name="P:plyCommonEditor.plyEdUtil.DATA_PATH_RESOURCES_S">
+            <summary> Resources folder (without last slash). Default is 'Assets/plyData/Resources' </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.LoadOrCreateAsset``1(System.String,System.String)">
+            <summary> Loads asset at given path and filename (fn), else create it. Pretty name will be
+             shown to the user in a popup when asking if the asset may be created. Set prettyName = null
+             to have it silently create the asset. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.CreatePrefab(System.Type,System.String,System.String)">
+            <summary> Creates a new prefab and adds a component to it. </summary>
+            <param name="type"> The type of the component to add. </param>
+            <param name="name"> The name of the new prefab. </param>
+            <param name="fn">   The path and file to save the new prefab as. </param>
+            <returns> A reference to the newly created prefab object. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.CreatePrefab``1(System.String,System.String)">
+            <summary> Creates a new prefab and adds component of type T to it. </summary>
+            <typeparam name="T"> Component to add to the prefab. </typeparam>
+            <param name="name"> The name of the new prefab. </param>
+            <param name="fn">   The path and file to save the new prefab as. </param>
+            <returns> A reference to the newly created prefab object. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.LoadOrCreatePrefab``1(System.String,System.String)">
+            <summary> Loads a prefab. Creates the prefab if it does not exist. Makes sure that component T is on it. </summary>
+            <typeparam name="T"> Component to add to the prefab. </typeparam>
+            <param name="name"> The name is new prefab will be created. </param>
+            <param name="fn">   The path and file to save the new prefab as. </param>
+            <returns> Reference to the loaded or created prefab. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.FindPrefabsOfTypeAll``1(System.String,System.String)">
+            <summary> Returns a list of prefabs of given type </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.FindPrefabsOfTypeAll``1(System.String,System.String,System.String)">
+            <summary> Returns a list of prefabs of given type </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.PackagesPathStart">
+            <summary> Will return a path relative to where the package path starts. It is assumed that
+             plyCommonEditor.dll is in /plyCommon/Editor/. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.PackagesRelativePathStart">
+            <summary> Uses PackagesPathStart() to get the path but will return the 'Assets/.../' relative
+             path rather than the full path. </summary>
+        </member>
+        <member name="P:plyCommonEditor.plyEdUtil.FullProjectPath">
+            <summary> The full path of the project, just before the "Assets" folder of the project
+             (includes last slash) </summary>
+        </member>
+        <member name="P:plyCommonEditor.plyEdUtil.FullProjectAssetsPath">
+            <summary> The full path up to to the "Assets" folder of the project (excludes last slash) </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.ProjectRelativePath(System.String)">
+            <summary> Return a relative path from a full path, or null if given path does not lead to a
+             file in this project's Assets folder. Relative paths starts with 'Assets/'. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.ToAssetsRelativePath(System.String)">
+            <summary> Removes the starting 'Assets/' from a relative path. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.ToRelativePath(System.String)">
+            <summary> Convert Full Path to Relative Path that starts with "Assets/"</summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.RelativeFileExist(System.String)">
+            <summary> Return true if the file exist (filePath should start with 'Assets') </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.RelativePathExist(System.String)">
+            <summary> Return true if the path exist (path should start with 'Assets') </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.GetProjectName">
+            <summary> Get project name via the project's folder name. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.GetFileName(System.String)">
+            <summary> Returns file name from path. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.RemoveFileExt(System.String)">
+            <summary> Removes the extension from the file name. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.GetFolder(System.String)">
+            <summary> Removes the file.ext form the path and return only folder. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.CheckPath(System.String)">
+            <summary> Checks that the path exist. Do not send a path that includes a file name.
+            Path should start at 'Assets'. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.MoveContents(System.String,System.String)">
+            <summary> Moves contents of 'from' path to 'to' path. Returns error message if failed, else
+             null. Path should start at 'Assets'. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.SceneNameFromPath(System.String)">
+            <summary> Return only the name of the scene after removing path and '.unity' part. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.FullPathFromPattern(System.String)">
+            <summary> Looks for the specified path to file pattern in the full project path and return full path
+            up to the file, if found. Return null if not found. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.CheckDataPath(System.String,System.String)">
+            <summary> Check if the newPath exist. If it does not exist it will be created. newPath must be
+             direct child folder of parentPath. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.EdPrefs_GetColor(System.String,UnityEngine.Color)">
+            <summary> Read saved colour value from EditorPrefs. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.EdPrefs_SetColor(System.String,UnityEngine.Color)">
+            <summary> Write colour value to EditorPrefs. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.CreateGameObjectInSceneView(System.String,UnityEngine.Vector3,System.Boolean,System.Int32,UnityEngine.GameObject)">
+            <summary> Creates new GameObject and try to place it around where scene view camera is looking. </summary>
+            <param name="name">			  Name to give newly created object. </param>
+            <param name="offset">		  Offset from where it would be placed. Useful if you also use
+            							  collider check to find terrain/ floor and then make offset
+            							  y=0.01f to place it just a tad higher. </param>
+            <param name="checkColliders"> True to check colliders. </param>
+            <param name="mask">			  The mask to use when checking colliders. Layers not in the mask
+            							  will be ignored. Only used if checkColliders = true. </param>
+            <param name="prefab">		  Prefab to instantiate new object from. If null then a simple GameObject will be created. </param>
+            <returns> The new game object that was created. </returns>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.GetCreatePositionInSceneView(UnityEngine.Vector3,System.Boolean,System.Int32)">
+            <summary> Return a position that a new object can be created at </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.DecodeCSVData(System.String)">
+            <summary>
+            Extract a List of strings (fields) from data that is assumed to be in CSV format
+            </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.PlayAudioClip(UnityEngine.AudioClip)">
+            <summary> Play audio clip in editor. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.StopAllAudioClips">
+            <summary> Stops all audio clips playing in editor. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.IconContent(System.String,System.String)">
+            <summary> Created a GUIContent object that is an icon and tooltip. The icon is retrieved by
+             looking up the . This is a wrapper that expose UnityEditor.EditorGUIUtility.IconContent() </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.EditorGUIIndent">
+            <summary> Get the pixel size of an indent </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.LoadIcon(System.String)">
+            <summary> load internal (Unity Editor) icon </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.SetIconForObject(UnityEngine.Object,UnityEngine.Texture2D)">
+            <summary> set the icon of an object. as seen in inspector and on gizmo. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.GetIconForObject(UnityEngine.Object)">
+            <summary> get the icon of an object. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyEdUtil.RepaintInspector(System.Type)">
+            <summary> force an inspector to repaint if it is active </summary>
+        </member>
+        <member name="T:plyCommonEditor.plyListSelectWiz">
+            <summary> Shows a window with a list of items that can be selected from. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyListSelectWiz.ShowWiz(System.String,System.Collections.Generic.List{System.Object},System.Boolean,System.Object,plyCommon.GeneralCallback,System.Object[])">
+            <summary> Shows the window. If the user selects and item your callback will be called and you
+             can then check 'selected' to see which item was selected. </summary>
+            <param name="title">	 The title. </param>
+            <param name="list">		 The list to show. </param>
+            <param name="allowNone"> Can the user select 'none' as an entry? Useful when you want to allow
+            						 him o clear a previously selected item. The callback will be called
+            						 and 'selected' will be set to null. </param>
+            <param name="selected">  The currently selected item. This is optional and you can pass in
+            						 null. </param>
+            <param name="callback">  The callback to call when the user makes a selection. If he cancels
+            						 or closes the window this callback will not be called. </param>
+            <param name="args">		 Extra arguments to pass on to the callback. </param>
+        </member>
+        <member name="T:plyCommonEditor.plyTextInputWiz">
+            <summary> A window with label and input field. </summary>
+        </member>
+        <member name="M:plyCommonEditor.plyTextInputWiz.ShowWiz(System.String,System.String,System.String,plyCommon.GeneralCallback,System.Object[])">
+            <summary> Shows the window. </summary>
+            <param name="title">    The title of the widow. </param>
+            <param name="label">    A label to show. </param>
+            <param name="currText"> Exiting text to show in the input field. Options, you can pass null
+            						or empty string. </param>
+            <param name="callback"> A callback to call when the user accepts the input. Will not be
+            						called if he press cancel or close the window. You will read 'text'
+            						to find out what was entered into the input field. </param>
+            <param name="args">	    Extra arguments to send on to the callback. </param>
+        </member>
+    </members>
+</doc>

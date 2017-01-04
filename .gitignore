@@ -57,8 +57,6 @@ Temporary Items
 /Assets/AssetStoreTools*
 sysinfo.txt
 *.pidb.meta
-/Assets/plyData/
-/Assets/plyoung/
 /Assets/[Pp]lugins/
 /Assets/[Gg]izmos
  

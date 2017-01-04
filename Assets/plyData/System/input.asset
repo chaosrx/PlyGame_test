@@ -1,0 +1,1113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1899097334, guid: 6ddf2bb4864414d4d82bfa4d197efc5b, type: 3}
+  m_Name: input
+  m_EditorClassIdentifier: 
+  inputDefs:
+  - type: 0
+    active: 1
+    category: Action
+    name: Action1
+    screenName1: Action 1
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 49
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 1
+      keyMod: 334
+      key1: 330
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action2
+    screenName1: Action 2
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 50
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 1
+      keyMod: 334
+      key1: 331
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action3
+    screenName1: Action 3
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 51
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 1
+      keyMod: 334
+      key1: 332
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action4
+    screenName1: Action 4
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 52
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 1
+      keyMod: 334
+      key1: 333
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action5
+    screenName1: Action 5
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 53
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action6
+    screenName1: Action 6
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 54
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action7
+    screenName1: Action 7
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 55
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action8
+    screenName1: Action 8
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 56
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action9
+    screenName1: Action 9
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 57
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action10
+    screenName1: Action 10
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 48
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action11
+    screenName1: Action 11
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 45
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Action
+    name: Action12
+    screenName1: Action 12
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 61
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Camera 3rd Person
+    name: Hold to Rotate
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 323
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera 3rd Person
+    name: Rotate Axis
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: 0
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Camera 3rd Person
+    name: Hold to Tilt
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 324
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 0
+      keyMod: 0
+      key1: 323
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera 3rd Person
+    name: Tilt Axis
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: 1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 1
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera 3rd Person
+    name: Zoom
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: 2
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera 3rd Person
+    name: GamepadRotateCam
+    screenName1: Rotate Camera
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 3
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera 3rd Person
+    name: GamepadTiltCam
+    screenName1: Tilt Camera
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 4
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera 3rd Person
+    name: GamepadZoomCam
+    screenName1: Zoom Camera
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 2
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera 3rd Person
+    name: GamepadCharacterTurn
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 3
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Camera Top-Down
+    name: Hold to Control
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 324
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera Top-Down
+    name: Rotate Axis
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: 0
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera Top-Down
+    name: Tilt Axis
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: 1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera Top-Down
+    name: Zoom
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: 2
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera Top-Down
+    name: GamepadRotateCam
+    screenName1: Rotate Camera
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 3
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera Top-Down
+    name: GamepadTiltCam
+    screenName1: Tilt Camera
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 4
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Camera Top-Down
+    name: GamepadZoomCam
+    screenName1: Zoom Camera
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 2
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player 3rd Person
+    name: ForwardBack Move
+    screenName1: Move Forward
+    screenName2: Move Backward
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 119
+      key2: 115
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 0
+      keyMod: 0
+      key1: 273
+      key2: 274
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player 3rd Person
+    name: LeftRight Move
+    screenName1: Move Right
+    screenName2: Move Left
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 100
+      key2: 97
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 0
+      keyMod: 0
+      key1: 275
+      key2: 276
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 0
+    category: Player 3rd Person
+    name: LeftRight Turn
+    screenName1: Turn Right
+    screenName2: Turn Left
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 100
+      key2: 97
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 0
+      keyMod: 0
+      key1: 275
+      key2: 276
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player 3rd Person
+    name: Jump
+    screenName1: Jump
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 32
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 1
+      keyMod: 0
+      key1: 333
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player 3rd Person
+    name: Hold to Turn
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 324
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player 3rd Person
+    name: Turn Axis
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: 0
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player 3rd Person
+    name: Gamepad ForwardBack Move
+    screenName1: Move Character
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 1
+      gamepadInvert: 1
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player 3rd Person
+    name: Gamepad LeftRight Move
+    screenName1: Move Left & Right
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 0
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player 3rd Person
+    name: Gamepad LeftRight Turn
+    screenName1: Turn Character
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 3
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player Top-Down NAV
+    name: ClickMove
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 323
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player Top-Down
+    name: ClickMove
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 323
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player Top-Down
+    name: ForwardBack Move
+    screenName1: Move Forward
+    screenName2: Move Backward
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 119
+      key2: 115
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 0
+      keyMod: 0
+      key1: 273
+      key2: 274
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player Top-Down
+    name: LeftRight Move
+    screenName1: Move Right
+    screenName2: Move Left
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 100
+      key2: 97
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 0
+      keyMod: 0
+      key1: 275
+      key2: 276
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player Top-Down
+    name: Jump
+    screenName1: Jump
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 32
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 1
+      keyMod: 0
+      key1: 333
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player Top-Down
+    name: Gamepad ForwardBack Move
+    screenName1: Move Character
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 1
+      gamepadInvert: 1
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 1
+    active: 1
+    category: Player Top-Down
+    name: Gamepad LeftRight Move
+    screenName1: Move Left & Right
+    screenName2: 
+    binds:
+    - device: 1
+      keyMod: 0
+      key1: 0
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: 0
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player
+    name: ClickSelectTarget
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 323
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player
+    name: SelectNextTarget
+    screenName1: Next Target
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 9
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 1
+      keyMod: 0
+      key1: 334
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player
+    name: ClearTarget
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 27
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+    - device: 1
+      keyMod: 0
+      key1: 331
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player
+    name: ClickInteract
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 324
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0
+  - type: 0
+    active: 1
+    category: Player
+    name: Interact
+    screenName1: 
+    screenName2: 
+    binds:
+    - device: 0
+      keyMod: 0
+      key1: 101
+      key2: 0
+      mouseAxis: -1
+      keyMouseInvert: 0
+      mouseAxisSide: 0
+      gamepadAxisMod: -1
+      gamepadAxis: -1
+      gamepadInvert: 0
+      gamepadAxisModSide: 0
+      gamepadAxisSide: 0

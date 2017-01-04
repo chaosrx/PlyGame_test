@@ -1,0 +1,14 @@
+version: 1.0.0
+© Leslie Young
+http://plyoung.com/plygame/
+
+Font Awesome Version: 4.1.0
+http://fontawesome.io/icons/
+
+===============================================================
+
+Version 1.0.0
+
+- Initial release
+
+-eof-

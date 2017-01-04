@@ -1,0 +1,6 @@
+version: 3.0.1
+© Leslie Young
+http://plyoung.com/plygame/
+===============================================================
+
+Update notes at http://forum.plyoung.com/t/plygame-updates/

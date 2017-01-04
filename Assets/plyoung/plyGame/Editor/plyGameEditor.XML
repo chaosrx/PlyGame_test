@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>plyGameEditor</name>
+    </assembly>
+    <members>
+        <member name="T:plyGameEditor.ChildEditorBase">
+            <summary> Base class for child editor windows used in the plyGame editor windows like the Main
+             Editor widow. Also see, ChildEditorAttribute </summary>
+        </member>
+        <member name="M:plyGameEditor.ChildEditorBase.OnCreated(System.Reflection.Assembly[])">
+            <summary> Called when this editor is created. It will pass the loaded 
+            assemblies so that reflection can be done if needed. </summary>
+        </member>
+        <member name="M:plyGameEditor.ChildEditorBase.OnFocus">
+            <summary> Called when this editor is focused. </summary>
+        </member>
+        <member name="M:plyGameEditor.ChildEditorBase.OnGUI">
+            <summary> Called when the editor should render. </summary>
+        </member>
+        <member name="T:plyGameEditor.ChildEditorAttribute">
+            <summary> Attribute for child editor's of the plyGame Main Editor Window. </summary>
+        </member>
+        <member name="T:plyGameEditor.EdMenuOptionAttribute">
+            <summary> Attribute for editors that want to appear in the Markers Editor's menu. </summary>
+        </member>
+        <member name="T:plyGameEditor.InputDefiner">
+            <summary>
+            Base class for Input Definers. An input definer is called when the
+             Reset is called in plyGame Input Manager settings to define inputs.
+            </summary>
+        </member>
+        <member name="M:plyGameEditor.InputDefiner.DefineInput">
+            <summary>
+            Overwrite to be called when it is time to define input. Should return a
+            list of newly defined input to be added to main list of inputs.
+            </summary>
+        </member>
+        <member name="T:plyGameEditor.LoadSaveProviderAttribute">
+            <summary> Attribute for load save provider editor, used when defining the editor, derived from
+             LoadSaveProviderEdBase, of the LoadSave provider. </summary>
+        </member>
+        <member name="M:plyGameEditor.LoadSaveProviderAttribute.#ctor(System.String,System.Type)">
+            <summary> Constructor. </summary>
+            <param name="name">		    The name of the provider. Shown to user. </param>
+            <param name="providerType"> Type of the provider that the editor handles. </param>
+        </member>
+        <member name="T:plyGameEditor.LoadSaveProviderEdBase">
+            <summary> Base class for LoadSave Provider's editor. All LoadSave Providers should have an
+             Editor class defined too, even if it will not render any custom options.
+             
+             The provider should use the LoadSaveProviderAttribute to define the def.meta data and information
+             needed by plyGame. </summary>
+        </member>
+        <member name="M:plyGameEditor.LoadSaveProviderEdBase.OnGUI(UnityEditor.EditorWindow,plyGame.LoadSaveProviderBase)">
+            <summary> Called when the options for the LoadSave provider should be drawn. This is optional
+             and only needed if your LoadSave Provider has options/ settings to configure. </summary>
+            <param name="ed">   The editor window onto which the GUI elements are drawn. </param>
+            <param name="data"> The load save provider that should be updated with settings. Remember to
+            					call EditorUtility.SetDirty(data); to make sure changes are saved. </param>
+        </member>
+        <member name="T:plyGameEditor.EdGlobal">
+            <summary> The plyGame Editor Global. </summary>
+        </member>
+        <member name="P:plyGameEditor.EdGlobal.PACKAGE_PATH">
+            <summary> Path to the plyGame package root. Default is 'Assets/plyoung/plyGame/'</summary>
+        </member>
+        <member name="M:plyGameEditor.EdGlobal.CheckDataExist">
+            <summary> Will check if plyGame data folder and data files exist. If not, it will ask user if
+             can create. If not allowed it will return false. </summary>
+        </member>
+        <member name="M:plyGameEditor.EdGlobal.RegisterPlugin(plyGameEditor.plyGamePluginInfo)">
+            <summary> Used to tell plyGame about a plugin. </summary>
+        </member>
+        <member name="M:plyGameEditor.EdGlobal.RegisterAutoCreate(UnityEngine.GameObject)">
+            <summary> Register a prefab that should be instantiated when GameGlobal is created.
+            Thus, automatically created when the game starts. </summary>
+        </member>
+        <member name="M:plyGameEditor.EdGlobal.RemoveAutoCreate(UnityEngine.GameObject)">
+            <summary> Remove a prefab that where registered with RegisterAutoCreate() </summary>
+        </member>
+        <member name="M:plyGameEditor.EdGlobal.RegisterAutoComponent(System.String,System.String)">
+            <summary> Register a component that should be added to a target object. This is done at startup so do not use
+            this to add components to objects in your game scenes. The objects on those scenes will not be available in 
+            time. This is mostly used to add components to objects registered with RegisterAutoCreate() </summary>
+        </member>
+        <member name="M:plyGameEditor.EdGlobal.RemoveAutoComponent(System.String,System.String)">
+            <summary> Remove a component that where registered with RegisterAutoComponent() </summary>
+        </member>
+        <member name="M:plyGameEditor.EdGlobal.GetDataAsset">
+            <summary> Get a reference to the data asset. Error if not exist. </summary>
+        </member>
+        <member name="M:plyGameEditor.EdGlobal.CheckDataPaths">
+            <summary> Check that all data related paths are created  </summary>
+        </member>
+        <member name="M:plyGameEditor.EdGlobal.LoadOrCreateAsset``1(System.String,System.String)">
+            <summary> Loads asset at given path and filename (fn), else create it. Pretty name will be
+             shown to the user in a popup when asking if the asset may be created. Set prettyName = null
+             to have it silently create the asset. </summary>
+        </member>
+        <member name="T:plyGameEditor.plyGamePluginInfo">
+            <summary>
+            Contain info on a plyGame plugin
+            </summary>
+        </member>
+        <member name="F:plyGameEditor.plyGamePluginInfo.name">
+            <summary>
+            Name of the plugin
+            </summary>
+        </member>
+        <member name="F:plyGameEditor.plyGamePluginInfo.version">
+            <summary>
+            Version of the plugin. Will be overwritten by info from 
+            versionFile if versioFile is set
+            </summary>
+        </member>
+        <member name="F:plyGameEditor.plyGamePluginInfo.versionFile">
+            <summary>
+            Uniquely identifiable path to the version file of the plugin.
+            The version file is simply a text file which includes the version number
+            on the first line. You can add other info, for example update notes,
+            in the text file too (as long as the version to show is on the first line)
+            Leave null if you want to set version directly
+            ex. "plyRPG/Documentation/version.txt"
+            </summary>
+        </member>
+    </members>
+</doc>

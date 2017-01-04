@@ -1,0 +1,747 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>plyCommon</name>
+    </assembly>
+    <members>
+        <member name="T:plyCommon.plyInlineValue">
+            <summary>
+            A value that can be inserted into text at run-time.
+            For example "Hello {Name}" would be used to insert the value from an 
+            inline value called "name" into the string via the ProcessText() function.
+            </summary>
+        </member>
+        <member name="F:plyCommon.plyInlineValue._name">
+            <summary>
+            Name of the value. The name should not have any spaces or { and }
+            </summary>
+        </member>
+        <member name="F:plyCommon.plyInlineValue.valueDataProvider">
+            <summary>
+            Where the value comes from. The context of Provider should be the default, "data"
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyInlineValue.ParseText(System.String,System.Collections.Generic.List{plyCommon.plyInlineValue})">
+            <summary>
+            Will process the text, replacing all occurrences of {valueName} with the actual value
+            if the named value is present in the inlineValues list.
+            </summary>
+        </member>
+        <member name="M:plyCommon.Languages.RegisterLanguageChangeListener(plyCommon.BasicCallback)">
+            <summary>
+            Register a callback that will be called when SetActiveLanguage() is called.
+            You need to assume that the language might have been changed from default
+            before you registered your callback and therefore initialise the strings
+            </summary>
+        </member>
+        <member name="M:plyCommon.Languages.SetActiveLanguage(System.String)">
+            <summary>
+            Set the active language. You need to pass the exact name the language was defined with.
+            Returns True on success, else False and prints error to console. You may pass null or
+            an empty string as parameter to indicate that the Default language should be used. Note
+            that the default language is set by default if you did not make a call to this function
+            so you do not normally have to call SetActiveLanguage() if the default language is to
+            be used. Note that "Default" can also be used to set default language.
+            </summary>
+        </member>
+        <member name="P:plyCommon.Languages.DefinedLanguages">
+            <summary>
+            Returns a list of all defined languages. Note that the "Default" language is not
+            included in this list.
+            </summary>
+        </member>
+        <member name="M:plyCommon.Languages.GetString(System.Int32)">
+            <summary>
+            Returns the string identified by stringId from strings of the active language
+            Note that it will return empty string if the string was not found or the
+            system failed to load the strings asset of the language. Also be sure to
+            first check HasLanguagesDefined to make sue there are languages defined
+            since the Default language will not be set if no other languages are
+            defined either.
+            </summary>
+        </member>
+        <member name="T:plyCommon.plyMetaDataInterface">
+            <summary> Classes that makes use of metaData can implement this
+            interface to make it easier for other systems to gain access
+            to the metaData entries. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaDataInterface.AllMetaData">
+            <summary> Get a Dictionary of the metaData entries (name, metaData) </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaDataInterface.AllMetaDataList">
+            <summary> Get a List of the metaData entries </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaDataInterface.GetMetaData(System.String)">
+            <summary> Return reference to meta data object. Null if not found. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaDataInterface.GetMetaDataValue(System.String)">
+            <summary> Return meta data value. Null if named meta data not found. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaDataInterface.SetMetaDataValue(System.String,System.Object)">
+            <summary> Set meta data value. Will create the named meta data if not found and then set value. </summary>
+        </member>
+        <member name="T:plyCommon.plyCondition">
+            <summary>
+            A class that can compare values/ variables
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyCondition.Run(System.Boolean)">
+            <summary>
+            Run the condition and get the TRUE or FALSE result. You need to pass it
+            the value that will be combined with, either with AND or OR as per settings
+            Will print a message to the console and return FALSE if there was an Error.
+            </summary>
+        </member>
+        <member name="T:plyCommon.plyDataObject">
+            <summary>
+            Retrieve and present values at run-time. Has own fields
+            that user uses to specify where data comes from.
+            Can also be used as a way to specify callback.
+            </summary>
+        </member>
+        <member name="T:plyCommon.plyDataObject.TargetObjectType">
+            <summary> How to find the GameObject that the data will come from </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.TargetObjectType.Name">
+            <summary> by its name </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.TargetObjectType.Tag">
+            <summary> by its tag </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.TargetObjectType.Type">
+            <summary> by type of component it has. expected to be unique </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.TargetObjectType.Active">
+            <summary> it is whatever the plyDataObject.activeGO static is set to at the time </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.TargetObjectType.None">
+            <summary> meaning that there will be no GameObject to find. Normally used when
+            the Data Object system is used in ways where the plyDataProviderInterface will not be available </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.dataProviderName">
+            <summary> Name of the data provider, as set in the editor. </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.targetObjType">
+            <summary> How to find the GameObject that the data will come from </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.targetObjTypeData">
+            <summary> The name, tag or component type </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.componentName">
+            <summary> Which component on the target GO to query for data. It will implement the plyDataProviderInterface interface </summary>
+        </member>
+        <member name="F:plyCommon.plyDataObject.nfo">
+            <summary> Data to pass to the interface so it knows how to retrieve the data </summary>
+        </member>
+        <member name="P:plyCommon.plyDataObject.activeGO">
+            <summary> This is accessed at runtime when targetObjType = TargetObjectType.Active </summary>
+        </member>
+        <member name="M:plyCommon.plyDataObject.GetValue">
+            <summary>
+            Called when data is wanted from a provider
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyDataObject.SetValue(System.Object)">
+            <summary>
+            Called when data in a provider should be set
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyDataObject.Callback(System.String[])">
+            <summary>
+            Called when using it as general callback. Can be passed additional string values that
+            should be appended to the info send to the provider.
+            </summary>
+        </member>
+        <member name="T:plyCommon.plyDataProviderInterface">
+            <summary>
+            Those classes able to provide plyDataObject with data must implement this interface
+            It can also be used where a general callback is needed and the data set/ get
+            might be ignored by a system
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyDataProviderInterface.DataProvider_GetValue(System.String[])">
+            <summary> Override to provide the data. Passed the nfo[]
+            array as set up in plyDataObject. </summary>
+        </member>
+        <member name="M:plyCommon.plyDataProviderInterface.DataProvider_SetValue(System.String[],System.Object)">
+            <summary> Override to set the data. Passed the nfo[] array
+            as set up in plyDataObject and a value to set. </summary>
+        </member>
+        <member name="M:plyCommon.plyDataProviderInterface.DataProvider_Callback(System.String[])">
+            <summary> Called when general callback is made into implementer. 
+            Use case will depend on what system makes the call.
+            Passed the nfo[] array as set up in plyDataObject. </summary>
+        </member>
+        <member name="T:plyCommon.plyNode_Cond">
+            <summary>
+            Does a true/ false check and call the appropriate next node
+            </summary>
+        </member>
+        <member name="T:plyCommon.plyNode_Msg">
+            <summary>
+            Sends a message to a GameObject
+            </summary>
+        </member>
+        <member name="T:plyCommon.plyNode_Msg.TargetObjectType">
+            <summary> How to find the GameObject </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Msg.TargetObjectType.Name">
+            <summary> by its name </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Msg.TargetObjectType.Tag">
+            <summary> by its tag </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Msg.TargetObjectType.Type">
+            <summary> by type of component it has. expected to be unique </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Msg.TargetObjectType.Active">
+            <summary> it is whatever the plyGraph.activeGO static is set to at the time </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Msg.TargetObjectType.Self">
+            <summary> is the instance of the GraphManager's GameObject in the scene </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Msg.targetObjType">
+            <summary> How to find the GameObject </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Msg.targetObjTypeData">
+            <summary> The name, tag or component type </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Msg.methodName">
+            <summary> The name of the method to call </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Msg.val">
+            <summary> value to send to method </summary>
+        </member>
+        <member name="T:plyCommon.plyNode_SetVar">
+            <summary>
+            Sets a DiaQ variable
+            </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_SetVar.targetData">
+            <summary> data to set </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_SetVar.value">
+            <summary> value to set it to </summary>
+        </member>
+        <member name="T:plyCommon.plyNode_Wait">
+            <summary>
+            Wait for a number of seconds and then moves on to the linked node, if any
+            </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Wait.waitTime">
+            <summary> Seconds to wait </summary>
+        </member>
+        <member name="T:plyCommon.plyNode_Dbg">
+            <summary>
+            Writes debug message to Unity console
+            </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Dbg.msgLabel">
+            <summary> Console message label </summary>
+        </member>
+        <member name="F:plyCommon.plyNode_Dbg.val">
+            <summary> Value to write to console </summary>
+        </member>
+        <member name="T:plyCommon.plyMetaData">
+            <summary>
+            A class that can hold a value from a variety of types
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.GetValue">
+            <summary> Returns the value of this meta data. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.ResetToType(plyCommon.plyMetaData.DataType)">
+            <summary> Set the meta data to default value type </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.SetValue(System.Object)">
+            <summary> Set the meta data value. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.ToString">
+            <summary> Returns the string represents of the meta data's value. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetBool(System.Boolean@)">
+            <summary> Attempts to get a bool value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetInt(System.Int32@)">
+            <summary> Attempts to get an int value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetFloat(System.Single@)">
+            <summary> Attempts to get float value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetRect(UnityEngine.Rect@)">
+            <summary> Attempts to get value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetColor(UnityEngine.Color@)">
+            <summary> Attempts to get value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetVector2(UnityEngine.Vector2@)">
+            <summary> Attempts to get value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetVector3(UnityEngine.Vector3@)">
+            <summary> Attempts to get value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetGameObject(UnityEngine.GameObject@)">
+            <summary> Attempts to get value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetComponent(UnityEngine.Component@)">
+            <summary> Attempts to get value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.TryGetUnityObject(UnityEngine.Object@)">
+            <summary> Attempts to get value from the meta data. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.Encode(plyCommon.plyMetaData)">
+            <summary> Return a string that can be saved and later be sued with Decode.
+            Uses (char)31 as separator internally. Can't encode GameObject or 
+            UnityObject and will return null in these cases. </summary>
+        </member>
+        <member name="M:plyCommon.plyMetaData.Decode(System.String)">
+            <summary> Decodes a string to create and init the data. </summary>
+        </member>
+        <member name="T:plyCommon.plyNode_Start">
+            <summary>
+            The start node
+            </summary>
+        </member>
+        <member name="T:plyCommon.plySerializedData">
+            <summary> A custom serialised data class that can Serialise/ Deserialize lists of objects.
+            It can only serialise public fields. It will ignore fields marked as [System.NonSerialized] </summary>
+        </member>
+        <member name="T:plyCommon.plyGraphManager">
+            <summary> Contains the graphs that can be executed at runtime and the functions to interact with the graphs. </summary>
+        </member>
+        <member name="F:plyCommon.plyGraphManager.graphs">
+            <summary> The graphs </summary>
+        </member>
+        <member name="F:plyCommon.plyGraphManager.metaData">
+            <summary> Meta data is optional data/ information that the designer may associate with the graph asset (via Graphs Settings).
+            Do not access this at runtime. Use the provided functions. </summary>
+        </member>
+        <member name="F:plyCommon.plyGraphManager.__last_node_id">
+            <summary> For internal use. Do not manipulate. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.BeginGraph(plyCommon.plyGraph)">
+            <summary> Begin walking the graph. Will begin at the Start node. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.BeginGraphAtNode(plyCommon.plyGraph,System.Int32)">
+            <summary> Begin walking the graph. Will begin at the specified node. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.UpdateGraph">
+            <summary> Force the active graph to update. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.StopGraph">
+            <summary> Force the active graph to stop if any is active. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.ActiveGraph">
+            <summary> Returns the active graph. Null if no graph is running. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.ActiveNode">
+            <summary> The currently active node in the active graph. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.NodeWaitingForData">
+            <summary> Returns the node that is waiting for a response. You will use SendDataToNode() to 
+            send the response data to it. Will return null if there is no node waiting for data or if 
+            there is no graph running atm. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.SendDataToNode(System.Object)">
+            <summary> Send data to the current node in the active graph. 
+            What data is send will depend on what node is waiting for it. 
+            Example, can be used to send data to a dialogue node that might be 
+            waiting for a user to make a choice. In that case you would send
+            an Integer Value. The data will simply be ignore if the node was
+            not one that accepts data. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.GetMetaData(System.String)">
+            <summary> Return reference to meta data object. Null if not found. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.GetMetaDataValue(System.String)">
+            <summary> Return meta data value. Null if named meta data not found. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraphManager.SetMetaDataValue(System.String,System.Object)">
+            <summary> Set meta data value. Will create the named meta data if not found and then set value. </summary>
+        </member>
+        <member name="T:plyCommon.plyGraph">
+            <summary>
+            A graph is a container for connected/ linked nodes
+            </summary>
+        </member>
+        <member name="F:plyCommon.plyGraph.id">
+            <summary> Unique ID to identify this graph by </summary>
+        </member>
+        <member name="F:plyCommon.plyGraph.name">
+            <summary> Name of graph. Name can be changed via graph editor </summary>
+        </member>
+        <member name="F:plyCommon.plyGraph.customIdent">
+            <summary> A custom identifier you may use to identify the graph by </summary>
+        </member>
+        <member name="F:plyCommon.plyGraph.comment">
+            <summary> Optional comment </summary>
+        </member>
+        <member name="F:plyCommon.plyGraph.metaData">
+            <summary> Meta data is optional data/ information that the designer may associate with the graph.
+            Do not access at runtime, use provided functions. </summary>
+        </member>
+        <member name="P:plyCommon.plyGraph.nodes">
+            <summary> All nodes contained in the graph </summary>
+        </member>
+        <member name="P:plyCommon.plyGraph.startNode">
+            <summary> The first node of the graph </summary>
+        </member>
+        <member name="F:plyCommon.plyGraph.data">
+            <summary> The serialised graph node data. Do not access this directly. </summary>
+        </member>
+        <member name="F:plyCommon.plyGraph.__view_offset">
+            <summary> used by editor. </summary>
+        </member>
+        <member name="P:plyCommon.plyGraph.activeGO">
+            <summary> This is a helper for some Nodes that might need an active object set. 
+            How this is used will depend on what is using it. </summary>
+        </member>
+        <member name="P:plyCommon.plyGraph.owningGraphManager">
+            <summary> The (runtime) GraphManager that owns this node </summary>
+        </member>
+        <member name="M:plyCommon.plyGraph.OnCreated">
+            <summary> Called by editor when the graph is created (in editor) </summary>
+        </member>
+        <member name="M:plyCommon.plyGraph.Awake(plyCommon.plyGraphManager)">
+            <summary> Called at runtime after graph was Deserialize </summary>
+        </member>
+        <member name="M:plyCommon.plyGraph.GetMetaData(System.String)">
+            <summary> Return reference to meta data object. Null if not found. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraph.GetMetaDataValue(System.String)">
+            <summary> Return meta data value. Null if named meta data not found. </summary>
+        </member>
+        <member name="M:plyCommon.plyGraph.SetMetaDataValue(System.String,System.Object)">
+            <summary> Set meta data value. Will create the named meta data if not found and then set value. </summary>
+        </member>
+        <member name="T:plyCommon.plyNode">
+            <summary> Base class for nodes of the Graph and Nodes system. 
+            Nodes as linked entities that exist in a graph. </summary>
+        </member>
+        <member name="T:plyCommon.plyNode.ReturnCode">
+            <summary> Return codes used in Enter(), Update(), etc </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.ReturnCode.Continue">
+            <summary> This node is not yet ready to return a value. Use this with nodes that are waiting for user input or have a 
+            build in delay/ wait time, and will be ready at some point in Update() </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.ReturnCode.WaitingForData">
+            <summary> Basically same as Continue but helps identify those nodes that are not returning the next node or stop 
+            since it is waiting for data. </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.ReturnCode.Stop">
+            <summary> Stop graph execution now </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.outLinks">
+            <summary> The nodes that are linked to this one's outputs </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.outLinkIds">
+            <summary> Ids of the nodes that are linked to. This and the outLinks
+            array should always be of the same size. </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.id">
+            <summary> Unique identifier for node. Do not set this manually. 
+            The graph editor updates it as needed. </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.customIdent">
+            <summary> A custom identifier you may use to identify the node by </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.comment">
+            <summary> Node comment. Normally used as messages/ reminders in the graph editor </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.showComment">
+            <summary> Set true if comment should appear in the graph editor </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.metaData">
+            <summary> Meta data is optional data/ information that the designer may associate with the node. Do not access
+            at runtime. Use the provided functions. </summary>
+        </member>
+        <member name="F:plyCommon.plyNode.__rect">
+            <summary> Used by editor. You may update width/ height with the node window's size 
+            but should not change x and y as that is used to track the position of the node 
+            in the graph editor. </summary>
+        </member>
+        <member name="P:plyCommon.plyNode.owningGraph">
+            <summary> The (runtime) Graph that owns this node </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.Awake(plyCommon.plyGraph)">
+            <summary> called by graph's Awake at runtime </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.LogError(System.String)">
+            <summary> show an error message that include the name of the node the error occurred in </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.LogWarning(System.String)">
+            <summary> show w warning message that include the name of the node the error occurred in </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.PrettyName">
+            <summary> Return a nice name for the Node </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.OnAddedToGraph">
+            <summary> This is called when the node is created by the graph editor. 
+            You may initialise __rect with the size that the node window should
+            be in the graph editor. You may use it to initialize other values too.
+            Be sure to call the base function first if you override this
+            base.OnAddedToGraph(); </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.InitOutlinkCount">
+            <summary> This should return the number of out links that the node should 
+            be initialized with when first added to the graph. </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.CopyTo(plyCommon.plyNode)">
+            <summary> Must override to perform copy. Be sure to call base.CopyTo() </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.Enter">
+            <summary> Called when the node is entered via (in-link). Returned value should be the index 
+            of next node to Enter() as per outLinks[] array or a (int)plyNode.ReturnCode. If you return
+            ReturnCode.Continue then you must override Update else the graph will stop the first time 
+            Update is called for this node. </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.Update">
+            <summary> Called by graph manager as long as this node is the active one in the active graph.
+            This will only be called if you returned ReturnCode.Continue in Enter(), causing this node to
+            stay the active node.
+            Returned value should be the index of next node to Enter() as per outLinks[] array or 
+            a (int)plyNode.ReturnCode </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.ReceiveData(System.Object)">
+            <summary> Called when some data is send to the active node. This can only be called for this node 
+            if you returned ReturnCode.Continue in Enter() and did not yet return any other code in Update() </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.GetStrings(plyCommon.LanguagesAsset)">
+            <summary> Provides language editor with strings used in this node. Must get an id from 
+            languagesAsset.GetStringId and set an internal id to this id to keep track of what ID
+            the string was assigned. Do not generate your own IDs as it will conflict with IDs
+            created for other strings. You may have an ID generated for null or empty strings
+            but they are ignored and not added to the list. See DiaQNode_Dlg.cs for example if use.</summary>
+        </member>
+        <member name="M:plyCommon.plyNode.UpdateStrings">
+            <summary> Called when the active languages was changed. The node can now use
+            Languages.Instance.GetString(stringid) to get and update its strings(s) </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.GetMetaData(System.String)">
+            <summary> Return reference to meta data object. Null if not found. </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.GetMetaDataValue(System.String)">
+            <summary> Return meta data value. Null if named meta data not found. </summary>
+        </member>
+        <member name="M:plyCommon.plyNode.SetMetaDataValue(System.String,System.Object)">
+            <summary> Set meta data value. Will create the named meta data if not found and then set value. </summary>
+        </member>
+        <member name="T:plyCommon.plyCurve">
+            <summary> A curve or 2D graph represented by an array of values. The array index represents the
+             horizontal (X) and the value of each represents the vertical (Y) of the graph. </summary>
+        </member>
+        <member name="M:plyCommon.plyCurve.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary> Constructor. </summary>
+            <param name="valuesCount"> Number of values to init curve to. </param>
+            <param name="yMin">		   The minimum. </param>
+            <param name="yMax">		   The maximum. </param>
+        </member>
+        <member name="M:plyCommon.plyCurve.#ctor(plyCommon.plyCurve)">
+            <summary> Copy constructor. </summary>
+            <param name="c"> The plyCurve to process. </param>
+        </member>
+        <member name="M:plyCommon.plyCurve.Create(System.Int32,System.Int32,System.Int32)">
+            <summary> Creates a new curve and destroys old values. </summary>
+            <param name="valuesCount"> Number of values to init curve to. </param>
+            <param name="yMin">		   The minimum. </param>
+            <param name="yMax">		   The maximum. </param>
+        </member>
+        <member name="M:plyCommon.plyCurve.Reset">
+            <summary> Resets the curve, removing any manual changes made to values. </summary>
+        </member>
+        <member name="M:plyCommon.plyCurve.GetYValue(System.Int32)">
+            <summary> Same as calling values[xValue], returning the vertical value from graph. </summary>
+            <param name="xValue"> The value. </param>
+            <returns> The y coordinate/ horizontal value. </returns>
+        </member>
+        <member name="M:plyCommon.plyCurve.GetXValue(System.Single)">
+            <summary> Returns the horizontal value from graph for the given vertical value. </summary>
+            <param name="yValue"> The value to lookup </param>
+            <returns> The x coordinate/ index/ horizontal value. </returns>
+        </member>
+        <member name="T:plyCommon.UniqueID">
+            <summary> A Serializable unique identifier. </summary>
+        </member>
+        <member name="P:plyCommon.UniqueID.Value">
+            <summary> Gets or sets the unique identifier. </summary>
+        </member>
+        <member name="P:plyCommon.UniqueID.IsEmpty">
+            <summary> Return true of the ID is empty, false if not </summary>
+        </member>
+        <member name="P:plyCommon.UniqueID.Empty">
+            <summary> Creates and return a new empty id </summary>
+        </member>
+        <member name="M:plyCommon.UniqueID.#ctor">
+            <summary> Creates an empty id. Note that id might not be empty after it is deserialized if this
+             id was serialized before. </summary>
+        </member>
+        <member name="M:plyCommon.UniqueID.#ctor(System.String)">
+            <summary> Create the id with given value </summary>
+        </member>
+        <member name="M:plyCommon.UniqueID.Create">
+            <summary> Creates and return a new (not empty) id </summary>
+        </member>
+        <member name="M:plyCommon.UniqueID.Create(plyCommon.UniqueID)">
+            <summary> Creates and return new id if the passed id is null or empty, else return passed id. </summary>
+        </member>
+        <member name="M:plyCommon.UniqueID.GenerateId">
+            <summary> Creates a new value for this id </summary>
+        </member>
+        <member name="M:plyCommon.UniqueID.Copy">
+            <summary> Returns a copy of this id </summary>
+        </member>
+        <member name="M:plyCommon.UniqueID.ToString">
+            <summary> The string representation of the id's value. This string is valid for use with 'new
+             GUID(string someStringID)' </summary>
+            <returns> A string that represents this object. </returns>
+        </member>
+        <member name="M:plyCommon.UniqueID.ListContains(System.Collections.Generic.List{plyCommon.UniqueID},plyCommon.UniqueID)">
+            <summary> Will return true if the list contains the given id </summary>
+        </member>
+        <member name="M:plyCommon.plyUtil.PickPointInCircle(System.Single)">
+            <summary> will pick a random 2D point within 2D circle of radius and return the values as [x, 0,
+             z]. </summary>
+            <param name="radius"> The radius of the circle. </param>
+            <returns> A Vector3. </returns>
+        </member>
+        <member name="M:plyCommon.plyUtil.PickPointInRectanle(UnityEngine.Vector2)">
+            <summary> will pick a random 2D point within 2D rectangle and return the values as [x, 0, z]. </summary>
+            <param name="wh"> The width and height of the rectangle. </param>
+            <returns> A Vector3. </returns>
+        </member>
+        <member name="M:plyCommon.plyUtil.AngleSigned(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Determine the signed angle between two vectors, with normal 'n' as the rotation axis. </summary>
+            <param name="v1"> Face Direction. </param>
+            <param name="v2"> Direction to target. </param>
+            <param name="n">  The normal Vector. </param>
+            <returns> The angle. </returns>
+        </member>
+        <member name="M:plyCommon.plyUtil.RotatedRectangle(UnityEngine.Vector3,UnityEngine.Vector2,System.Single)">
+            <summary> Return vertex points of rectangle rotated around position, on XZ plane </summary>
+            <param name="p">position</param>
+            <param name="wh">width and height</param>
+            <param name="angle">angle in degrees</param>
+            <returns></returns>
+        </member>
+        <member name="M:plyCommon.plyUtil.PointInRotatedRectangle(UnityEngine.Vector2,System.Single)">
+            <summary> Return random point in rotated rectangle, on XZ plane </summary>
+            <param name="wh">width and height</param>
+            <param name="angle">angle in degrees</param>
+            <returns></returns>
+        </member>
+        <member name="M:plyCommon.plyUtil.IsInRange(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Int32,System.Boolean)">
+            <summary>
+            Is pos in range of TR and is TR facing in a direction within checkAngle towards pos?
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyUtil.FacingInRange(UnityEngine.Transform,UnityEngine.Vector3,System.Single)">
+            <summary>
+            Return True if TR's forward face is within a certain range towards facePos
+            The Dot product is used to determine this so range should be a value 
+            between -1 and +1. 
+            1 = 0*
+            0.866 = 30*
+            0.7071 = 45*
+            0.5 = 60*
+            0 = 90*
+            -0.5 = 120*
+            -0.701 = 135*
+            -0.866 = 150*
+            -1 = 180*
+            For more information on the value that can be used check
+            https://docs.unity3d.com/Documentation/Manual/UnderstandingVectorArithmetic.html
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyUtil.FacingInRange(UnityEngine.Transform,UnityEngine.Vector3,System.Int32)">
+            <summary>
+            Return True if TR's forward face is within a certain angle towards facePos
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyUtil.CleanupList``1(System.Collections.Generic.List{``0})">
+            <summary> Runs through and remove all null values from the list of UnityEngine.Object objects. </summary>
+            <typeparam name="T"> Generic type parameter. UnityEngine.Object </typeparam>
+            <param name="list"> The list. </param>
+            <returns> Cleaned up list. </returns>
+        </member>
+        <member name="M:plyCommon.plyUtil.EnDisableComponent(UnityEngine.Component,System.Boolean)">
+            <summary>
+            Enable/ Disable the component. Component does not actually have an "enabled" property
+            so this function try to cast it to types that might, like Behaviour and Collider.
+            Returns False if it did not manage to set the enabled state.
+            </summary>
+        </member>
+        <member name="M:plyCommon.plyUtil.GizmoDrawArc(UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Single)">
+            <summary> Draw a wire arc around World.Up. </summary>
+            <param name="center">  The center point/ position. </param>
+            <param name="forward"> The forward vector of the arc. </param>
+            <param name="angle">   The angle in degrees. </param>
+            <param name="radius">  The radius of the circle. </param>
+        </member>
+        <member name="T:plyCommon.plyExtensions">
+            <summary> Various extensions. </summary>
+        </member>
+        <member name="M:plyCommon.plyExtensions.RGBToHex(UnityEngine.Color)">
+            <summary> A Color extension method that converts a Unity Color to a hexadecimal string. </summary>
+            <param name="color"> The color to act on. </param>
+            <returns> A string representation of the hexadecimal value. </returns>
+        </member>
+        <member name="M:plyCommon.plyExtensions.HexToRGB(UnityEngine.Color,System.String)">
+            <summary> A Color extension method that converts a hexadecimal string to a Unity Color. </summary>
+            <param name="color"> The color to act on. </param>
+            <param name="hex">   The hexadecimal colour value. </param>
+            <returns> A Color. </returns>
+        </member>
+        <member name="M:plyCommon.plyExtensions.Sort(UnityEngine.RaycastHit[])">
+            <summary> A RaycastHit[] extension method that sorts the given array according to distance from
+             closest to furthest. </summary>
+            <param name="hits"> The hits list act on. </param>
+        </member>
+        <member name="M:plyCommon.plyExtensions.HasLayer(UnityEngine.LayerMask,System.Int32)">
+            <summary> A LayerMask extension method that query if 'mask' has layer. </summary>
+            <param name="mask">  The mask to act on. </param>
+            <param name="layer"> The layer to check. </param>
+            <returns> true if layer is in the mask, false if not. </returns>
+        </member>
+        <member name="M:plyCommon.plyExtensions.GetFirstSetLayer(UnityEngine.LayerMask)">
+            <summary> A LayerMask extension method that gets the first layer that is present in the mask. </summary>
+            <param name="mask"> The mask to act on. </param>
+            <returns> The first found layer. </returns>
+        </member>
+        <member name="M:plyCommon.plyExtensions.IncludeLayer(UnityEngine.LayerMask,System.Int32)">
+            <summary> A LayerMask extension method that includes a layer in the mask. </summary>
+            <param name="mask">  The mask to act on. </param>
+            <param name="layer"> The layer to add. </param>
+            <returns> The modified LayerMask. </returns>
+        </member>
+        <member name="M:plyCommon.plyExtensions.RemoveLayer(UnityEngine.LayerMask,System.Int32)">
+            <summary> A LayerMask extension method that removes a layer from the mask. </summary>
+            <param name="mask">  The mask to act on. </param>
+            <param name="layer"> The layer to remove. </param>
+            <returns> The modified LayerMask. </returns>
+        </member>
+        <member name="M:plyCommon.plyExtensions.ToggleLayer(UnityEngine.LayerMask,System.Int32)">
+            <summary> A LayerMask extension method that toggle a layer in the mask. </summary>
+            <param name="mask">  The mask to act on. </param>
+            <param name="layer"> The layer to toggle. </param>
+            <returns> The modified LayerMask. </returns>
+        </member>
+        <member name="T:plyCommon.BasicCallback">
+            <summary> Used where a general purpose callback is needed that has no arguments to send around. </summary>
+        </member>
+        <member name="T:plyCommon.GeneralCallback">
+            <summary> Used where a general purpose callback is needed. </summary>
+            <param name="sender"> Source of the event. </param>
+            <param name="args">   The arguments that will be send. </param>
+        </member>
+        <member name="T:plyCommon.ResultCallback">
+            <summary> Used where a callback is needed that can return a result. </summary>
+            <param name="sender"> Source of the event. </param>
+            <param name="args">   The arguments that will be send. </param>
+            <returns> Return value of callback. </returns>
+        </member>
+        <member name="T:plyCommon.IntScale">
+            <summary> Simple int based width and height. </summary>
+        </member>
+    </members>
+</doc>

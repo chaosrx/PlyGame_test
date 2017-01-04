@@ -1,0 +1,1035 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>plyRPG</name>
+    </assembly>
+    <members>
+        <member name="T:plyGame.ActorAttributesAsset">
+            <summary> Contains the defined Actor Attributes. </summary>
+        </member>
+        <member name="P:plyGame.ActorAttributesAsset.Instance">
+            <summary> Provide access to asset at runtime </summary>
+        </member>
+        <member name="M:plyGame.ActorAttributesAsset.GetDefinition(plyCommon.UniqueID)">
+            <summary> Get an attribute definition by its Id. Return null if Id is invalid or attribute not found. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttributesAsset.GetDefinitionIdx(plyCommon.UniqueID)">
+            <summary> Get an attribute's index in the attributes list by Id. Return -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttributesAsset.GetScreenName(plyCommon.UniqueID)">
+            <summary> Return the screen name of an attribute. Return "-invalid-" if not found. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttributesAsset.GetNames">
+            <summary> Returns a list of names of all defined attributes. </summary>
+        </member>
+        <member name="T:plyGame.ActorClassesAsset">
+            <summary> The defined Actor Classes. </summary>
+        </member>
+        <member name="P:plyGame.ActorClassesAsset.Instance">
+            <summary> Provide access to asset at runtime </summary>
+        </member>
+        <member name="M:plyGame.ActorClassesAsset.UpdateCacheIfNeeded">
+            <summary> Used to update the list of defined actor classes from the classFabs list. </summary>
+        </member>
+        <member name="M:plyGame.ActorClassesAsset.UpdateCache">
+            <summary> Used to update the list of defined actor classes from the classFabs list. </summary>
+        </member>
+        <member name="M:plyGame.ActorClassesAsset.GetPrefab(plyCommon.UniqueID)">
+            <summary> Get Actor Class prefab by its Id. Return null if not found. </summary>
+        </member>
+        <member name="M:plyGame.ActorClassesAsset.GetDefinition(plyCommon.UniqueID)">
+            <summary> Get Actor Class definition by its Id. Return null if not found. </summary>
+        </member>
+        <member name="M:plyGame.ActorClassesAsset.GetDefinitionIdx(plyCommon.UniqueID)">
+            <summary> Get index of Actor Class in the actor classes list by its Id. Return -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.ActorClassesAsset.GetScreenName(plyCommon.UniqueID)">
+            <summary> Get the screen name of an actor class. Return "-invalid-" if not found. </summary>
+        </member>
+        <member name="M:plyGame.ActorClassesAsset.GetNames">
+            <summary> Returns a list of names of all defined actor classes. </summary>
+        </member>
+        <member name="T:plyGame.LootAsset">
+            <summary> Contains the loot tables. </summary>
+        </member>
+        <member name="P:plyGame.LootAsset.Instance">
+            <summary> Provide access to asset at runtime </summary>
+        </member>
+        <member name="T:plyGame.ItemsAsset">
+            <summary> Contains the defined Items. </summary>
+        </member>
+        <member name="P:plyGame.ItemsAsset.Instance">
+            <summary> Provide access to asset at runtime </summary>
+        </member>
+        <member name="M:plyGame.ItemsAsset.GetDefinition(plyCommon.UniqueID)">
+            <summary> Get definition by its Id. Return null if Id is invalid or definition not found. </summary>
+        </member>
+        <member name="M:plyGame.ItemsAsset.GetDefinition(System.String,plyGame.plyGameObjectIdentifyingType)">
+            <summary> Get the defined by its name, custom def.ident or def.meta data. Return null if not found. </summary>
+        </member>
+        <member name="M:plyGame.ItemsAsset.GetDefinitionIdx(plyCommon.UniqueID)">
+            <summary> Get an definition's index in the list by Id. Return -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.ItemsAsset.GetScreenName(plyCommon.UniqueID)">
+            <summary> Return the screen name of an definition. Return "-invalid-" if not found. </summary>
+        </member>
+        <member name="M:plyGame.ItemsAsset.GetNames">
+            <summary> Returns a list of names of all defined items. </summary>
+        </member>
+        <member name="T:plyGame.MarkersAsset">
+            <summary> Contains a list of the defined markers that where detected. </summary>
+        </member>
+        <member name="P:plyGame.MarkersAsset.Instance">
+            <summary> Provide access to asset at runtime </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.UpdateCacheIfNeeded">
+            <summary> Updates the list of skills from skillFabs list. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.UpdateCache">
+            <summary> Updates the list of skills from skillFabs list. return true if markerFabs list contained null entries. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.GetPrefab(plyCommon.UniqueID)">
+            <summary> Gets the prefab by Id. Return null if failed. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.GetPrefab(System.String)">
+            <summary> Gets the prefab by name. Return null if failed. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.GetDefinition(plyCommon.UniqueID)">
+            <summary> Gets the definition by Id. Return null if failed. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.GetDefinition(System.String)">
+            <summary> Get the defined by its name. Return null if not found. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.GetDefinitionUniqueId(System.String)">
+            <summary> Get the defined by its name. Return UniqueID.Empty if not found. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.GetDefinitionUniqueId(System.Int32)">
+            <summary> Get the defined by its index in list. Return UniqueID.Empty if not found. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.GetDefinitionIdx(plyCommon.UniqueID)">
+            <summary> Get the definition index into the list by its Id. Return -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.GetScreenName(plyCommon.UniqueID)">
+            <summary> Get name by Id. Return "-invalid-" if not found. </summary>
+        </member>
+        <member name="M:plyGame.MarkersAsset.GetNames">
+            <summary> Get a list of names of all defined. </summary>
+        </member>
+        <member name="T:plyGame.PlayerSelectorsAsset">
+            <summary> Selectors used by player. </summary>
+        </member>
+        <member name="T:plyGame.SkillsAsset">
+            <summary> All defined Skills. </summary>
+        </member>
+        <member name="P:plyGame.SkillsAsset.Instance">
+            <summary> Provide access to asset at runtime </summary>
+        </member>
+        <member name="M:plyGame.SkillsAsset.UpdateCacheIfNeeded">
+            <summary> Updates the list of skills from skillFabs list. </summary>
+        </member>
+        <member name="M:plyGame.SkillsAsset.UpdateCache">
+            <summary> Updates the list of skills from skillFabs list. </summary>
+        </member>
+        <member name="M:plyGame.SkillsAsset.GetPrefab(plyCommon.UniqueID)">
+            <summary> Gets the Skill prefab by Id. Return null if failed. </summary>
+        </member>
+        <member name="M:plyGame.SkillsAsset.GetDefinition(plyCommon.UniqueID)">
+            <summary> Gets the Skill definition by Id. Return null if failed. </summary>
+        </member>
+        <member name="M:plyGame.SkillsAsset.GetDefinition(System.String,plyGame.plyGameObjectIdentifyingType)">
+            <summary> Get the defined skill by its name, custom def.ident or def.meta data. Return null if not found. </summary>
+        </member>
+        <member name="M:plyGame.SkillsAsset.GetDefinitionUniqueId(System.String,plyGame.plyGameObjectIdentifyingType)">
+            <summary> Get the defined skill by its name, custom def.ident or def.meta data. Return UniqueID.Empty if not found. </summary>
+        </member>
+        <member name="M:plyGame.SkillsAsset.GetDefinitionIdx(plyCommon.UniqueID)">
+            <summary> Get the Skill definition index into the skills list by its Id. Return -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.SkillsAsset.GetScreenName(plyCommon.UniqueID)">
+            <summary> Get Skill name by Id. Return "-invalid-" if not found. </summary>
+        </member>
+        <member name="M:plyGame.SkillsAsset.GetNames">
+            <summary> Get a list of names of all defined Skills. </summary>
+        </member>
+        <member name="T:plyGame.NPCMoveBase">
+            <summary> This is the base class for the NPC movement controllers. All movement controllers should derive from this. </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.MoveTo(UnityEngine.Vector3,System.Single,System.Single)">
+            <summary> Ask mover to move the NPC to the target position. </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.FaceDirection(UnityEngine.Vector3,System.Single)">
+            <summary> Ask the mover to face the NPC in the target direction. </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.FaceDirectionNoStop(UnityEngine.Vector3,System.Single)">
+            <summary> Ask the mover to face the NPC in the target direction. Allow it to continue moving, in new direction, if it was moving/ stopping </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.Stop">
+            <summary> Make the mover stop immediately. </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.Velocity">
+            <summary> Current velocity according to mover. </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.DesiredVelocity">
+            <summary> Mover's desired velocity. </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.UpdateVelocity(UnityEngine.Vector3)">
+            <summary> Tell mover to use this velocity. </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.Grounded">
+            <summary> Is the character on the ground? </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.IsMovingOrPathing">
+            <summary> Is the mover moving the character or getting ready to move it? </summary>
+        </member>
+        <member name="M:plyGame.NPCMoveBase.InControlledTurn">
+            <summary> Return true if in controlled turn. Normally when performing a FaceDirection() request. </summary>
+        </member>
+        <member name="M:plyGame.ActionSlots.GetEquippedNfo(System.Int32)">
+            <summary>
+            Return a reference to the Skill Definition or Item Prefab rather than the Skill object or Item in bag.
+            </summary>
+        </member>
+        <member name="M:plyGame.ActionSlots.GetEquipped(System.Int32)">
+            <summary>
+            Return reference to the known Skill or Item in Bag. Will return null if skill not known or Item not found bag.
+            </summary>
+        </member>
+        <member name="T:plyGame.Actor">
+            <summary> All plyGame characters must have the Actor component. It contains the definitions and
+             general info on the character. </summary>
+        </member>
+        <member name="P:plyGame.Actor.actorClass">
+            <summary> Instance of the actor class used by this Actor </summary>
+        </member>
+        <member name="P:plyGame.Actor.bag">
+            <summary> Cached reference to Bag so it is quicker to get to without having to 
+            lookup the Bag component teach time. Note, can be null. </summary>
+        </member>
+        <member name="P:plyGame.Actor.character">
+            <summary> Reference to the plyGame character controller of this actor/ character </summary>
+        </member>
+        <member name="P:plyGame.Actor.knownSkills">
+            <summary> List of skills (instantiated) this Actor knows. </summary>
+        </member>
+        <member name="P:plyGame.Actor.factions">
+            <summary> The Factions that this Actor is associated with. </summary>
+        </member>
+        <member name="M:plyGame.Actor.LearnSkill(plyCommon.UniqueID,System.Boolean)">
+            <summary> Add Skill to list of known Skills. Return reference to the new Skill object.
+            Returns null on error. </summary>
+        </member>
+        <member name="M:plyGame.Actor.LearnSkill(plyGame.Skill,System.Boolean)">
+            <summary> Add Skill to list of known Skills. Return reference to the new Skill object, 
+            Returns null on error. </summary>
+        </member>
+        <member name="M:plyGame.Actor.UnlearnSkill(plyCommon.UniqueID)">
+            <summary> Remove a skill from the list of skills the actor knows. Will silently fail if error. </summary>
+        </member>
+        <member name="M:plyGame.Actor.UnlearnSkill(plyGame.Skill)">
+            <summary> Remove a skill from the list of skills the actor knows. Will silently fail if error. </summary>
+        </member>
+        <member name="M:plyGame.Actor.KnowSkill(plyCommon.UniqueID)">
+            <summary> Return True if Skill is in list of known skills. </summary>
+        </member>
+        <member name="M:plyGame.Actor.KnowSkill(plyGame.Skill)">
+            <summary> Return True if Skill is in list of known skills. </summary>
+        </member>
+        <member name="M:plyGame.Actor.GetKnownSkill(plyCommon.UniqueID)">
+            <summary> Return the known skill else null if not known. </summary>
+        </member>
+        <member name="M:plyGame.Actor.GetKnownSkill(plyGame.Skill)">
+            <summary> Return the known skill else null if not known. </summary>
+        </member>
+        <member name="M:plyGame.Actor.QueueSkillForExecution(plyGame.Skill,System.Boolean)">
+            <summary> Queue Skill to be used as soon as possible. Return false if the Skill is not known.
+             Could still fail to execute the skill if the Actor unlearn it before it is executed. </summary>
+        </member>
+        <member name="M:plyGame.Actor.QueueSkillForExecution(plyCommon.UniqueID,System.Boolean)">
+            <summary> Queue Skill to be used as soon as possible. Return false if the Skill is not known.
+             Could still fail to execute the skill if the Actor unlearn it before it is executed. </summary>
+        </member>
+        <member name="M:plyGame.Actor.QueueSkillForExecution(plyGame.Skill,System.Boolean,plyGame.Targetable,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Queue Skill to be used as soon as possible. Does not check if the Actor knows the
+             skill so be sure to check before you queue it. Could still fail to execute the skill if it the
+             Actor unlearn it before it is executed. </summary>
+        </member>
+        <member name="M:plyGame.Actor.ClearQueuedSkill">
+            <summary> Clear queued skill </summary>
+        </member>
+        <member name="M:plyGame.Actor.JoinFaction(plyCommon.UniqueID,System.Boolean)">
+            <summary> Let Actor Join faction </summary>
+            <param name="factionId">Id of the faction. </param>
+            <param name="suppressLog">Set true if no error messages should be printed. </param>
+        </member>
+        <member name="M:plyGame.Actor.LeaveFaction(plyCommon.UniqueID,System.Boolean)">
+            <summary> Let Actor Leave faction </summary>
+            <param name="factionId">Id of the faction. </param>
+            <param name="suppressLog">Set true if no error messages should be printed. </param>
+        </member>
+        <member name="M:plyGame.Actor.GetActorFaction(plyCommon.UniqueID)">
+            <summary>
+            return reference to faction if actor in it, else null
+            </summary>
+        </member>
+        <member name="M:plyGame.Actor.HighestStatusToTarget(plyGame.Actor)">
+            <summary>
+            Returns the "highest" status of this Actor towards the target via the Factions that both belongs to.
+            Status goes up from Friendly at lowest level, then Neutral, and then Hostile being highest.
+            The check is not two-way, meaning the status of the target Actor's Factions are not test against
+            the Factions of this Actor. This Actor's Faction statuses is only checked against the Factions of the
+            target Actor. So a Faction can be friendly towards another while the other Faction might be 
+            Hostile to it. Return Friendly if this Actor or Target is in no Factions.
+            Will also check statusTowardsPlayer if target is player
+            </summary>
+        </member>
+        <member name="M:plyGame.Actor.Name">
+            <summary>
+            Returns the def.screenName of the Actor id set (not empty), else the GameObject's name
+            </summary>
+        </member>
+        <member name="M:plyGame.Actor.Kill">
+            <summary> Call this to kill the Actor. Its HP attribute (if used) will be forced to 0 and it will be set in death state </summary>
+        </member>
+        <member name="M:plyGame.Actor.ReceivedMoveCommand">
+            <summary> Called by the player controller to inform the Actor that the player pressed some keys used to move the character. 
+            This is so the Actor can check whether a queued skill, waiting to execute, might need to be canceled. </summary>
+        </member>
+        <member name="M:plyGame.Actor.IsDead">
+            <summary> Return true if the actor is dead. Will only function properly
+            if the Health attribute is configured and the Actor Class has the same
+            attribute in its list of attributes. If Health is not configured then
+            this will always return false. </summary>
+        </member>
+        <member name="T:plyGame.ActorAttribute">
+            <summary> The Actor Attribute defines a property an actor may have. Attributes are linked to
+             Actors via the Actor Class assigned to an Actor. </summary>
+        </member>
+        <member name="T:plyGame.ActorAttribute.ValueType">
+            <summary> Attribute Value Types </summary>
+        </member>
+        <member name="P:plyGame.ActorAttribute.owner">
+            <summary> Owner (ActorClass) of this Attribute. Only valid at run-time. </summary>
+        </member>
+        <member name="P:plyGame.ActorAttribute.data">
+            <summary> Data contains the base, max, etc type data for the Attribute. Initialised by the Actor class at runtime </summary>
+        </member>
+        <member name="P:plyGame.ActorAttribute.Value">
+            <summary> (baseValue + bonusValue) This is the real value of the attribute. This is the
+             value to read when you want to see what STR, INT, etc is, or if you want to know what MAX
+             is that Health or Mana type attributes can reach. </summary>
+        </member>
+        <member name="P:plyGame.ActorAttribute.ConsumableValue">
+            <summary> This is the variable/ consumable value of the attribute. Used to tract the CURRENT
+             value of an attribute like Health or Mana. Not used with attributes that do not get consumed,
+             like Strength or Intelligence. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.Init(plyGame.ActorClass,System.Int32)">
+            <summary> Init the Value and ConsumableValue without triggering callbacks. Used by Actor Class
+             when it creates the Attribute. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.Recalc(System.Boolean)">
+            <summary> Call this to force a recalculate of the Value. ConsumableValue will be updated to not
+             be more than Value. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.RegisterBonusCalculator(plyCommon.ResultCallback)">
+            <summary> Register a Callback that should return a Float value which will be added to
+             bonusValue when recalculating what the Value of the attribute should be. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.RemoveBonusCalculator(plyCommon.ResultCallback)">
+            <summary> Removes the bonus calculator described by callback. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.RegisterChangeListener(plyCommon.GeneralCallback)">
+            <summary> Registers a callback that should be informed when the Value or ConsumableValue
+             changes. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.RemoveChangeListener(plyCommon.GeneralCallback)">
+            <summary> Removes the change listener described by callback. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.SetConsumableValue(System.Single,UnityEngine.GameObject)">
+            <summary>
+            Set the consumable value. You can optionally set an 'influence'. This is the object that was the 
+            reason for the change in value. Useful when tagging who was the attacker when Hp decreased.
+            </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.SetBaseValue(System.Int32)">
+            <summary> Sets the attribute's 'Value' and call recalculate to make sure ConsumableValue is the
+             same or less. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.ChangeBaseValueBy(System.Int32)">
+            <summary> Change base value and call Recalculate to update 'Value' and to make sure ConsumableValue
+             is the same or less. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.LevelChanged(System.Int32)">
+            <summary> Tell the Attribute that the level changed. It will act on that if it is an attribute
+             that is linked to the leveling system. </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.ChangeSimpleBonus(System.Int32)">
+            <summary>
+            Pass positive or negative value to influence bonus value. This can push bonus to negative
+            and this negatively influence the final Value calculation.
+            </summary>
+        </member>
+        <member name="M:plyGame.ActorAttribute.SetSimpleBonus(System.Int32)">
+            <summary>
+            Set simple bonus value to this exact value.
+            </summary>
+        </member>
+        <member name="T:plyGame.ActorAttributeData">
+            <summary> Data related to an Actor Attribute. </summary>
+        </member>
+        <member name="T:plyGame.ActorClass">
+            <summary> All actors must have an Actor Class. The actor class links the actor with its
+             attributes. </summary>
+        </member>
+        <member name="P:plyGame.ActorClass.owner">
+            <summary> The Actor that owns this Actor Class instance. </summary>
+        </member>
+        <member name="P:plyGame.ActorClass.attributes">
+            <summary> List of instantiated attributes. Created from the attributesInitData. </summary>
+        </member>
+        <member name="P:plyGame.ActorClass.HP">
+            <summary> Reference to the Health (HP) attribute of this Actor. The HP attribute works with
+             Consumable value. The attribute's 'Value' is the max that its Consumable value can reach. </summary>
+        </member>
+        <member name="P:plyGame.ActorClass.XP">
+            <summary> Reference to the Experience points (XP) of this Actor. The XP attribute works with
+             its 'Value' property, not Consumable value property. </summary>
+        </member>
+        <member name="P:plyGame.ActorClass.currLevel">
+            <summary> Current Level of this Actor </summary>
+        </member>
+        <member name="M:plyGame.ActorClass.Init(plyGame.Actor,System.Int32)">
+            <summary> Called by Actor after creating an instance of its actor class so that some final
+             Initialisation can be performed. </summary>
+        </member>
+        <member name="M:plyGame.ActorClass.GetAttribute(plyCommon.UniqueID)">
+            <summary> Get a reference to an attribute of the actor by Id. Return null if failed. </summary>
+        </member>
+        <member name="M:plyGame.ActorClass.GetAttribute(System.String,plyGame.plyGameObjectIdentifyingType)">
+            <summary> Get a reference to the attribute of the actor by its name, custom def.ident or def.meta data.
+             Return null if failed. </summary>
+        </member>
+        <member name="M:plyGame.ActorClass.GetAttributeUniqueId(System.String,plyGame.plyGameObjectIdentifyingType)">
+            <summary> Get the Id of an attribute of the actor by its name, custom def.ident or def.meta data.
+             Return UniqueID.Empty if not found. </summary>
+        </member>
+        <member name="T:plyGame.LegacyAnimGroup">
+            <summary>
+            Animation group used in Legacy animation controller
+            </summary>
+        </member>
+        <member name="T:plyGame.StatusTowardsOther">
+            <summary> Status towards other, used by NPC or Factions to determine 
+            their status towards each other and the player. </summary>
+        </member>
+        <member name="T:plyGame.ItemType">
+            <summary> An Item Type. </summary>
+        </member>
+        <member name="T:plyGame.FactionVarList">
+            <summary> Variables used in Faction variable lists. </summary>
+        </member>
+        <member name="T:plyGame.SimpleCustomizer">
+            <summary> This component makes it easier to manipulate the used material, colour and
+            the enabled objects of a parent object. Useful for simple character customization.
+            
+            For materials, colours and textures the group name should start with the same name
+            as the objects that should be affected. So if you wanted to change the Face of a
+            character by changing the materials on an object named FaceArt then you could name
+            the group "Face" or "FaceArt".
+            
+            The objects group work different and will simply disable all objects in the same group
+            except for the one you set to be active when making a call to ChangeObject.
+            </summary>
+        </member>
+        <member name="F:plyGame.SimpleCustomizer.matGroups">
+            <summary> List of Material groups </summary>
+        </member>
+        <member name="F:plyGame.SimpleCustomizer.colGroups">
+            <summary> List of Colour groups </summary>
+        </member>
+        <member name="F:plyGame.SimpleCustomizer.texGroups">
+            <summary> List of Texture groups </summary>
+        </member>
+        <member name="F:plyGame.SimpleCustomizer.objGroups">
+            <summary> List of Object groups </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.UseSettings(System.Collections.Generic.List{plyGame.SimpleCustomizer.Settings})">
+            <summary> You need to call this with the data from the prefab's settings
+            if calls where made on the prefab's ChangeObject, ChangeMaterial, etc
+            </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.GetSettings">
+            <summary> Return the settings of this customizer. Settings tells what
+            objects, material, etc should be applied. It records the calls to 
+            ChangeObject, ChangeMaterial, etc to create these settings </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.GetMaterialGroup(System.String)">
+            <summary> Return the index of the given group name. -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.GetTextureGroup(System.String)">
+            <summary> Return the index of the given group name. -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.GetColorGroup(System.String)">
+            <summary> Return the index of the given group name. -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.GetObjectGroup(System.String)">
+            <summary> Return the index of the given group name. -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.ChangeObject(System.Int32,System.Int32)">
+            <summary> Change to one at idx to be active in the given group. </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.ChangeMaterial(System.Int32,System.Int32)">
+            <summary> Change to one at idx to be active in the given group. </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.ChangeTexture(System.Int32,System.Int32)">
+            <summary> Change to one at idx to be active in the given group. </summary>
+        </member>
+        <member name="M:plyGame.SimpleCustomizer.ChangeColor(System.Int32,System.Int32)">
+            <summary> Change to one at idx to be active in the given group. </summary>
+        </member>
+        <member name="T:plyGame.Skill">
+            <summary> A Skill, something an Actor can perform. This can be a lot of things and can range
+             from attack skills like the swing of a sword or a fireball to the use or a pick to mine for
+             some ore. The plyBlox system does most of the work when events related to the Skill is
+             triggered. </summary>
+        </member>
+        <member name="T:plyGame.Skill.Activation">
+            <summary> How a skill is activated </summary>
+        </member>
+        <member name="T:plyGame.Skill.TargetLocation">
+            <summary> In what direction or location the skill is executed </summary>
+        </member>
+        <member name="T:plyGame.Skill.DeliveryMethod">
+            <summary> How the skill's effect is delivered </summary>
+        </member>
+        <member name="T:plyGame.Skill.TargetingMethod">
+            <summary> How does skill collect possible targets </summary>
+        </member>
+        <member name="T:plyGame.Skill.ValidTargets">
+            <summary> What are valid targets for the skill's effect </summary>
+        </member>
+        <member name="T:plyGame.Skill.ProjectileMoveMethod">
+            <summary> How does a projectile move </summary>
+        </member>
+        <member name="P:plyGame.Skill.owner">
+            <summary> The actor that owns this Skill. Skills area created as actual GameObjects placed
+             inside the character that it belongs to at run-time. </summary>
+            <value> The owner. </value>
+        </member>
+        <member name="M:plyGame.Skill.Execute(plyGame.Targetable,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Tell Skill to execute now </summary>
+        </member>
+        <member name="M:plyGame.Skill.IsExecuting">
+            <summary> Return true if the Skill is busy being executed. All skills are "instant" in creating
+             their effects and only executionTime govern the Executing status. </summary>
+        </member>
+        <member name="M:plyGame.Skill.CoolingDown">
+            <summary> Return true if busy with cool-down </summary>
+        </member>
+        <member name="M:plyGame.Skill.IsReady">
+            <summary> Return true if ready to execute and not on some cool down or being prevented in some
+             other way. </summary>
+        </member>
+        <member name="M:plyGame.Skill.FacingAcceptable(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3@)">
+            <summary> Return true if the facing is within acceptable range. The returned wantedDirection
+             can be used to turn character to correct facing if needed. </summary>
+        </member>
+        <member name="M:plyGame.Skill.DistanceAcceptable(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3@,plyGame.Targetable)">
+            <summary> Return true if the distance from target/ point is fine and skill can be executed.
+             wantedPos is the target point that should be moved towards while continuously calling this
+             function to check if in range yet. </summary>
+        </member>
+        <member name="M:plyGame.Skill.ExecuteSecondary(UnityEngine.Vector3,plyGame.Targetable,UnityEngine.GameObject)">
+            <summary> Trigger the Skill's secondary effect at specified location. Can also specify a a
+             targetable object to ignore when finding targets. </summary>
+        </member>
+        <member name="M:plyGame.Skill.ExecuteFizzleEvent(UnityEngine.Vector3,System.Boolean,UnityEngine.GameObject)">
+            <summary> Ask Skill to call the Fizzle event in plyBlox </summary>
+        </member>
+        <member name="M:plyGame.Skill.AttemptHit(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.GameObject)">
+            <summary> Called by Projectile to attempt hit on object. Return false if was invalid target. </summary>
+        </member>
+        <member name="M:plyGame.Skill.FindValidTargetAt(UnityEngine.Ray)">
+            <summary> Try and find first valid target that falls in the ray. Normally the ray comes from a
+             mouse position to check if there is a valid target under the mouse cursor. </summary>
+        </member>
+        <member name="M:plyGame.Skill.IsValidTargetableType(plyGame.Targetable)">
+            <summary> Return true of the target is a valid targetable type for the skill, according to the
+             skill's settings. </summary>
+        </member>
+        <member name="M:plyGame.Skill.IsValidTargetable(plyGame.Targetable,UnityEngine.Transform,UnityEngine.Vector3,System.Single,UnityEngine.LayerMask)">
+            <summary> First call IsValidTargetableType() and if that is fine it will check if there is an
+             obstacle between the target and the checkTr position or checkFrom position of checkTr is
+             null. The checkHeight is an offset from the checkTr or checkFrom positions and checkMask is
+             the layers considered to be obstacles. </summary>
+        </member>
+        <member name="T:plyGame.SkillProjectile">
+            <summary> The projectiles created by a Skill. The projectile will trigger Events in the Skill's
+             Blox as needed. </summary>
+        </member>
+        <member name="M:plyGame.SkillProjectile.Awake">
+            <summary>
+            you can override this with "new protected void Start()" in custom projectile behaviour
+            The projectile should not yet be active, so use gameObject.SetActive(false); here
+            The call to MakeActive() will indicate when the projectile should go active
+            </summary>
+        </member>
+        <member name="M:plyGame.SkillProjectile.MakeActive">
+            <summary>
+            This should have an override in custom projectile classes. This is called once the projectile should go active.
+            </summary>
+        </member>
+        <member name="M:plyGame.SkillProjectile.Start">
+            <summary>
+            you can override this with "new protected void Start()" in custom projectile behaviour
+            </summary>
+        </member>
+        <member name="M:plyGame.SkillProjectile.Update">
+            <summary>
+            you can override this with "new protected void Update()" in custom projectile behaviour
+            </summary>
+        </member>
+        <member name="T:plyGame.AnimationControlBase">
+            <summary> Base class for all Animation Controllers </summary>
+        </member>
+        <member name="T:plyGame.LegacyAnimClipDef">
+            <summary>
+            Animation definition used in Legacy animation controller
+            </summary>
+        </member>
+        <member name="P:plyGame.LegacyAnimClipDef.IsValid">
+            <summary>
+            Is animation valid? Use after Init()
+            </summary>
+        </member>
+        <member name="P:plyGame.LegacyAnimClipDef.ClipLength">
+            <summary>
+            Length of the clip
+            </summary>
+        </member>
+        <member name="M:plyGame.LegacyAnimClipDef.Init(UnityEngine.Animation,System.Boolean)">
+            <summary>
+            This should be called before using any of the other functions of this class. You should specify to 
+            which animation this clip (animation definition) belongs
+            </summary>
+        </member>
+        <member name="M:plyGame.LegacyAnimClipDef.Play">
+            <summary>
+            Play the animation
+            </summary>
+        </member>
+        <member name="M:plyGame.LegacyAnimClipDef.Play(System.Boolean)">
+            <summary>
+            Play the animation
+            </summary>
+        </member>
+        <member name="M:plyGame.LegacyAnimClipDef.CrossFade">
+            <summary>
+            Crossfade the animation
+            </summary>
+        </member>
+        <member name="T:plyGame.LegacyAnimControl">
+            <summary>
+            The Legacy Animation controller decides when to play the character's idle and movement related animations.
+            </summary>
+        </member>
+        <member name="T:plyGame.LegacyAnimMoveDef">
+            <summary>
+            A movement definition, used in Legacy Animation controller
+            </summary>
+        </member>
+        <member name="M:plyGame.LegacyAnimMoveDef.Init(UnityEngine.Animation)">
+            <summary>
+            Init should be called before any of the other functions can be used
+            </summary>
+        </member>
+        <member name="M:plyGame.LegacyAnimMoveDef.PlayAni(System.Single,UnityEngine.Vector3,plyGame.CharacterControllerBase,UnityEngine.Transform,UnityEngine.Transform,UnityEngine.Transform)">
+            <summary>
+            Play the animation
+            </summary>
+        </member>
+        <member name="T:plyGame.CharacterControllerBase">
+            <summary> The base class for all plyGame related character controllers. </summary>
+        </member>
+        <member name="P:plyGame.CharacterControllerBase.selectedTarget">
+            <summary> This character's currently selected Targetable object. For player controllers this
+             would be what the player clicked on (characters, items and objects) last and for NPCs this
+             would be what the AI selected (only other characters) </summary>
+        </member>
+        <member name="P:plyGame.CharacterControllerBase.queuedInteract">
+            <summary> The object queued to be interacted with once character is in range and facing it. </summary>
+        </member>
+        <member name="P:plyGame.CharacterControllerBase.Interacting">
+            <summary> True while the character is "interacting" with something. StopInteract() must be called to stop it. </summary>
+        </member>
+        <member name="P:plyGame.CharacterControllerBase.actor">
+            <summary> The Actor component of the character </summary>
+        </member>
+        <member name="P:plyGame.CharacterControllerBase._tr">
+            <summary> The Transform component of the character </summary>
+        </member>
+        <member name="P:plyGame.CharacterControllerBase.hint_DoNotMove">
+            <summary> If set then the character should not move. Normally set by actor when a skill being used do not allow movement.</summary>
+        </member>
+        <member name="P:plyGame.CharacterControllerBase.controlEnabled">
+            <summary> Is control of the character enabled? Player characters should not accept input and an
+             NPC's I should be off when this is false. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.SelectTarget(UnityEngine.GameObject)">
+            <summary> Called when a target is selected. et the selected target. If null or passed object
+             is not a Targetable, then the selected target will be cleared. You should call
+             base.SelectTarget() if you override this. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.SelectTarget(plyGame.Targetable)">
+            <summary> Called when a target is selected. If null then the selected target will be cleared.
+             You should call base.SelectTarget() if you override this. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.ClearTarget">
+            <summary> Called when the target is cleared. You should call base.ClearTarget() if you override
+             this. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.SetTargetInteract(UnityEngine.GameObject)">
+            <summary> The gameObject as target interact. The character will try to move to it and face it 
+            before the Interact related events are triggered. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.SetTargetInteract(plyGame.Targetable)">
+            <summary> The character will try to move to it and face it 
+            before the Interact related events are triggered. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.StopInteract">
+            <summary> Trigger event on currently active interact </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.TargetableType">
+            <summary> You will not need to override this in a base class as it already returns Type.Character. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.DataObject">
+            <summary> You will not need to override this in a base class as it already returns actor (as data object). </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.MovementControlAllowed">
+            <summary> Return true if the character may accept input to generate movement </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.IsPlayer">
+            <summary> Derived class must override this to tell plyGame if this controller (Character) is a
+             player character controller or non-player character (NPC). </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.EnableControl(System.Boolean)">
+            <summary> Enable or Disable Input (or AI in case of NPCs). Call base.EnableControl() if you override this. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.OnDeath">
+            <summary> Called when the character is killed. Call base.Death() if you override this. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.SetMoveSpeed(System.Single)">
+            <summary> Set the movement speed of the character </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.SetTurnSpeed(System.Single)">
+            <summary> Set the turn speed of the character </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.MoveSpeed">
+            <summary> Return the current move speed being used. This defaults to 
+            returning moveSpeed but some controllers might override this if they 
+            have other movement speed types, for example running during a chase. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.TurnSpeed">
+            <summary> Return the current turn speed being used. This defaults to 
+            returning turnSpeed but some controllers might override this if they 
+            have other movement speed types, for example running during a chase. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.Grounded">
+            <summary> Is the character touching the floor/ ground? </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.Velocity">
+            <summary> Character's current velocity </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.Movement">
+            <summary> The calculated move vector. Needed by animation controllers that controls 
+            root motion, like the basic mecanim controller. </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.RequestFaceDirection(UnityEngine.Vector3,System.Single)">
+            <summary> Turn the character to face in direction. Return false if this character controller do
+             not accept requests to turn. Actor uses this to ask the character to look in direction it
+             needs to perform a skill. The delayAfter determine how long the character will face the
+             target direction, after reaching it and before returning to viewing in direction it is moving
+             (if moving). </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.RequestLookAt(UnityEngine.Vector3,System.Single)">
+            <summary> Turn the character to face the target location (position). Return false if this
+             character controller do not accept requests to turn. Actor uses this to ask the character to
+             look in a direction to perform skill. The delayAfter determine how long the character will
+             face the target direction, after reaching it and before returning to viewing in direction is
+             is moving (if moving). </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.RequestMoveTo(UnityEngine.Vector3,System.Boolean)">
+            <summary> Move the character to position. Return false if this character controller do not
+             accept requests to move. Actor uses this to ask the character to move, for example when it
+             needs the character to move closer to selected target or to perform a skill. </summary>
+            <param name="position">The position to move to</param>
+            <param name="useFasterMovement">A hint that a run speed should be used if the character supports it</param>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.Stop">
+            <summary> Ask character to stop moving and/ or turning </summary>
+        </member>
+        <member name="M:plyGame.CharacterControllerBase.StopAll">
+            <summary> Ask character to stop. Removing queued targets and stop moving. </summary>
+        </member>
+        <member name="T:plyGame.ActorFaction">
+            <summary> work-in-progress </summary>
+        </member>
+        <member name="M:plyGame.ActorFaction.SetStatusTowards(plyGame.ActorFaction,plyGame.StatusTowardsOther)">
+            <summary>
+            Set Status of this faction towards another
+            </summary>
+        </member>
+        <member name="M:plyGame.ActorFaction.GetStatusTowards(plyGame.ActorFaction)">
+            <summary>
+            Returns Status of this faction towards another
+            </summary>
+        </member>
+        <member name="M:plyGame.ActorFaction.GetFactionVariable(System.String,plyGame.ActorFaction)">
+            <summary> Return a reference to the named Faction Variable. Will return null if the variable does
+             not exist. targetFaction is the faction that the variable is related to. All faction variables
+             belongs to a faction and is related to another faction as seen in the factions editor var grid. </summary>
+        </member>
+        <member name="M:plyGame.ActorFaction.GetFactionVarValue(System.String,plyGame.ActorFaction)">
+            <summary> Return the value of a Faction Variable. Return null if it does not exist. Keep in mind
+             that the value might simply be null. targetFaction is the faction that the variable is related to.
+             All faction variables belongs to a faction and is related to another faction as seen in the
+             factions editor var grid. </summary>
+        </member>
+        <member name="M:plyGame.ActorFaction.SetFactionVarValue(System.String,System.Object,plyGame.ActorFaction)">
+            <summary> Set the value of a Faction Variable. Will fail if variable doe snot exist.
+            targetFaction is the faction that the variable is related to. All faction variables
+            belongs to a faction and is related to another faction as seen in the factions
+            editor var grid. </summary>
+        </member>
+        <member name="T:plyGame.ActorFactionManager">
+            <summary>
+            Manages and contains a list of all the Factions. Factions should not be added at runtime.
+            and must all be defined in the plyGame Main Editor.
+            This manager will automatically interact with the SaveLoad System to save and restore
+            the relevant data of factions.
+            </summary>
+        </member>
+        <member name="M:plyGame.ActorFactionManager.GetDefinitionByIdent(System.String,plyGame.plyGameObjectIdentifyingType)">
+            <summary> Get a defined faction by an ident. Return null if not found. </summary>
+        </member>
+        <member name="M:plyGame.ActorFactionManager.GetDefinitionById(plyCommon.UniqueID)">
+            <summary> Get a defined faction by its Id. Return null if not defined or invalid id. </summary>
+        </member>
+        <member name="M:plyGame.ActorFactionManager.GetDefinitionIdx(plyGame.ActorFaction)">
+            <summary> Return the index of the faction in the list of defined factions </summary>
+        </member>
+        <member name="M:plyGame.ActorFactionManager.GetRuntimeByIdent(System.String,plyGame.plyGameObjectIdentifyingType)">
+            <summary> Get a faction by an ident. Return null if not found. </summary>
+        </member>
+        <member name="M:plyGame.ActorFactionManager.GetRuntimeById(plyCommon.UniqueID)">
+            <summary> Get a faction by its Id. Return null if not defined or invalid id. </summary>
+        </member>
+        <member name="M:plyGame.ActorFactionManager.GetRuntimeIdx(plyGame.ActorFaction)">
+            <summary> Return the index of the faction in the list of active runtime factions </summary>
+        </member>
+        <member name="T:plyGame.NPCController">
+            <summary> The Default NPC Controller and AI </summary>
+        </member>
+        <member name="T:plyGame.NPCController.IdleMode">
+            <summary> What the NPC does while not using Skills </summary>
+        </member>
+        <member name="M:plyGame.NPCController.LastDetectedTotal">
+            <summary>
+            Return the total number of characters that where detected in the last detection action.
+            </summary>
+        </member>
+        <member name="M:plyGame.NPCController.GetDetected(System.Int32)">
+            <summary>
+            Return the detected character that is at position 'idx' in the list of detected characters. 
+            The characters are sorted from closest to furthest from the NPC.
+            </summary>
+        </member>
+        <member name="M:plyGame.NPCController.GetDetectedDistance(System.Int32)">
+            <summary>
+            Return distance the detected character, at index idx, is from the NPC
+            The characters are sorted from closest to furthest from the NPC.
+            Return -1 if index is invalid.
+            </summary>
+        </member>
+        <member name="T:plyGame.NPCMoveNone">
+            <summary> For an NPC that will not move. </summary>
+        </member>
+        <member name="T:plyGame.Player">
+            <summary>
+            Shortcut to some common player related object references
+            </summary>
+        </member>
+        <member name="F:plyGame.Player.Instance">
+            <summary> The active player character. It can be either set in Awake or Start of the
+            Player controller so you should not depend on it being ready in Start. </summary>
+        </member>
+        <member name="P:plyGame.Player.IsReady">
+            <summary> This can be used to check if the player is actually ready. This will not only 
+            return false while the Instance is null but also while the player is not in a 'ready'
+            state. The Player character is considered ready when the Awake, Start, and Loading 
+            (if persistence is on) is done and the Update loop was entered. </summary>
+        </member>
+        <member name="F:plyGame.Player.Camera">
+            <summary> The active player camera. It can be either set in Awake or Start of the
+            camera controller so you should not depend on it being ready in Start.  </summary>
+        </member>
+        <member name="T:plyGame.PlayerBaseController">
+            <summary> Player character controller base class. You can choose to either derive from this or
+             CharacterControllerbase. This class contain some useful helpers that you would have to re-
+             implement if deriving a player controller from CharacterControllerbase. </summary>
+        </member>
+        <member name="M:plyGame.PlayerBaseController.MovementControlAllowed">
+            <summary> Return true if the character may accept input to generate movement. </summary>
+        </member>
+        <member name="M:plyGame.PlayerBaseController.IsPlayer">
+            <summary> Override to tell plyGame this is a player character controller </summary>
+        </member>
+        <member name="T:plyGame.EquipmentSlots">
+            <summary> Items are things that characters can pick up and use. Some can also be 
+            'equipped' and this class handles that for the object it is on. </summary>
+        </member>
+        <member name="T:plyGame.Item">
+            <summary> Items are things that characters can pick up and use </summary>
+        </member>
+        <member name="T:plyGame.ItemBag">
+            <summary> Items are things that characters can pick up and use. They can be held in this "bag".
+            The Bag component can be placed on characters that should be able to carry items. 
+            Bags work with either weight or slots (or no limit) as configured in ItemsAsset.storageMethod </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.GetSlotCount">
+            <summary> Return the number of slots the Bag has. Even if the storage method is not slot based the Items 
+            are still stacked in slots and this info could be useful when visually laying out the Items. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.AddCurrency(System.Int32)">
+            <summary> Add an amount of currency. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.RemoveCurrency(System.Int32)">
+            <summary> Remove an amount of currency. Return false if did not have enough currency and thus nothing was done. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.HasCurrencyAmount(System.Int32)">
+            <summary> Return true if has an amount of currency. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.AddItemToBag(plyGame.Item,System.Int32)">
+            <summary> Add a copy of the item to the bag. Return false if failed to add, perhaps bag is full. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.RemoveItemFromBag(plyGame.Item,plyGame.ItemBag.ItemDropOption,System.Boolean)">
+            <summary> Remove 1 copy of the item from bag. return false if item not found. use one of the other
+            functions if you want better control over which item in bag is removed since this will grab the
+            first one that is valid. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.RemoveItemFromBag(System.Int32,plyGame.ItemBag.ItemDropOption,System.Boolean)">
+            <summary> Remove 1 copy of the item from the specific bag slot. return false if failed - item not found in slot. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.RemoveItemFromBag(plyGame.ItemBag.ItemInBag,plyGame.ItemBag.ItemDropOption,System.Boolean)">
+            <summary> Remove 1 copy of the item from bag. return false if item not found. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.GetItemInSlot(System.Int32)">
+            <summary> Return the item at specified slot or slot occupied by an item 
+            that spans more than one slot. Null if no Item available. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.FindItem(plyGame.Item)">
+            <summary> Return first occurrence of Item in Bag. Null if not found. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.FindItem(plyCommon.UniqueID)">
+            <summary> Return first occurrence of Item in Bag. Null if not found. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.ItemCount(plyGame.Item)">
+            <summary> Return how many copies of the Item is present in the Bag.</summary>
+        </member>
+        <member name="M:plyGame.ItemBag.HasItem(plyGame.Item)">
+            <summary> Return True if at least one copy of the Item exist in the Bag.</summary>
+        </member>
+        <member name="M:plyGame.ItemBag.UseItem(plyGame.Item)">
+            <summary> Will check if the item exists and then use it. Will return false if failed (for example item not found)
+            Will only trigger use if item is equipped when set to canEquip. Will only trigger use on item in bag if 
+            not set to canEquip. </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.UseItem(System.Int32)">
+            <summary> Trigger use on specific Item in bag </summary>
+        </member>
+        <member name="M:plyGame.ItemBag.UseItem(plyGame.ItemBag.ItemInBag)">
+            <summary> Trigger use on specific Item in bag </summary>
+        </member>
+        <member name="T:plyGame.PlayerManagerCharacterData">
+            <summary> Contains the info for a character that can be created by the player manager. </summary>
+        </member>
+        <member name="F:plyGame.PlayerManagerCharacterData.characterPrefab">
+            <summary> The character object (actor) with all its needed player related components. 
+            This is an 'empty' object into which one of the artPrefabs will be placed when the
+            character is instantiated. </summary>
+        </member>
+        <member name="F:plyGame.PlayerManagerCharacterData.artPrefabs">
+            <summary> The possible objects/ prefabs that can be used for the art side of the character. </summary>
+        </member>
+        <member name="T:plyGame.PlayerManager">
+            <summary> The player manager is an optional system that can be used when you do not
+            want to manually take care of player character loading and management </summary>
+        </member>
+        <member name="F:plyGame.PlayerManager.defaultPlayerFab">
+            <summary> The default player prefab is used when the designer uses Unity Play button
+            to test a scene and also when there are no other player prefabs defined. This is the 
+            one prefab that should be set if you want the manager active. </summary>
+        </member>
+        <member name="F:plyGame.PlayerManager.playerCharacters">
+            <summary> List of player character prefabs </summary>
+        </member>
+        <member name="F:plyGame.PlayerManager.blox">
+            <summary> plyBlox associated with the player manager. </summary>
+        </member>
+        <member name="P:plyGame.PlayerManager.Instance">
+            <summary> Instance is set on Awake. Player Manager is auto-created by plyGame when the
+            game starts and at least the defaultPlayerFab is set to a valid prefab. </summary>
+        </member>
+        <member name="M:plyGame.PlayerManager.SpawnPlayer(System.String,UnityEngine.Transform)">
+            <summary> Instruct the Player Manager to spawn a Player character in the scene. ident is used to 
+            identify this player character uniquely when you may be using more than one in a game session.
+            It defaults to "player" if you pass an empty string. This ident is used when saving/ loading the
+            player data. This call will silently fail if there is already a player character in the scene. 
+            If targeTr is set then that transform's location and rotation is used to initialise the character's
+            position and rotation. </summary>
+        </member>
+        <member name="M:plyGame.PlayerManager.DestroyPlayer">
+            <summary> Instruct the Player Manager to remove the Player character from the scene. </summary>
+        </member>
+        <member name="M:plyGame.PlayerManager.SetActivePlayer(System.Int32)">
+            <summary> Set the active player from the playerCharacters list. </summary>
+        </member>
+        <member name="M:plyGame.PlayerManager.SetActivePlayerArt(System.Int32)">
+            <summary> Set the active player art from the playerCharacters list. The active player 
+            must be set first via SetActivePlayer </summary>
+        </member>
+        <member name="M:plyGame.PlayerManager.GetPlayerPrefab(System.Int32)">
+            <summary> Return reference to the Player Prefab from the Player Manager. </summary>
+        </member>
+        <member name="M:plyGame.PlayerManager.GetPlayerArtPrefab(System.Int32,System.Int32)">
+            <summary> Return reference to the Player Art Prefab from the Player Manager. </summary>
+        </member>
+        <member name="M:plyGame.WaypointPath.GetPointPosition(System.Int32)">
+            <summary>get the proper position of the patrol point</summary>
+        </member>
+        <member name="T:plyGame.Targetable">
+            <summary> base class for Targetable objects like character, item and object </summary>
+        </member>
+        <member name="T:plyGame.Targetable.Type">
+            <summary> The targetable types </summary>
+        </member>
+        <member name="M:plyGame.Targetable.TargetableType">
+            <summary> Override to identify what kind of Targetable this is. </summary>
+        </member>
+        <member name="M:plyGame.Targetable.MustFaceToInteract">
+            <summary> Override to to specify when facing the object is not needed 
+            to interact with it. Default is True. </summary>
+        </member>
+        <member name="M:plyGame.Targetable.DataObject">
+            <summary> This should return the object that contains the "data". The data includes some or all of 
+            the following public fields being present in the object: 
+            public string ident;
+            public string screenName;
+            public string shortName;
+            public string meta;
+            public string description;
+            public Texture2D[] images = new Texture2D[3];
+            </summary>
+        </member>
+    </members>
+</doc>

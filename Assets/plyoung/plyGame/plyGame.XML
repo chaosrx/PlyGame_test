@@ -1,0 +1,518 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>plyGame</name>
+    </assembly>
+    <members>
+        <member name="T:plyGame.AutoDisableTimeout">
+            <summary>
+            Disables gameObject after timeout and then removes this component
+            </summary>
+        </member>
+        <member name="T:plyGame.FallToFloor">
+            <summary>
+            This will make an object fall to the floor. You need to instantiate the Item in the air
+            then attach this component. The Item will then be dropped to the floor but at an arc
+            from the start position. The object should have a collider. This component will 
+            remove itself when done.
+            </summary>
+        </member>
+        <member name="T:plyGame.CommonDefinitionData">
+            <summary>
+            Some commonly used definition data
+            </summary>
+        </member>
+        <member name="T:plyGame.DataAsset">
+            <summary> plyGame definitions. </summary>
+        </member>
+        <member name="M:plyGame.DataAsset.GetAsset``1">
+            <summary> (used by editor scripts) Get reference to an asset saved in dataAsset.assets list </summary>
+        </member>
+        <member name="M:plyGame.DataAsset.AddAsset(UnityEngine.ScriptableObject)">
+            <summary> (used by editor scripts) Add asset to list. return true if actually added to list and false if already in list (or if was null) </summary>
+        </member>
+        <member name="M:plyGame.DataAsset.RemoveAsset(UnityEngine.ScriptableObject)">
+            <summary> (used by editor scripts) Set null and remove and asset in dataAsset.assets list. return true if removed, else false if was not in list </summary>
+        </member>
+        <member name="T:plyGame.InputDefAsset">
+            <summary> The input definitions. </summary>
+        </member>
+        <member name="T:plyGame.IplyPool">
+            <summary> Called when plyGame wants to create instance of prefab. Only some systems makes use of this. </summary>
+        </member>
+        <member name="T:plyGame.InputBind">
+            <summary> InputBind </summary>
+        </member>
+        <member name="T:plyGame.InputDefinition">
+            <summary> InputDefinition </summary>
+        </member>
+        <member name="T:plyGame.IPersistable">
+            <summary> An interface for all components that might be handled by the LoadSave System. The
+             PersistenceProvider component looks for components that implements this interface when
+             deciding what to call to save or load.
+             
+             You must add a unique string to the key passed in Save() and Load() and not use it directly.
+             A good idea might be to use the component's name, for example newKey = key + "." + name_of_component_class.
+             You can use a shorter string to append, just make sure it does not
+             clash with keys chosen by other components.
+             
+             You might have more than one value to save, in that case you would append further strings to
+             the key to identify the data uniquely. For example, you want to save two values,
+             
+             - key1 = key + "." + component_name + ".a";  
+             - key2 = key + "." + component_name + ".b";  
+             
+             Be sure to use the same way to generate the keys needed when loading.
+             
+             You will make calls to GameGlobal.Instance.Set... and Get... functions to do the actual
+             saving and loading, using your newly created key and the value to save.
+             
+             An object that wants to restore itself at runtime, if placed at runtime and not design time, should 
+             have a static function called LoadCreate(string key) that takes one string argument (the key).
+             This will then be called when the object should create itself in the scene. An object that want 
+             this call to happen should register itself, in Save(), by making a call to GameGlobal.AddCreateLoadKey()
+            </summary>
+        </member>
+        <member name="M:plyGame.IPersistable.Save(System.String)">
+            <summary> Implement this to handle saving. This will be called when this component should save. </summary>
+        </member>
+        <member name="M:plyGame.IPersistable.Load(System.String)">
+            <summary> Implement this to handle loading. This will be called when this component should
+             restore itself from saved data. This will happen after Start() is done. </summary>
+        </member>
+        <member name="M:plyGame.IPersistable.DeleteSaveData(System.String)">
+            <summary> Implement this to handle keys that should be marked for deletion. This will be
+            called when a GameObject this component is on is marked as destroyed and can therefore
+            remove all its old saved keys to clear up storage space. </summary>
+        </member>
+        <member name="M:plyGame.IPersistable.DisablePersistence">
+            <summary> Called to tell the component it is not supposed to persist. The Spawn Point
+             could request this from NPCs since NPCs made by it might not be allowed to save
+             their states. </summary>
+        </member>
+        <member name="T:plyGame.PersistableObject">
+            <summary> This component is added to any GameObject that should be saved or restored via the LoadSave System. </summary>
+        </member>
+        <member name="M:plyGame.PersistableObject.UseCustomKey(System.String)">
+            <summary>
+            Set this to make the object use this key rather than the ID it generated.
+            Set to null or empty string to stop using custom key.
+            
+            This is useful when you have something specific, like a player, to save
+            data for. Player Manager for example uses this to set the player object's
+            save key to "player" by default.
+            </summary>
+        </member>
+        <member name="T:plyGame.ObjectDestroyerHandler">
+            <summary>
+            This class handles destroying an object. There are various ways in which it can happen
+            like first sinking the object below the terrain before removing. This class is used
+            by behaviours as needed.
+            </summary>
+        </member>
+        <member name="T:plyGame.ObjectDestroyerHandler.DestroyMethod">
+            <summary> Method to use </summary>
+        </member>
+        <member name="F:plyGame.ObjectDestroyerHandler.opt_a">
+            <summary>
+            the opt_ variables' use depends on what DestroyMethod was chosen
+            Destroy:
+            	opt_c is how long (in seconds) to wait before destroying the object
+            SinkAndDestroy: 
+            	opt_a = how far to sink (meters, must be positive number)
+            	opt_b = at what speed it will sink
+            	opt_c = after what timeout (seconds) will sinking start
+            </summary>
+        </member>
+        <member name="M:plyGame.ObjectDestroyerHandler.Start(UnityEngine.Transform)">
+            <summary>
+            Called by an object to start the destroy procedure
+            </summary>
+        </member>
+        <member name="M:plyGame.ObjectDestroyerHandler.Update">
+            <summary>
+            Called by an object to have the destroy procedure update as needed
+            </summary>
+        </member>
+        <member name="T:plyGame.LoadSaveProviderBase">
+            <summary> Base class for LoadSave Providers. The provider will be asked by plyGame to save or
+             load keys with data associated to them. The provider will be instantiated under the Game
+             Global GameObject parent.
+             
+             For a provider to be shown as option in plyGame you need to also add an editor script for it.
+             See LoadSaveProviderEdBase for more information on this. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.Awake">
+            <summary> The provider's GameObject is set inactive at runtime, in Awake() as it does not need
+             to be active for the function calls to work, no Update(), etc needed. You can replace this
+             function with new protected void Awake() if you need a different behaviour. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.Load">
+            <summary> This is called at the start of the game by the Game Global, just after the LoadSave
+             Provider object was created. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.Save">
+            <summary> Called when it is a good time to write all stored keys to disc. Normally when the
+             user selects to save the game. Will also be called if the game application quits in a 
+             normal way. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.HasKey(System.String)">
+            <summary> Is the key present? </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.DeleteKey(System.String)">
+            <summary> Deletes the key and its value. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.DeleteAll">
+            <summary> Deletes all keys and values. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.SetString(System.String,System.String)">
+            <summary> Sets a key with string value. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.GetString(System.String,System.String)">
+            <summary> Gets a string from stored key or return the defaultVal if key not set. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.SetInt(System.String,System.Int32)">
+            <summary> Set a key with int value. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.SetFloat(System.String,System.Single)">
+            <summary> Sets a key with float value. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.SetBool(System.String,System.Boolean)">
+            <summary> Sets a key with bool value. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.SetVector2(System.String,UnityEngine.Vector2)">
+            <summary> Sets a key with a vector2 value. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.SetVector3(System.String,UnityEngine.Vector3)">
+            <summary> Sets a key with a vector3 value. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.SetVector4(System.String,UnityEngine.Vector4)">
+            <summary> Sets a key with a vector4 value. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.SetRect(System.String,UnityEngine.Rect)">
+            <summary> Sets a key with a rect value. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.GetInt(System.String,System.Int32)">
+            <summary> Gets an int from stored key or return the defaultVal if key not set </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.GetFloat(System.String,System.Single)">
+            <summary> Gets a float from stored key or return the defaultVal if key not set. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.GetBool(System.String,System.Boolean)">
+            <summary> Gets a bool from stored key or return the defaultVal if key not set. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.GetVector2(System.String,UnityEngine.Vector2)">
+            <summary> Gets vector2 from stored key or return the defaultVal if key not set. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.GetVector3(System.String,UnityEngine.Vector3)">
+            <summary> Gets vector3 from stored key or return the defaultVal if key not set. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.GetVector4(System.String,UnityEngine.Vector4)">
+            <summary> Gets vector4 from stored key or return the defaultVal if key not set. </summary>
+        </member>
+        <member name="M:plyGame.LoadSaveProviderBase.GetRect(System.String,UnityEngine.Rect)">
+            <summary> Gets rect from stored key or return the defaultVal if key not set.  </summary>
+        </member>
+        <member name="T:plyGame.plyGameObjectIdentifyingType">
+            <summary> Type used to identify plyGame related objects. </summary>
+        </member>
+        <member name="T:plyGame.plyInput">
+            <summary> plyGame Input manager </summary>
+        </member>
+        <member name="P:plyGame.plyInput.MouseInputHandled">
+            <summary> Set this to True in each frame that input from mouse was handled. Will be reset to
+             False in LateUpdate() </summary>
+        </member>
+        <member name="M:plyGame.plyInput.Init(UnityEngine.GameObject,plyGame.InputDefAsset)">
+            <summary> Initialise plyInput. The parentObject you specify should be a global that will not be destroyed
+             during the life of the game running, else simply pass null and plyInput will create its own object. </summary>
+        </member>
+        <member name="M:plyGame.plyInput.Save">
+            <summary> Call to save the changes made to the buttons to PlayerPrefs or via SaveLoad provider. </summary>
+        </member>
+        <member name="M:plyGame.plyInput.Restore">
+            <summary> Call this only after having defined all buttons to read the changes that where saved
+             to PlayerPrefs (or via SaveLoad provider) and overwrite any defaults assigned while defining
+             the buttons. </summary>
+        </member>
+        <member name="M:plyGame.plyInput.DefineButton(plyGame.InputDefinition)">
+            <summary> Define a button from an input definition. Return index (idx) of new input or -1 on error. </summary>
+        </member>
+        <member name="M:plyGame.plyInput.GetInputIdx(System.String)">
+            <summary> Return the index (idx) of the defined button, -1 if not found. A def.ident is the combination of category and name
+            for example: "Player/SelectNextTarget" </summary>
+        </member>
+        <member name="M:plyGame.plyInput.GetDefinition(System.Int32)">
+            <summary> Return the definition of a button at specified IDX. You can get the IDX via GetInputIdx() </summary>
+        </member>
+        <member name="M:plyGame.plyInput.IsActive(System.Int32)">
+            <summary> Return true if the input definition is active </summary>
+        </member>
+        <member name="M:plyGame.plyInput.SimilarBinds(System.Int32,System.Int32)">
+            <summary> Return true if the inputs, identified by idx1 and idx2, use similar buttons or axis. </summary>
+        </member>
+        <member name="M:plyGame.plyInput.GetButton(System.Int32)">
+            <summary> Returns true while the virtual button is held down. </summary>
+        </member>
+        <member name="M:plyGame.plyInput.GetButtonDown(System.Int32)">
+            <summary> Returns true during the frame the user pressed down the virtual button identified by
+             'name'. </summary>
+        </member>
+        <member name="M:plyGame.plyInput.GetButtonUp(System.Int32)">
+            <summary> Returns true the first frame the user releases the virtual button. </summary>
+        </member>
+        <member name="M:plyGame.plyInput.GetAxis(System.Int32)">
+            <summary> Returns the value of the virtual axis. </summary>
+        </member>
+        <member name="M:plyGame.plyInput.GetAxis(System.Int32,System.Int32)">
+            <summary> Returns the axis for input idx1. If it is 0 then the axis for input idx2 will be returned. </summary>
+        </member>
+        <member name="T:plyGame.GameGlobal">
+            <summary> The plyGame Global Object </summary>
+        </member>
+        <member name="T:plyGame.GameGlobal.LayerMapping">
+            <summary> Layers used in plyGame </summary>
+        </member>
+        <member name="T:plyGame.GameGlobal.Tag">
+            <summary> Tags used in plyGame </summary>
+        </member>
+        <member name="T:plyGame.GameGlobal.VolumeType">
+            <summary> The available volume types. These are indexed to DataAsset.volume </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.Instance">
+            <summary> Instance of the Game Global. </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.HasInstance">
+            <summary> Return true if the instance exist, else false. </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.Paused">
+            <summary> Indicates if game is considered paused or not. When paused the character controllers 
+            should not allow input, perform AI, or move the characters. There might be other systems that 
+            need to check this flag to decide when they should be active or not. </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.BloxGlobal">
+            <summary> Reference to the plyBlox Global. </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.audioListener">
+            <summary> The audio listener. </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.musicSource">
+            <summary> The music audio source. This is only valid if GameGlobal.PlayMusic() was called at least once.
+            It is reused by GameGlobal.PlayMusic to play music. </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.uiManager">
+            <summary> Instance of GUI/ Screens Manager. </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.stringsData">
+            <summary> Strings data for currently selected language. </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.loadSaveProvider">
+            <summary> Reference to the LoadSave Provider </summary>
+        </member>
+        <member name="F:plyGame.GameGlobal.loadSaveProfileIdx">
+            <summary> Index of active LoadSave Profile under which slots are saved/ loaded. Defaults to 0. </summary>
+        </member>
+        <member name="F:plyGame.GameGlobal.loadSaveSlot">
+            <summary> The slot used when calls are made to the LoadSave system. Use SetActiveSaveSlot() to
+             set the slot. Use positive slot numbers if possible. Slot defaults to '-1' and is reserved to
+             plyGame's test mode when no slot is specified. The slot is initialized to '0' just after the
+             splash screens where shown so this will happen if you test the game with plyGame Play button
+             or during stand-alone build. If you use the Unity play button then the slot will stay -1
+             until you change it. </summary>
+        </member>
+        <member name="P:plyGame.GameGlobal.loadSaveMainKey">
+            <summary> This is the main key under which data is saved. It is a combination of the active profile and slot.
+            Do not change this directly. It is updated when you set the active profile or slot via provided functions. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.Create">
+            <summary> This is normally called in the Awake() of components that will need GameGlobal.
+             Needed when designer press Unity play button. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.LoadLanguageDependentData">
+            <summary> Loads the Custom and Loading Screens. SelectedLanguage must be set. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetAsset``1">
+            <summary> Get reference to an asset saved in dataAsset.assets list </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.RemoveAsset(UnityEngine.ScriptableObject)">
+            <summary> Set null and remove and asset in dataAsset.assets list </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.RegisterLoadSaveListener(plyCommon.GeneralCallback,plyCommon.GeneralCallback,plyCommon.GeneralCallback,plyCommon.GeneralCallback)">
+            <summary> Registers a callbacks to call when 
+            save: called when the listener should save data,
+            load: called when the listener should load data,
+            delete: called when the listener should delete data,
+            copy: called when the listener should copy data from old load slot to current save slot 
+            
+            args send to all are:
+            args[0] = Profile IDX
+            args[1] = Active Slot
+            args[2] = [only for copy] Slot that data was last loaded from and should be copied from to active slot
+            
+            Note. a main key is normally build from: (ProfileIDX + "." + ActiveSlot)
+            </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.RemoveLoadSaveListener(plyCommon.GeneralCallback,plyCommon.GeneralCallback,plyCommon.GeneralCallback,plyCommon.GeneralCallback)">
+            <summary> Remove a save, load and delete listener callbacks. 
+            profile and slot is passed as args if you need them.
+            int profile = (int)args[0];
+            int slot = (int)args[1];
+            </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetActiveProfile(System.String)">
+            <summary> Set the profile and make it active. Will return the index of the new profile. 
+            return -1 on error. Profile indexes starts at 0. Sets active profile idx to that of the
+            newly added profile. Will not create new profile but rather return index of existing 
+            if one of same name exist. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetActiveProfile(System.Int32)">
+            <summary> Sets the active profile to one with specified index. Does not check if index is valid. 
+            Will reset active slot to slot 0.</summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetSavedProfileCount">
+            <summary> Return the profile count (number of profiles that are saved) </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetProfileName(System.Int32)">
+            <summary> Return the name of a saved profile. Return empty string if profile number not correct. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetActiveSaveSlot(System.Int32)">
+            <summary> Set the slot which will be used when calls are made to the LoadSave system. Try to
+             keep to positive slot numbers if possible. Slot defaults to '-1' and is reserved to plyGame's
+             test mode when no slot is specified. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetSavedSlotCount">
+            <summary> Return the number of slots saved in the active LoadSave Profile. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetSavedSlotNumber(System.Int32)">
+            <summary> Return the slot number of a saved slot. The index should be 
+            within 0 and GetSavedSlotCount. Return -1 if not found. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetActiveSlotDateTime">
+            <summary> Return the Date and Time the slot was last saved. Return empty string if not yet saved. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetSlotDateTime(System.Int32)">
+            <summary> Return the Date and Time the slot was last saved. Return empty string if not yet saved. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.ResetLastLoadSlot">
+            <summary> Should be called when the player starts a "new game". </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SaveGameSession">
+            <summary> Saves the game state to active slot. Keys from Temp Store and active scene's
+             persistent marked objects are stored. The default slot, '-1' will be prevented from being
+             saved as it is used by plyGame when scenes are tested. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.LoadGameSession">
+            <summary> Loads game state from active slot. The last active scene saved for this slot will be
+             restored and all persistent-marked objects loaded from save. The default slot, '-1' will be
+             prevented from being loaded as it is used by plyGame when scenes are tested. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.DeleteAllSaveData">
+            <summary> Delete all saved data. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.DeleteProfile(System.Int32)">
+            <summary> Delete all data of a profile. This should not be called during active session as
+            it will also remove all temporarily saved data and corrupt an active game session.
+            Note: The active profile will be reset to 0 </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.DeleteAllSlotsInActiveProfile">
+            <summary> Delete all the slots (and their keys and values) from the specified profile. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.DeleteAllDataInActiveSlot">
+            <summary> Delete all the keys and values from the specified slot. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.DeleteKey(System.String)">
+            <summary> Delete a key from temp store key and permanently when SaveGameSession() is called. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.AddCreateLoadKey(System.Type,System.String)">
+            <summary> Add the key of an object that was added to scene at runtime and knows how to and
+            would like to recreate itself in the scene when the player enters the scene again next time. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.RemoveCreateLoadKey(System.Type,System.String)">
+            <summary> Remove a key that was previously added via AddCreateLoadKey </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetStringKey(System.String,System.String)">
+            <summary> Sets a value to the given key. This will be saved when SaveGameSession() is called. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetIntKey(System.String,System.Int32)">
+            <summary> Sets a value to the given key. This will be saved when SaveGameSession() is called. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetFloatKey(System.String,System.Single)">
+            <summary> Sets a value to the given key. This will be saved when SaveGameSession() is called. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetBoolKey(System.String,System.Boolean)">
+            <summary> Sets a value to the given key. This will be saved when SaveGameSession() is called. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetVector2Key(System.String,UnityEngine.Vector2)">
+            <summary> Sets a value to the given key. This will be saved when SaveGameSession() is called. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetVector3Key(System.String,UnityEngine.Vector3)">
+            <summary> Sets a value to the given key. This will be saved when SaveGameSession() is called. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetVector4Key(System.String,UnityEngine.Vector4)">
+            <summary> Sets a value to the given key. This will be saved when SaveGameSession() is called. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetRectKey(System.String,UnityEngine.Rect)">
+            <summary> Sets a value to the given key. This will be saved when SaveGameSession() is called. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetStringKey(System.String,System.String)">
+            <summary> Read a value from the given key. The current Save Slot is appended to the key. The
+             LoadSave provider is checked if the key is not found in the temp store. defaultVal is
+             returned if the key was not found in either location. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetIntKey(System.String,System.Int32)">
+            <summary> Read a value from the given key. The current Save Slot is appended to the key. The
+             LoadSave provider is checked if the key is not found in the temp store. defaultVal is
+             returned if the key was not found in either location. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetFloatKey(System.String,System.Single)">
+            <summary> Read a value from the given key. The current Save Slot is appended to the key. The
+             LoadSave provider is checked if the key is not found in the temp store. defaultVal is
+             returned if the key was not found in either location. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetBoolKey(System.String,System.Boolean)">
+            <summary> Read a value from the given key. The current Save Slot is appended to the key. The
+             LoadSave provider is checked if the key is not found in the temp store. defaultVal is
+             returned if the key was not found in either location. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetVector2Key(System.String,UnityEngine.Vector2)">
+            <summary> Read a value from the given key. The current Save Slot is appended to the key. The
+             LoadSave provider is checked if the key is not found in the temp store. defaultVal is
+             returned if the key was not found in either location. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetVector3Key(System.String,UnityEngine.Vector3)">
+            <summary> Read a value from the given key. The current Save Slot is appended to the key. The
+             LoadSave provider is checked if the key is not found in the temp store. defaultVal is
+             returned if the key was not found in either location. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetVector4Key(System.String,UnityEngine.Vector4)">
+            <summary> Read a value from the given key. The current Save Slot is appended to the key. The
+             LoadSave provider is checked if the key is not found in the temp store. defaultVal is
+             returned if the key was not found in either location. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.GetRectKey(System.String,UnityEngine.Rect)">
+            <summary> Read a value from the given key. The current Save Slot is appended to the key. The
+             LoadSave provider is checked if the key is not found in the temp store. defaultVal is
+             returned if the key was not found in either location. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.UpdateAudioVolumes">
+            <summary> Force volume update on listener (main) and all audio updaters. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.ApplySoundVolumeChanges">
+            <summary> Force volume update on listener (main) and all audio updaters. 
+            And SAVE the audio volume settings. </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.LoadSoundVolumeSettings">
+            <summary> Force volume update on listener (main) and all audio updaters
+            after loading audio volume settings </summary>
+        </member>
+        <member name="M:plyGame.GameGlobal.SetAudioListenerFollow(UnityEngine.GameObject)">
+            <summary> Set the audio listener to follow the GameObject. Set null to stop following and move 
+            audio listener back to world 0x0x0. Only works on plyGame's default audio listener if it
+            was left to be created by plyGame. </summary>
+        </member>
+        <member name="P:plyGame.GUIManager.screensSystemReady">
+            <summary> Use this to find out if the screens system is ready. You should not make calls to its functions
+            while this is false. The Screen system only initialise properly after the Language screen exits. </summary>
+        </member>
+    </members>
+</doc>

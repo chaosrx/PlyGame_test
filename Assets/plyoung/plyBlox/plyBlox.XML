@@ -1,0 +1,582 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>plyBlox</name>
+    </assembly>
+    <members>
+        <member name="T:plyBloxKit.plyBlockAttribute">
+            <summary> Attribute for Block definitions. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyBlockFieldAttribute">
+            <summary> Attribute for Block Field definitions. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyEventAttribute">
+            <summary> Attribute for Event definitions. </summary>
+        </member>
+        <member name="T:plyBloxKit.Color_Value">
+            <summary> A block that creates and can return a Color value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Color_Value.RunAndGetColor">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Color_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.Component_Value">
+            <summary> A block that creates and can return a UnityEngine.Component value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Component_Value.RunAndGetComponent">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Component_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyValue_Block">
+            <summary> This is the base class for Value or Variable type blocks. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyValue_Block.RunAndGetValue">
+            <summary> Called when the Block should run. The block should also return the value it created. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyVar_Value">
+            <summary> A block that creates and can return a plyVar value. Reference to a plyBlox Variable. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar_Value.RunAndGetVariable">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.SystemObject_Value">
+            <summary> A block that creates and can return a System.Object value. </summary>
+        </member>
+        <member name="M:plyBloxKit.SystemObject_Value.RunAndGetSystemObject">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.SystemObject_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyBlox_Value">
+            <summary> A block that creates and can return a reference to a plyBlox object. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox_Value.RunAndGetplyBlox">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.SpaceEnum_Value">
+            <summary> A block that creates and can return a UnityEngine.Space value. </summary>
+        </member>
+        <member name="M:plyBloxKit.SpaceEnum_Value.RunAndGetSpace">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.SpaceEnum_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.Vector3_Value">
+            <summary> A block that creates and can return a Vector3 value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Vector3_Value.RunAndGetVector3">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Vector3_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.Vector2_Value">
+            <summary> A block that creates and can return a Vector2 value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Vector2_Value.RunAndGetVector2">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Vector2_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.Rect_Value">
+            <summary> A block that creates and can return a Rect value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Rect_Value.RunAndGetRect">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Rect_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.UnityObject_Value">
+            <summary> A block that creates and can return a UnityEngine.Object value. </summary>
+        </member>
+        <member name="M:plyBloxKit.UnityObject_Value.RunAndGetUnityObject">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.UnityObject_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.Bool_Value">
+            <summary> A block that creates and can return a Boolean value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Bool_Value.RunAndGetBool">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Bool_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.GameObject_Value.RunAndGetGameObject">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.GameObject_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.Float_Value">
+            <summary> A block that creates and can return a Float value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Float_Value.RunAndGetFloat">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Float_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.Int_Value">
+            <summary> A block that creates and can return an Integer value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Int_Value.RunAndGetInt">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.Int_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.String_Value">
+            <summary> A block that creates and can return a String value. </summary>
+        </member>
+        <member name="M:plyBloxKit.String_Value.RunAndGetString">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="M:plyBloxKit.String_Value.RunAndGetValue">
+            <summary> Executes and return value. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyEventHandler">
+            <summary> Base class for all Event handlers. When defining new Events you also need to define a
+             handler, or handlers, for those events. The Event.HandlerType override is used to specify
+             that this Handler can handle that specific Event. Handlers can obviously handle more than one
+             Event type and is recommended where possible. Since a handler is simply a MonoBehaviour, or
+             Component, it will be added to the GameObject that has an Event, in its plyBlox, that needs
+             to be handled. So you can assume that anything that works in a Behavior will work in the
+             Event Handler, like Update, OnTriggerEnter, etc. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEventHandler.Awake">
+            <summary> Called by Unity. See MonoBehaviour for more info. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEventHandler.StateChanged">
+            <summary> This is called when the State changes. The handler should now clean up any event
+             lists that it is keeping as they are now invalid. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEventHandler.AddEvent(plyBloxKit.plyEvent)">
+            <summary> This is called to add an event that this handler should handle. </summary>
+            <param name="e"> The plyEvent that should be handled. </param>
+        </member>
+        <member name="M:plyBloxKit.plyEventHandler.CheckEvents">
+            <summary> Called when plyBlox is done adding Events. This is a good time to check if this
+             Handler has no events and disable itself if there is nothing for it to do. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEventHandler.RunEvents(System.Collections.Generic.List{plyBloxKit.plyEvent},plyBloxKit.plyEventArg[])">
+            <summary> Will execute the events from the list and stop as soon as one changes the
+            state or when there are no more events to run. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyBlock">
+            <summary> A plyBlock is the most basic of blocks and base class of other block types. A Block
+             is something that is inserted into an Event and is what is executed when the Event is
+             triggered. Have a look at plyBlockAttribute to learn more about the attribute (def.meta data) you
+             need to include for any Block being defined. Also see plyBlockFieldAttribute for Block fields
+             (public variables) that you define. </summary>
+        </member>
+        <member name="F:plyBloxKit.plyBlock.blockIsValid">
+            <summary>
+            If set False then Run() of the Block will not be called. You need to init this to the correct
+            state in Created() or Initialise(). Note that Initialise() will not be called if blockIsValid = false
+            </summary>
+        </member>
+        <member name="F:plyBloxKit.plyBlock.stopAllOnError">
+            <summary>
+            If True and blockIsValid = False or this Block's return code is Error then further execution of the Event this
+            Block is in will stop immediately. Blocks that may be be in an invalid state but not really influence the flow
+            of the Event, like a Block that starts an animation, would set this false since it does not matter too much if
+            this kind of block failed. Variable and Condition type blocks should normally keep this to true since failure
+            in them is important to take note of and should stop the flow of the event.
+            </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlock.Created">
+            <summary> You can override this in custom Blocks. It is called at initialization so that the
+             block can set some variables if it needs to and also check if most of its fields are in a
+             valid state. It can set inValidState = true if the fields are valid and then use that in
+             Run() to quickly check if the Block is in a valid state and allowed to actually run. This is
+             called in the Blox object's Awake(), so do not reference objects that might not yet be
+             available. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlock.Initialise">
+            <summary> You can override this in custom Blocks. It is called at initialization so that the
+             block can set some variables if it needs to and also check if most of its fields are in a
+             valid state. It can set inValidState = true if the fields are valid and then use that in
+             Run() to quickly check if the Block is in a valid state and allowed to actually run. Called
+             in the Blox object's Start(), so do not reference objects that might not yet be available. 
+             Will not be called if blockIsValid = False</summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlock.Run(plyBloxKit.BlockReturn)">
+            <summary> You can override this in custom Blocks. It is called when the Block should run. The
+             return type is normally BlockReturn.OK except if it is a special case. The param will be be
+             set to whatever the preceding block returned, that is if the return value was not a type that
+             caused further block execution to stop. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlock.HasField(plyBloxKit.plyBlock)">
+            <summary> Helps detect orphaned Blocks.
+            Not used with all blocks so this returns True by default.
+            Only seem to be needed with helping in the case of Condition Blocks like the IF/Else.
+            Add override to move Blocks if ghost block errors comes up again. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlock.RunChildren">
+            <summary> Called by container type blocks to run their contained (child) blocks. Will return
+             BlockReturn type which should be checked by any looping Blocks to determine what they should
+             do next. For example, Break, Continue, or execute the next block in the list normally. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlock.Log(UnityEngine.LogType,System.String)">
+            <summary>
+            Blocks should call this function when they want to print error messages as it will append some
+            useful info to the message like the Blox, State and Event that this Blocks was used in.
+            Will set blockIsValid = false; if logType = LogType.Error or LogType.Exception
+            </summary>
+        </member>
+        <member name="T:plyBloxKit.plyBlox">
+            <summary> A plyBlox object is the main worker in the plyBlox Visual Scripting kit. It contains
+             all the States, Events and Blocks that gives behaviour to an object. </summary>
+        </member>
+        <member name="F:plyBloxKit.plyBlox.NeedObjectActive">
+            <summary> This is set to be a hint to code that want to know. If true then the blox' GameObject
+             should not be made inactive else it could cause some events to fail. Update or Collision
+             events could fail for example. This is only used to give a clue to whom ever is interested in
+             knowing and do not mean the object may not be made inactive at all. </summary>
+        </member>
+        <member name="P:plyBloxKit.plyBlox.CurrentState">
+            <summary> The currently active state </summary>
+        </member>
+        <member name="P:plyBloxKit.plyBlox.BloxGlobal">
+            <summary> Runtime reference to the blox system's global object. It contains the global
+             variables and blox system settings. </summary>
+        </member>
+        <member name="E:plyBloxKit.plyBlox.onEvent">
+            <summary> Callback which is called when a Blox Event is about to be executed. </summary>
+        </member>
+        <member name="E:plyBloxKit.plyBlox.onEventS">
+            <summary> Callback which is called with the name of the Blox Event which is about to be executed. </summary>
+        </member>
+        <member name="F:plyBloxKit.plyBlox.onBloxEvent">
+            <summary> Unity Event which is called when a Blox Event is about to be executed. </summary>
+        </member>
+        <member name="F:plyBloxKit.plyBlox.onBloxEventS">
+            <summary> Unity Event which is called with the name of the Blox Event which is about to be executed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.SetState(System.String)">
+            <summary> Sets the current state of the Blox. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.TriggerEvent(System.String)">
+            <summary> Trigger the named event in the Blox' active state. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.SetCurrentState(System.String)">
+            <summary> Sets the current state by name. Returns false if the named state is not present in
+             this plyBlox object. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.SetCurrentState(plyBloxKit.plyState,System.Boolean)">
+            <summary> Sets the current state. Returns false if the state is not part of this plyBlox
+             object. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GetEvent(System.String)">
+            <summary> Return the first event with the given name and in the currently active State. Return
+             null if not found. Keep in mind that Events can have the same name in the same State. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.RunEvent(System.String)">
+            <summary> Run the named Event's blocks. Returns true of the State changed while it was running. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.RunEvent(plyBloxKit.plyEvent)">
+            <summary> Run the Event's blocks. Returns true of the State changed while it was running. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.RunEvent(plyBloxKit.plyEvent,System.Single)">
+            <summary> Run the Event's blocks after specified timeout </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GetBloxFrom(System.Object)">
+            <summary> Try and return the plyBlox object from the given Object which can be a GameObject or
+             Component. Returns null if failed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GetGameObjectFrom(System.Object)">
+            <summary> Try and return a GameObject from the given Object which can be the GameObject itself
+             or a Component on the GameObject. Return null if failed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GlobalVariableDefined(System.String)">
+            <summary> Returns True if variable defined, else False </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GetGlobalVariable(System.String)">
+            <summary> Return a reference to the named Global Variable. Will return null if the variable does
+             not exist. This is a shortcut to BloxGlobal.GetVariable() </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GetGlobalVarValue(System.String)">
+            <summary> Return the value of a Global Variable. Return null if it does not exist. Keep in mind
+             that the value might simply be null. This is a shortcut to BloxGlobal.GetVarValue() </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.SetGlobalVarValue(System.String,System.Object)">
+            <summary> Set the value of a Global Variable. Will create it if it does not exist. Return
+             reference to the variable. Return null if failed to create. This is a shortcut to
+             BloxGlobal.SetVarValue() </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.EncodeGlobalVariables(System.Boolean)">
+            <summary> Encode the global variables and data into a string. This can be saved to later send to DecodeGlobalVariables.
+            (char)30 and (char)31 are used as separators. GameObject, SystemObject and UnityObject will not be encoded. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.DecodeGlobalVariables(System.String)">
+            <summary> Decode a string that was previously encoded by EncodeGlobalVariables </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.LocalVariableDefined(System.String)">
+            <summary> Returns True if variable defined, else False </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GetLocalVariable(System.String)">
+            <summary> Return a reference to the named Local Variable. Will return null if the variable does
+             not exist. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GetLocalVarValue(System.String)">
+            <summary> Return the value of a Local Variable. Return null if it does not exist. Keep in mind
+             that the value might simply be null. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.SetLocalVarValue(System.String,System.Object)">
+            <summary> Set the value of a Local Variable. Will create it if it does not exist. Return
+             reference to the variable. Return null if failed to create. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.SetLocalVarValue(System.String,System.Object,System.Boolean)">
+            <summary> Set the value of a Local Variable. Will create it if it does not exist. Return
+             reference to the variable. Return null if failed to create. persist will only be applied 
+             if it is a new variable. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.EncodeLocalVariables(System.Boolean)">
+            <summary> Encode the local variables and data into a string. This can be saved to later send to DecodeLocalVariables.
+            (char)30 and (char)31 are used as separators. GameObject, SystemObject and UnityObject will not be encoded. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.DecodeLocalVariables(System.String)">
+            <summary> Decode a string that was previously encoded by EncodeLocalVariables </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.EncodeVariables(System.Collections.Generic.List{plyBloxKit.plyVar},System.Boolean)">
+            <summary> Encode the variables and data into a string. This can be saved to later send to DecodeVariables.
+            (char)30 and (char)31 are used as separators. GameObject, SystemObject and UnityObject will not be encoded. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.DecodeVariables(System.String)">
+            <summary> Decode a string that was previously encoded by EncodeVariables and return a list of variables. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.CreateList(System.String)">
+            <summary> Creates a new named list and return reference to it. Will silently fail if same name
+            already used and simply return that list. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GetList(System.String)">
+            <summary> Return reference to the named list. Return null if list does not exist. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.AddToList(System.String,System.Object)">
+            <summary> Add value to named list. Return false on error. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.GetFromList(System.String,System.Int32,System.Object@)">
+            <summary> Get value from list. return false on error. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBlox.ListLength(System.String)">
+            <summary> Return length of list. return -1 on error. </summary>
+        </member>
+        <member name="T:plyBloxKit.VariableScope">
+            <summary> Scope of a variable. plyBlox has 3 types of variables. Global, which is accessible
+             from anywhere and belongs to the game project. Local, which belongs to a Blox object.
+             Temporary, which is only valid within an Event and that Event only. </summary>
+        </member>
+        <member name="T:plyBloxKit.BlockType">
+            <summary> Types that a Block can be </summary>
+        </member>
+        <member name="T:plyBloxKit.BlockReturn">
+            <summary> Block return types </summary>
+        </member>
+        <member name="T:plyBloxKit.plySpace">
+            <summary> Scene space </summary>
+        </member>
+        <member name="T:plyBloxKit.plyVectorType">
+            <summary> Vector type </summary>
+        </member>
+        <member name="T:plyBloxKit.plyAxisV2">
+            <summary> 2D Axis type </summary>
+        </member>
+        <member name="T:plyBloxKit.plyAxisV3">
+            <summary> 3D Axis type </summary>
+        </member>
+        <member name="T:plyBloxKit.plyRectValues">
+            <summary> Rect component type </summary>
+        </member>
+        <member name="T:plyBloxKit.plySizeValues">
+            <summary> Size value </summary>
+        </member>
+        <member name="T:plyBloxKit.plyEnabledState">
+            <summary> Enabled state of an object </summary>
+        </member>
+        <member name="T:plyBloxKit.plyVisibleState">
+            <summary> Visible state of an object </summary>
+        </member>
+        <member name="T:plyBloxKit.plyVisibleState2">
+            <summary> Visible state of an object </summary>
+        </member>
+        <member name="T:plyBloxKit.plyColorValues">
+            <summary> Color component type </summary>
+        </member>
+        <member name="T:plyBloxKit.plyRotationLimit">
+            <summary> Limit rotation on specific axis </summary>
+        </member>
+        <member name="T:plyBloxKit.VariableType">
+            <summary> The supported variable types. </summary>
+        </member>
+        <member name="T:plyBloxKit.FieldDataType">
+            <summary> The supported Block Field types. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyEventTrigger">
+            <summary> This class carry info on an Event that can be triggered
+            and the possible params to send. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEventTrigger.Trigger(plyBloxKit.plyBlox)">
+            <summary> Trigger the event in given Blox. Will silently fail if the eventName is null/empty </summary>
+        </member>
+        <member name="T:plyBloxKit.plyBloxGlobal">
+            <summary> The plyBlox System's Global object, containing Global Variables and Blox system settings. </summary>
+        </member>
+        <member name="P:plyBloxKit.plyBloxGlobal.Instance">
+            <summary> Gets an Instance of the pyBlox Global. There should only be one instance of it at runtime. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBloxGlobal.GetInstance(UnityEngine.GameObject)">
+            <summary> Get a reference to the plyBlox Global Instance. Create it from the provided prefab if
+             it does not exist yet. </summary>
+        </member>
+        <member name="P:plyBloxKit.plyBloxGlobal.InstanceExist">
+            <summary> Will return true if an instance of the plyBloxGlobal exist. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBloxGlobal.VariableDefined(System.String)">
+            <summary> Returns True if variable defined, else False </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBloxGlobal.GetVariable(System.String)">
+            <summary> Returns a reference to the Global Variable. Will return null if the variable does not
+             exist. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBloxGlobal.GetVarValue(System.String)">
+            <summary> Returns the Global Variable's value. The Type of the returned value depends on what
+             kind of variable it is. See plyVar for more information. Returns null if the named variable
+             does not exist. Keep in mind that the value might simply be null. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBloxGlobal.SetVarValue(System.String,System.Object)">
+            <summary> Set the value of a Global Variable. The variable will adopt the new value type. Will
+             create the named variable if it does not exist. Returns reference to variable. Returns null
+             if failed to create the variable. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBloxGlobal.SetVarValue(System.String,System.Object,System.Boolean)">
+            <summary> Set the value of a Global Variable. The variable will adopt the new value type. Will
+             create the named variable if it does not exist. Returns reference to variable. Returns null
+             if failed to create the variable. persist will only be applied if it is a new variable. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBloxGlobal.EncodeVariables(System.Boolean)">
+            <summary> Encode the global variables and data into a string. This can be saved to later send to DecodeVariables.
+            (char)30 and (char)31 are used as separators. GameObject, SystemObject and UnityObject will not be encoded. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyBloxGlobal.DecodeVariables(System.String)">
+            <summary> Decode a string that was previously encoded by EncodeVariables </summary>
+        </member>
+        <member name="T:plyBloxKit.plyEvent">
+            <summary> Base class for all Event definitions. An Event is part of A plyBlox' State and
+             execute blocks when triggered. How the Event is triggered depends on what kind of Event it
+             is. Have a look at plyEventAttribute to learn more about the Attribute (meta data) you need
+             to include for any Event you define. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEvent.HandlerType">
+            <summary> You must override this for custom Events. This should return the type of the
+             component that knows how to handle this event. The Handler, a MonoBehaviour/ Component,  will
+             be added to the plyBlox GameObject that this Event is used in. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEvent.Created">
+            <summary> Called at runtime after the state and event was created. This is called in the
+             Awake() of the Blox object. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEvent.Initialise">
+            <summary> Called at runtime after the state and event was created. A good place to init some
+             variables. Be sure to call the base.Initialise() if you override this so that the blocks get
+             their Initialise() called. This is called in the Start() of the Blox object. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEvent.Run">
+            <summary> Called when the Event should run. You normally do not override this as it will
+            execute the Blocks in the event. You may override this if needed.
+            </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEvent.TempVariableDefined(System.String)">
+            <summary> Returns True if variable defined, else False </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEvent.GetTempVariable(System.String)">
+            <summary> Return a reference to the named Temporary Variable. Will return null if the variable
+             does not exist. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEvent.GetTempVarValue(System.String)">
+            <summary> Return the value of a Temporary Variable. Return null if it does not exist. Keep in
+             mind that the value might simply be null. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyEvent.SetTempVarValue(System.String,System.Object)">
+            <summary> Set the value of a Temporary Variable. Will create it if it does not exist. Return a
+             reference to the variable. Null if failed to create. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyState">
+            <summary> plyBlox can be in one of several states. The designer will use the plyBlox Editor to
+             add States to a blox object. Each state can have several Events that can be triggered. Events
+             execute Blocks when triggered. You should to normally have to deal with this class directly. </summary>
+        </member>
+        <member name="T:plyBloxKit.plyVar">
+            <summary> A plyBlox variable. plyBlox has 3 types of variables. Global, which is accessible
+             from anywhere via plyBloxGlobal and belongs to the game project. Local, which belongs to a
+             Blox object. Temporary, which is only valid within an Event and that Event only.
+             
+             You will normally use the functions in plyBloxGlobal and plyBlox to manipulate variables. The
+             variable support various types. See VariableType for a list of supported types. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.GetValue">
+            <summary> Returns the value contained in this variable. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.SetValue(System.Object)">
+            <summary> Set the variable's value. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.ToString">
+            <summary> Returns the string of the variable's value. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetBool(System.Boolean@)">
+            <summary> Attempts to get a bool value from the variable. </summary>
+            <param name="v"> [out] The Boolean value result. </param>
+            <returns> true if it succeeds, false if it fails to cast to a bool value. </returns>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetInt(System.Int32@)">
+            <summary> Attempts to get an int value from the variable. </summary>
+            <param name="v"> [out] The Integer value result. </param>
+            <returns> true if it succeeds, false if it fails to cast to an int value. </returns>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetFloat(System.Single@)">
+            <summary> Attempts to get float value from the variable. </summary>
+            <param name="v"> [out] The Float value result. </param>
+            <returns> true if it succeeds, false if it fails to cast to a float value. </returns>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetRect(UnityEngine.Rect@)">
+            <summary> Attempts to get value from the variable. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetColor(UnityEngine.Color@)">
+            <summary> Attempts to get value from the variable. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetVector2(UnityEngine.Vector2@)">
+            <summary> Attempts to get value from the variable. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetVector3(UnityEngine.Vector3@)">
+            <summary> Attempts to get value from the variable. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetGameObject(UnityEngine.GameObject@)">
+            <summary> Attempts to get value from the variable. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetComponent(UnityEngine.Component@)">
+            <summary> Attempts to get value from the variable. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetBlox(plyBloxKit.plyBlox@)">
+            <summary> Attempts to get value from the variable. Return false and a default value if failed. </summary>
+        </member>
+        <member name="M:plyBloxKit.plyVar.TryGetUnityObject(UnityEngine.Object@)">
+            <summary> Attempts to get value from the variable. Return false and a default value if failed. </summary>
+        </member>
+    </members>
+</doc>

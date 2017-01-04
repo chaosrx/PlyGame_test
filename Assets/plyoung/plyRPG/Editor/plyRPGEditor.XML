@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>plyRPGEditor</name>
+    </assembly>
+    <members>
+        <member name="P:plyGameEditor.plyRPGEdGlobal.DATA_PATH_SKILLS">
+            <summary> Contains the skills prefabs. Default is 'Assets/plyData/System/Skills/'. </summary>
+        </member>
+        <member name="P:plyGameEditor.plyRPGEdGlobal.DATA_PATH_CLASSES">
+            <summary> Contains the actor class prefabs. Default is 'Assets/plyData/System/Classes/'. </summary>
+        </member>
+        <member name="P:plyGameEditor.plyRPGEdGlobal.DATA_PATH_ITEMS">
+            <summary> Contains the Item Event Responder prefabs. Default is 'Assets/plyData/System/Items/'. </summary>
+        </member>
+    </members>
+</doc>
